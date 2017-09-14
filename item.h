@@ -1,8 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-// mia changed something
-// test mia's branch
+
+#include <QMainWindow>
+
 class Item
 {
 private:
