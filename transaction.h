@@ -1,5 +1,6 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
+#include <QMainWindow>
 
 class Transaction
 {
@@ -23,7 +24,7 @@ public:
 
     // Set functions
     void setPurchaseDate(QString purchaseDate);
-    void setItemName(Qstring itemName);
+    void setItemName(QString itemName);
     void setCustomerID(int customerID);
     void setQuantityPurchased(int quantityPurchased);
     void setSalesPrice(float salesPrice);
