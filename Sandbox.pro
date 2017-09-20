@@ -1,18 +1,18 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-09-13T16:49:52
+# Project created by QtCreator 2017-09-16T22:28:38
 #
 #-------------------------------------------------
 
-QT       += core gui
-
+QT       += core gui sql
+CONFIG += console
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = BulkClub
+TARGET = Sandbox
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
-# any feature of Qt which as been marked as deprecated (the exact warnings
+# any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -23,15 +23,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    member.cpp \
+SOURCES += \
+        main.cpp \
+        dbmanager.cpp \
+    admincp.cpp \
+    loginwindow.cpp \
+    item.cpp \
     transaction.cpp \
-    item.cpp
+    member.cpp \
+    edittransactiondialog.cpp
 
-HEADERS  += mainwindow.h \
-    member.h \
+HEADERS += \
+        dbmanager.h \
+    admincp.h \
+    loginwindow.h \
+    item.h \
     transaction.h \
-    item.h
+    member.h \
+    edittransactiondialog.h
 
-FORMS    += mainwindow.ui
+FORMS += \
+        mainwindow.ui \
+    loginwindow.ui \
+    edittransactiondialog.ui

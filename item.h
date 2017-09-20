@@ -9,6 +9,7 @@ class Item
 private:
     QString itemName;
     float itemPrice;
+
 public:
     QString getItemName();
     float getItemPrice();

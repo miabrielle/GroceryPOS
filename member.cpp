@@ -1,4 +1,4 @@
-#include "Member.h"
+#include "member.h"
 
     // Member::get Functions
     QString Member::getMemberName()

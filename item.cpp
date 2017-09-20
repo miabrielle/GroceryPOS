@@ -19,3 +19,4 @@ void Item::setItemPrice(float itemPrice)
 {
     this->itemPrice = itemPrice;
 }
+

@@ -1,4 +1,4 @@
-#include "Transaction.h"
+#include "transaction.h"
 // ================== ACCESSOR FUNCTIONS =============================/
     // Transaction::get Functions
     QString Transaction::getPurchaseDate()
