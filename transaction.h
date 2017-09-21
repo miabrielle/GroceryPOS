@@ -9,10 +9,11 @@ private:
     QString itemName;
     int customerID;
     int quantityPurchased;
-    float salesPrice;
-    float transactionTotal;
 
 public:
+
+    Transaction();
+    Transaction(int customerID, QString itemName, int quantityPurchased, QString purchaseDate);
 // ================== ACCESSOR FUNCTIONS =============================/
     // Get Functions
     QString getPurchaseDate();
@@ -27,8 +28,6 @@ public:
     void setItemName(QString itemName);
     void setCustomerID(int customerID);
     void setQuantityPurchased(int quantityPurchased);
-    void setSalesPrice(float salesPrice);
-    void setTransactionTotal(float transactionTotal);
 
 };
 #endif // TRANSACTION_H

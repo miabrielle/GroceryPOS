@@ -32,10 +32,10 @@ void EditTransactionDialog::on_cancelEditTransactionButton_clicked()
 
 void EditTransactionDialog::on_saveTransactionButton_clicked()
 {
-    int customerID = ui->customerIDField->value();
-    QString itemPurchased = ui->itemPurchasedField->text();
-    int quantityPurchased = ui->quantityPurchasedField->value();
-    QString purchaseDate = ui->itemPurchasedField->text();
+//    int customerID = ui->customerIDField->value();
+//    QString itemPurchased = ui->itemPurchasedField->text();
+//    int quantityPurchased = ui->quantityPurchasedField->value();
+//    QString purchaseDate = ui->itemPurchasedField->text();
 
 
 }

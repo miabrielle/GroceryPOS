@@ -17,7 +17,7 @@ public:
     void renderTransactions();
 
     void setDBPointer(DBManager* dbPointer);
-
+    void addTransactionsVectorToTable(std::vector<Transaction> transactionsList);
     ~MainWindow();
 
 private slots:
@@ -26,6 +26,10 @@ private slots:
 
 
     void on_editTransactionRowButton_clicked();
+
+    void on_showSalesButton_clicked();
+
+    void on_loadAllTransactionsButton_clicked();
 
 private:
     Ui::MainWindow *ui;

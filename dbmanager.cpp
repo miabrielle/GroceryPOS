@@ -1,7 +1,6 @@
 #include "dbmanager.h"
+#include <QMessageBox>
 
-
-#include <QFile>
 
 /************************************************************************
  * DBManager Constructor
@@ -86,7 +85,7 @@ QString DBManager::getCustomerNameFromID(int customerID)
 
     customersQuery.prepare("SELECT name FROM customers WHERE id = :customerID");
 
-    customersQuery.bindValue(":customerID", customerID, QSql::Out);
+    customersQuery.bindValue(":customerID", customerID);
     // If the query has a result
     if (customersQuery.exec() && customersQuery.first())
     {
@@ -94,37 +93,81 @@ QString DBManager::getCustomerNameFromID(int customerID)
     }
     else
     {
-        customerName = "ID matches no customers";
+        customerName = "transaction Customer ID matches no customers in database!";
     }
     return customerName;
 }
 
 std::vector<Transaction> DBManager::getAllTransactions()
 {
+    qDebug() << "Getting all transactions.";
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
 
-    transactionsQuery.exec("SELECT cid, itempurchased, quantitypurchased, date FROM transactions");
-
-    // Check if the query has at least one result
-    if (transactionsQuery.first())
+    if(transactionsQuery.exec("SELECT cid, itempurchased, quantitypurchased, date FROM transactions"))
     {
-        while(transactionsQuery.isValid())
+
+
+        // Check if the query has at least one result
+        if (transactionsQuery.first())
         {
-            Transaction tempTransaction;
+            while(transactionsQuery.isValid())
+            {
+                Transaction tempTransaction;
 
-            tempTransaction.setCustomerID(transactionsQuery.value(0).toInt());
-            tempTransaction.setItemName(transactionsQuery.value(1).toString());
-            tempTransaction.setQuantityPurchased(transactionsQuery.value(2).toInt());
-            tempTransaction.setPurchaseDate(transactionsQuery.value(3).toString());
+                tempTransaction.setCustomerID(transactionsQuery.value(0).toInt());
+                tempTransaction.setItemName(transactionsQuery.value(1).toString());
+                tempTransaction.setQuantityPurchased(transactionsQuery.value(2).toInt());
+                tempTransaction.setPurchaseDate(transactionsQuery.value(3).toString());
 
-            transactions.push_back(tempTransaction);
+                transactions.push_back(tempTransaction);
 
-            transactionsQuery.next();
+                transactionsQuery.next();
+            }
         }
     }
     return transactions;
 }
+
+std::vector<Transaction> DBManager::getTransactionsBySalesDate(QString salesDate)
+{
+    std::vector<Transaction> transactionsByIDList;
+    QSqlQuery query;
+    query.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE date=:salesDate");
+    query.bindValue(":salesDate", salesDate);
+
+    qDebug() << query.lastError();
+    // cid = 0
+    // itempurchased = 1
+    // quantitypurchased = 2
+    // date = 3
+    if (query.exec())
+    {
+        qDebug() << "Query executed";
+        if(query.first())
+        {
+            qDebug() << "first result loaded";
+            while (query.isValid())
+            {
+                int customerID, quantityPurchased;
+                QString itemName, itemPurchased, datePurchased;
+
+                customerID = query.value(0).toInt();
+                itemName = query.value(1).toString();
+                quantityPurchased = query.value(2).toInt();
+                datePurchased = query.value(3).toString();
+
+
+                Transaction tempTransaction(customerID, itemName, quantityPurchased, datePurchased); // creates transaction
+                transactionsByIDList.push_back(tempTransaction); // Adds transaction to list
+
+                query.next(); // Goes to next query result
+            }
+        }
+    }
+    return transactionsByIDList;
+}
+
 
 
 QSqlDatabase* DBManager::getDB()

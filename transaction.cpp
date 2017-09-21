@@ -1,63 +1,60 @@
 #include "transaction.h"
+
+
+Transaction::Transaction()
+{
+}
+
+Transaction::Transaction(int customerID, QString itemName, int quantityPurchased, QString purchaseDate)
+{
+    this->customerID = customerID;
+    this->itemName = itemName;
+    this->quantityPurchased = quantityPurchased;
+    this->purchaseDate = purchaseDate;
+}
+
+
 // ================== ACCESSOR FUNCTIONS =============================/
-    // Transaction::get Functions
-    QString Transaction::getPurchaseDate()
-    {
-        return this->purchaseDate;
-    }
+// Transaction::get Functions
+QString Transaction::getPurchaseDate()
+{
+    return this->purchaseDate;
+}
 
-    QString Transaction::getItemName()
-    {
-        return this->itemName;
-    }
+QString Transaction::getItemName()
+{
+    return this->itemName;
+}
 
-    int Transaction::getCustomerID()
-    {
-        return this->customerID;
-    }
+int Transaction::getCustomerID()
+{
+    return this->customerID;
+}
 
-    int Transaction::getQuantityPurchased()
-    {
-        return this->quantityPurchased;
-    }
+int Transaction::getQuantityPurchased()
+{
+    return this->quantityPurchased;
+}
 
-    float Transaction::getSalesPrice()
-    {
-        return this->salesPrice;
-    }
 
-    float Transaction::getTransactionTotal()
-    {
-        return this->transactionTotal;
-    }
+// Transaction::set functions
+void Transaction::setPurchaseDate(QString purchaseDate)
+{
+    this->purchaseDate = purchaseDate;
+}
 
-    // Transaction::set functions
-    void Transaction::setPurchaseDate(QString purchaseDate)
-    {
-        this->purchaseDate = purchaseDate;
-    }
+void Transaction::setItemName(QString itemName)
+{
+    this->itemName = itemName;
+}
 
-    void Transaction::setItemName(QString itemName)
-    {
-        this->itemName = itemName;
-    }
+void Transaction::setCustomerID(int customerID)
+{
+    this->customerID = customerID;
+}
 
-    void Transaction::setCustomerID(int customerID)
-    {
-        this->customerID = customerID;
-    }
+void Transaction::setQuantityPurchased(int quantityPurchased)
+{
+    this->quantityPurchased = quantityPurchased;
+}
 
-    void Transaction::setQuantityPurchased(int quantityPurchased)
-    {
-        this->quantityPurchased = quantityPurchased;
-    }
-
-    void Transaction::setSalesPrice(float salesPrice)
-    {
-        this->salesPrice = salesPrice;
-    }
-
-    void Transaction::setTransactionTotal(float transactionTotal)
-    {
-        this->transactionTotal = transactionTotal;
-    }

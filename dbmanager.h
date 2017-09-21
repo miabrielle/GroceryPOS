@@ -44,6 +44,7 @@ public:
     // Returns true if user authenticates successfully
     // username and password are passed from user input on login screen
     bool authenticateUser(QString username, QString password);
+    std::vector<Transaction> getTransactionsBySalesDate(QString salesDate);
 
     QSqlDatabase* getDB();
     ~DBManager();

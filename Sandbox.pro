@@ -5,10 +5,10 @@
 #-------------------------------------------------
 
 QT       += core gui sql
-CONFIG += console
+CONFIG   += console
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Sandbox
+TARGET = BulkClub
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

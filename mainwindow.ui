@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>781</width>
-      <height>411</height>
+      <width>791</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -30,44 +30,11 @@
      <attribute name="title">
       <string>Transactions</string>
      </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>191</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="salesDateLabel">
-           <property name="text">
-            <string>Sales Day:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="salesDayInput"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="showSalesButton">
-         <property name="text">
-          <string>Show Sales</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QPushButton" name="loadAllTransactionsButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>100</y>
+        <x>20</x>
+        <y>310</y>
         <width>161</width>
         <height>32</height>
        </rect>
@@ -89,8 +56,8 @@
      <widget class="QPushButton" name="editTransactionRowButton">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>130</y>
+        <x>30</x>
+        <y>340</y>
         <width>141</width>
         <height>32</height>
        </rect>
@@ -98,6 +65,50 @@
       <property name="text">
        <string>Edit Selected Row</string>
       </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>213</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="salesDateLabel">
+             <property name="text">
+              <string>Sales Day:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="salesDayInput"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="showSalesButton">
+           <property name="text">
+            <string>Show Sales</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="invalidSalesDateLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
