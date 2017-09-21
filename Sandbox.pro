@@ -39,8 +39,8 @@ HEADERS += \
     loginwindow.h \
     item.h \
     transaction.h \
-    member.h \
-    edittransactiondialog.h
+    edittransactiondialog.h \
+    customer.h
 
 FORMS += \
         mainwindow.ui \

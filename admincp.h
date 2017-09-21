@@ -24,12 +24,13 @@ private slots:
 
     void on_transactionsTable_cellClicked(int row);
 
-
     void on_editTransactionRowButton_clicked();
 
     void on_showSalesButton_clicked();
 
     void on_loadAllTransactionsButton_clicked();
+
+    void on_showSalesByMemberIDButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -10,7 +10,7 @@
 
 #include "transaction.h"
 #include "item.h"
-#include "member.h"
+#include "customer.h"
 #include <vector>
 
 
@@ -18,7 +18,7 @@
 #include <vector>
 #include "transaction.h"
 #include "item.h"
-#include "member.h"
+#include "customer.h"
 class DBManager
 {
 private:
@@ -44,9 +44,15 @@ public:
     // Returns true if user authenticates successfully
     // username and password are passed from user input on login screen
     bool authenticateUser(QString username, QString password);
+
+
+    // Get transactions by sales date
     std::vector<Transaction> getTransactionsBySalesDate(QString salesDate);
 
+    // Get transactions by MemberID
+    std::vector<Transaction> getTransactionsByMemberID(int memberID);
     QSqlDatabase* getDB();
+
     ~DBManager();
 
 

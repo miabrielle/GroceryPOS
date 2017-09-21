@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     // Number of columns. Usually specific, easily change-able
     ui->transactionsTable->setColumnCount(5);
-
+    ui->memberIDField->setMaximum(99999);
 
     ui->transactionsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->transactionsTable->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -27,19 +27,17 @@ void MainWindow::renderTransactions()
     // It is then assigned to our function variable "transactionsList"
     std::vector<Transaction> transactionsList = dbPointer->getAllTransactions();
 
-    // Creates an iterator, assigning it the address of the first transaction in the transactionsList vector.
-
     // Sets the header labels for each column
     ui->transactionsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("ID"));
     ui->transactionsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Purchased"));
     ui->transactionsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Qty"));
     ui->transactionsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Date"));
-    ui->transactionsTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Customer Name"));
+    ui->transactionsTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Name"));
     ui->transactionsTable->setColumnWidth(0, 55);
     ui->transactionsTable->setColumnWidth(1, 175);
     ui->transactionsTable->setColumnWidth(2, 40);
     ui->transactionsTable->setColumnWidth(3, 75);
-    ui->transactionsTable->setColumnWidth(4, 150);
+    ui->transactionsTable->setColumnWidth(4, 170);
 
     addTransactionsVectorToTable(transactionsList);
 
@@ -48,8 +46,9 @@ void MainWindow::renderTransactions()
 void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transactionsList)
 {
     int row = 0;
-    // Sets the number of rows in the table to the exact amount of transaction records found in the database.
+    // Sets the number of rows in the table to the exact amount of transaction records found in the vector
     ui->transactionsTable->setRowCount(transactionsList.size());
+
     // Loops through all transactions
     // Populates QTableWidget with appropriate data
     std::vector<Transaction>::iterator transIt = transactionsList.begin();
@@ -59,7 +58,8 @@ void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transacti
         for (int column = 0; column < ui->transactionsTable->columnCount(); column++)
         {
             QTableWidgetItem *cell = ui->transactionsTable->item(row,column);
-            if (!cell) {
+            if (!cell)
+            {
                 cell = new QTableWidgetItem;
                 ui->transactionsTable->setItem(row,column,cell);
             }
@@ -103,11 +103,11 @@ void MainWindow::setDBPointer(DBManager* dbPointer)
     this->dbPointer = dbPointer;
 }
 
-
 void MainWindow::on_transactionsTable_cellClicked(int row)
 {
     QString itemPurchased, datePurchased, customerName;
     int customerID, quantityPurchased;
+
     // 0 = CustomerID
     // 1 = Item Purchased
     // 2 = Quantity
@@ -196,4 +196,14 @@ void MainWindow::on_loadAllTransactionsButton_clicked()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_showSalesByMemberIDButton_clicked()
+{
+    int memberID = ui->memberIDField->value();
+
+    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
+    qDebug() << membersList[0].getCustomerID();
+
+    addTransactionsVectorToTable(membersList);
 }

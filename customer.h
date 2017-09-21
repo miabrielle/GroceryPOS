@@ -1,33 +1,33 @@
-#ifndef MEMBER_H
-#define MEMBER_H
+#ifndef Customer_H
+#define Customer_H
 #include <QMainWindow>
-class Member
+class Customer
 {
 private:
-    QString memberName;\
+    QString customerName;
     QString expDate;
-    int memberID;
+    int CustomerID;
     bool isExecutive;
     float rebateAmt;
 
 public:
  // ================== ACCESSOR FUNCTIONS =============================/
     // Get Functions
-    Member();
-    QString getMemberName();
+    Customer();
+    QString getCustomerName();
     QString getExpDate();
-    int getMemberID();
+    int getCustomerID();
     float getRebateAmt();
     bool IsExecutive();
 
     // Set functions
-    void setMemberName(QString memberName);
+    void setCustomerName(QString CustomerName);
     void setExpDate(QString expDate);
-    void setMemberID(int memberID);
+    void setCustomerID(int CustomerID);
     void setRebateAmt(float rebateAmt);
     void setIsExecutive(bool isExec);
 
-    ~Member();
+    ~Customer();
 };
 
-#endif // MEMBER_H
+#endif // Customer_H

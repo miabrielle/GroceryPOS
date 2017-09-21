@@ -31,7 +31,7 @@ void DBManager::initDB()
     // executes SQL queries on the database 'bulkclub.db' initializing tables with their
     // respective data values
     QSqlQuery query("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)");
-    query.exec("CREATE TABLE customers (id INTEGER, name TEXT, type TEXT)");
+    query.exec("CREATE TABLE customers (id INTEGER, name TEXT, type TEXT, expirationDate REAL)");
     query.exec("CREATE TABLE items (id INTEGER PRIMARY KEY, name TEXT, price REAL)");
     query.exec("CREATE TABLE transactions (id INTEGER PRIMARY KEY, cid INTEGER, customerName TEXT, itemPurchased TEXT, quantityPurchased INTEGER, date REAL)");
 
@@ -168,7 +168,40 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QString salesDate
     return transactionsByIDList;
 }
 
+std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
+{
+    std::vector<Transaction> transactions;
+    QSqlQuery transactionsQuery;
 
+    transactionsQuery.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE cid=:memberID");
+    transactionsQuery.bindValue(":memberID", memberID);
+
+    if (transactionsQuery.exec())
+    {
+        if (transactionsQuery.first())
+        {
+            while(transactionsQuery.isValid())
+            {
+                Transaction tempTransaction;
+
+                tempTransaction.setCustomerID(transactionsQuery.value(0).toInt());
+                tempTransaction.setItemName(transactionsQuery.value(1).toString());
+                tempTransaction.setQuantityPurchased(transactionsQuery.value(2).toInt());
+                tempTransaction.setPurchaseDate(transactionsQuery.value(3).toString());
+                qDebug() << "in loop";
+                transactions.push_back(tempTransaction);
+
+                transactionsQuery.next();
+            }
+        }
+        else
+        {
+             transactions.push_back(Transaction(0, "Customer ID not found", 0, ""));
+
+        }
+    }
+    return transactions;
+}
 
 QSqlDatabase* DBManager::getDB()
 {

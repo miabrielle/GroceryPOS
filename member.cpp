@@ -1,49 +1,49 @@
-#include "member.h"
+#include "customer.h"
 
-    // Member::get Functions
-    QString Member::getMemberName()
+    // Customer::get Functions
+    QString Customer::getCustomerName()
     {
-        return this->memberName;
+        return this->customerName;
     }
-    QString Member::getExpDate()
+    QString Customer::getExpDate()
     {
         return this->expDate;
     }
 
-    int Member::getMemberID()
+    int Customer::getCustomerID()
     {
-        return this->memberID;
+        return this->CustomerID;
     }
 
-    float Member::getRebateAmt()
+    float Customer::getRebateAmt()
     {
         return this->rebateAmt;
     }
-    bool Member::IsExecutive()
+    bool Customer::IsExecutive()
     {
         return this->isExecutive;
     }
 
     // Set functions
-    void Member::setMemberName(QString memberName)
+    void Customer::setCustomerName(QString customerName)
     {
-        this->memberName = memberName;
+        this->customerName = customerName;
     }
-    void Member::setIsExecutive(bool isExec)
+    void Customer::setIsExecutive(bool isExec)
     {
         this->isExecutive = isExec;
     }
 
-    void Member::setExpDate(QString expDate)
+    void Customer::setExpDate(QString expDate)
     {
         this->expDate = expDate;
     }
-    void Member::setMemberID(int memberID)
+    void Customer::setCustomerID(int CustomerID)
     {
-        this->memberID = memberID;
+        this->CustomerID = CustomerID;
     }
 
-    void Member::setRebateAmt(float rebateAmt)
+    void Customer::setRebateAmt(float rebateAmt)
     {
         this->rebateAmt = rebateAmt;
     }
