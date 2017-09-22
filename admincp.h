@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidgetItem>
+#include <QMessageBox>
 #include "dbmanager.h"
 namespace Ui {
 class MainWindow;
@@ -31,6 +33,7 @@ private slots:
     void on_loadAllTransactionsButton_clicked();
 
     void on_showSalesByMemberIDButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

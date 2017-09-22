@@ -1,7 +1,7 @@
 #include "admincp.h"
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
-#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -103,6 +103,7 @@ void MainWindow::setDBPointer(DBManager* dbPointer)
     this->dbPointer = dbPointer;
 }
 
+// Event is fired every single time a cell is clicked on.
 void MainWindow::on_transactionsTable_cellClicked(int row)
 {
     QString itemPurchased, datePurchased, customerName;
@@ -149,6 +150,10 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
     transactionSelected.setItemName(itemPurchased);
     transactionSelected.setPurchaseDate(datePurchased);
     transactionSelected.setQuantityPurchased(quantityPurchased);
+    qDebug() << "CID: " << transactionSelected.getCustomerID();
+    qDebug() << "Item name: " << transactionSelected.getItemName();
+    qDebug() << "Purchase Date: " << transactionSelected.getPurchaseDate();
+    qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased();
 }
 
 
@@ -160,10 +165,16 @@ void MainWindow::on_editTransactionRowButton_clicked()
     QString purchaseDate = transactionSelected.getPurchaseDate();
     int quantityPurchased = transactionSelected.getQuantityPurchased();
 
-
+    if (customerID == 0)
+    {
+        ui->invalidRowSelectedMsg->setText("Error: You must select a valid row.");
+    }
+    else
+    { //
     EditTransactionDialog* editTransWindow = new EditTransactionDialog(this, customerID, itemPurchased, quantityPurchased, purchaseDate);
 
     editTransWindow->show();
+    }
 
 }
 
@@ -193,11 +204,6 @@ void MainWindow::on_loadAllTransactionsButton_clicked()
     renderTransactions();
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
 void MainWindow::on_showSalesByMemberIDButton_clicked()
 {
     int memberID = ui->memberIDField->value();
@@ -207,3 +213,9 @@ void MainWindow::on_showSalesByMemberIDButton_clicked()
 
     addTransactionsVectorToTable(membersList);
 }
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+

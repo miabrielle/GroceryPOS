@@ -1,6 +1,7 @@
 #ifndef Customer_H
 #define Customer_H
 #include <QMainWindow>
+
 class Customer
 {
 private:
