@@ -30,7 +30,7 @@ SOURCES += \
     loginwindow.cpp \
     item.cpp \
     transaction.cpp \
-    member.cpp \
+    customer.cpp \
     edittransactiondialog.cpp
 
 HEADERS += \

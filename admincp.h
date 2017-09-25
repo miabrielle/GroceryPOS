@@ -17,9 +17,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 
     void renderTransactions();
-
+    void renderCustomers();
     void setDBPointer(DBManager* dbPointer);
     void addTransactionsVectorToTable(std::vector<Transaction> transactionsList);
+
+    void addCustomersVectorToTable(std::vector<Customer> customersList);
     ~MainWindow();
 
 private slots:
@@ -34,6 +36,10 @@ private slots:
 
     void on_showSalesByMemberIDButton_clicked();
 
+
+    void on_displayExpiringMembershipsButton_clicked();
+
+    void on_loadAllCustomersButton_clicked();
 
 private:
     Ui::MainWindow *ui;

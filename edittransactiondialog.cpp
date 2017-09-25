@@ -21,6 +21,7 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, int ID, QString it
 
 void EditTransactionDialog::setTransactionsTablePointer(QTableWidget* transactionsTable)
 {
+    // Gives the edit window access to the Transactions table QTableWidget
     this->transactionsTablePointer = transactionsTable;
 }
 void EditTransactionDialog::on_cancelEditTransactionButton_clicked()

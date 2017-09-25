@@ -5,28 +5,33 @@
 class Customer
 {
 private:
+    int customerID;
     QString customerName;
     QString expDate;
-    int CustomerID;
-    bool isExecutive;
+    QString memberType;
     float rebateAmt;
 
 public:
+
+    // Constructors
+    Customer();
+    Customer(int customerID, QString customerName, QString memberType);
+
+
  // ================== ACCESSOR FUNCTIONS =============================/
     // Get Functions
-    Customer();
     QString getCustomerName();
     QString getExpDate();
+    QString getMemberType();
     int getCustomerID();
     float getRebateAmt();
-    bool IsExecutive();
 
     // Set functions
-    void setCustomerName(QString CustomerName);
+    void setCustomerName(QString customerName);
     void setExpDate(QString expDate);
-    void setCustomerID(int CustomerID);
+    void setCustomerID(int ustomerID);
     void setRebateAmt(float rebateAmt);
-    void setIsExecutive(bool isExec);
+    void setMemberType(QString memberType);
 
     ~Customer();
 };
