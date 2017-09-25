@@ -1,4 +1,5 @@
 #include "dbmanager.h"
+#include "customer.h"
 #include <QMessageBox>
 
 
@@ -143,10 +144,8 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QString salesDate
     // date = 3
     if (query.exec())
     {
-        qDebug() << "Query executed";
         if(query.first())
         {
-            qDebug() << "first result loaded";
             while (query.isValid())
             {
                 int customerID, quantityPurchased;
@@ -188,7 +187,6 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
                 tempTransaction.setItemName(transactionsQuery.value(1).toString());
                 tempTransaction.setQuantityPurchased(transactionsQuery.value(2).toInt());
                 tempTransaction.setPurchaseDate(transactionsQuery.value(3).toString());
-                qDebug() << "in loop";
                 transactions.push_back(tempTransaction);
 
                 transactionsQuery.next();
@@ -196,11 +194,91 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
         }
         else
         {
-             transactions.push_back(Transaction(0, "Customer ID not found", 0, ""));
+            // returns a fake transaction to the table to inform user that the ID they entered
+            // was not found.
+            transactions.push_back(Transaction(0, "Customer ID not found", 0, ""));
 
         }
     }
     return transactions;
+}
+
+
+std::vector<Customer> DBManager::getAllCustomers()
+{
+    std::vector<Customer> customers;
+    QSqlQuery customersQuery;
+    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers"); //<! checks the first two characters of expirationDate column in database
+    qDebug() << customersQuery.lastError();
+
+    if (customersQuery.exec())
+    {
+        if (customersQuery.first())
+        {
+            while(customersQuery.isValid())
+            {
+                Customer tempCustomer;
+
+                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
+                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
+                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
+                tempCustomer.setExpDate(customersQuery.value(3).toString());      // Sets expiration date
+
+                customers.push_back(tempCustomer); // Pushes customer to vector
+
+                customersQuery.next(); // Goes to next query result matching our customersQuery
+            }
+        }
+        else
+        {
+            // returns a fake transaction to the table to inform user that the ID they entered
+            // was not found.
+            customers.push_back(Customer(0, "Error loading customers from database", ""));
+
+        }
+    }
+    return customers;
+}
+
+std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month) //<! ry
+{
+    QSqlQuery customersQuery;
+
+    qDebug() << "Month: " << month;
+    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE substr(expirationdate, 1, 2)=:month"); //<! checks the first two characters of expirationDate column in database
+    customersQuery.bindValue(":month", month);
+    std::vector<Customer> customers;
+
+    if (customersQuery.exec())
+    {
+        qDebug() << "Entered customer loop";
+
+        if (customersQuery.first())
+        {
+            while(customersQuery.isValid())
+            {
+                Customer tempCustomer;
+
+                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
+                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
+                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
+                tempCustomer.setExpDate(customersQuery.value(3).toString());      //
+
+                customers.push_back(tempCustomer); // Pushes customer to vector
+
+                customersQuery.next(); // Goes to next query result matching our customersQuery
+            }
+        }
+        else
+        {
+            // returns a fake transaction to the table to inform user that the ID they entered
+            // was not found.
+            customers.push_back(Customer(0, "No customers", "found in db"));
+
+        }
+    }
+            qDebug() << customersQuery.lastError();
+    return customers;
 }
 
 QSqlDatabase* DBManager::getDB()

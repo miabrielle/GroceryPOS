@@ -46,11 +46,19 @@ public:
     bool authenticateUser(QString username, QString password);
 
 
-    // Get transactions by sales date
+    // Get transactions by purchase date from database
     std::vector<Transaction> getTransactionsBySalesDate(QString salesDate);
 
     // Get transactions by MemberID
     std::vector<Transaction> getTransactionsByMemberID(int memberID);
+
+    // Get all customers from database
+    std::vector<Customer> getAllCustomers();
+
+    // Get customers by expirationDate from database
+    std::vector<Customer> getExpiringMembershipsForMonth(QString month);
+
+
     QSqlDatabase* getDB();
 
     ~DBManager();

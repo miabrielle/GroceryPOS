@@ -6,12 +6,379 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>785</width>
-    <height>469</height>
+    <width>811</width>
+    <height>467</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Admin CP</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+    color: #eff0f1;
+    background-color: #31363b;
+    selection-background-color:#3daee9;
+    selection-color: #eff0f1;
+    background-clip: border;
+    border-image: none;
+    border: 0px transparent black;
+    outline: 0;
+}
+
+QWidget:item:selected
+{
+    background-color: #18465d;
+}
+
+QTableCornerButton::section {
+    background-color: #31363b;
+    border: 1px transparent #76797C;
+    border-radius: 0px;
+}
+
+QComboBox
+{
+    selection-background-color: #3daee9;
+    border-style: solid;
+    border: 1px solid #76797C;
+    border-radius: 2px;
+    padding: 5px;
+    min-width: 75px;
+}
+
+QPushButton:checked{
+    background-color: #76797C;
+    border-color: #6A6969;
+}
+
+
+
+QMenuBar
+{
+    background-color: #31363b;
+    color: #eff0f1;
+}
+
+QMenuBar::item
+{
+    background: transparent;
+}
+
+
+
+QLineEdit
+{
+    background-color: #232629;
+    padding: 5px;
+    border-style: solid;
+    border: 1px solid #76797C;
+    border-radius: 2px;
+    color: #eff0f1;
+}
+
+
+
+QHeaderView::section
+{
+    background-color: #76797C;
+    color: #eff0f1;
+    padding: 5px;
+    border: 1px solid #76797C;
+}
+
+
+QStackedWidget
+{
+    border: 1px transparent black;
+}
+
+QPushButton
+{
+    color: #eff0f1;
+    background-color: #31363b;
+    border-width: 1px;
+    border-color: #76797C;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 2px;
+    outline: none;
+}
+
+
+QPushButton:focus {
+    background-color: #3daee9;
+    color: white;
+}
+
+QPushButton:pressed
+{
+    background-color: #3daee9;
+    padding-top: -15px;
+    padding-bottom: -17px;
+}
+
+QComboBox
+{
+    selection-background-color: #3daee9;
+    border-style: solid;
+    border: 1px solid #76797C;
+    border-radius: 2px;
+    padding: 5px;
+    min-width: 75px;
+}
+
+QPushButton:checked{
+    background-color: #76797C;
+    border-color: #6A6969;
+}
+
+QComboBox:hover,QPushButton:hover,QAbstractSpinBox:hover,QLineEdit:hover
+{
+    border: 1px solid #3daee9;
+    color: #eff0f1;
+}
+
+QComboBox:on
+{
+    padding-top: 3px;
+    padding-left: 4px;
+    selection-background-color: #4a4a4a;
+}
+
+QComboBox QAbstractItemView
+{
+    background-color: #232629;
+    border-radius: 2px;
+    border: 1px solid #76797C;
+    selection-background-color: #18465d;
+}
+
+QComboBox::drop-down
+{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 0px;
+    border-left-color: darkgray;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow
+{
+    image: url(:/qss_icons/rc/down_arrow_disabled.png);
+}
+
+QComboBox::down-arrow:on, QComboBox::down-arrow:hover,
+QComboBox::down-arrow:focus
+{
+    image: url(:/qss_icons/rc/down_arrow.png);
+}
+
+QAbstractSpinBox {
+    padding: 5px;
+    border: 1px solid #76797C;
+    background-color: #232629;
+    color: #eff0f1;
+    border-radius: 2px;
+    min-width: 75px;
+}
+
+QAbstractSpinBox:up-button
+{
+    background-color: transparent;
+    subcontrol-origin: border;
+    subcontrol-position: center right;
+}
+
+QAbstractSpinBox:down-button
+{
+    background-color: transparent;
+    subcontrol-origin: border;
+    subcontrol-position: center left;
+}
+
+QAbstractSpinBox::up-arrow,QAbstractSpinBox::up-arrow:disabled,QAbstractSpinBox::up-arrow:off {
+    image: url(:/qss_icons/rc/up_arrow_disabled.png);
+    width: 10px;
+    height: 10px;
+}
+QAbstractSpinBox::up-arrow:hover
+{
+    image: url(:/qss_icons/rc/up_arrow.png);
+}
+
+
+QAbstractSpinBox::down-arrow,QAbstractSpinBox::down-arrow:disabled,QAbstractSpinBox::down-arrow:off
+{
+    image: url(:/qss_icons/rc/down_arrow_disabled.png);
+    width: 10px;
+    height: 10px;
+}
+QAbstractSpinBox::down-arrow:hover
+{
+    image: url(:/qss_icons/rc/down_arrow.png);
+}
+
+
+QLabel
+{
+    border: 0px solid black;
+}
+
+QTabWidget{
+    border: 0px transparent black;
+}
+
+QTabWidget::pane {
+    border: 1px solid #76797C;
+    padding: 5px;
+    margin: 0px;
+}
+
+QTabWidget::tab-bar {
+    left: 5px; /* move to the right by 5px */
+}
+
+QTabBar
+{
+    qproperty-drawBase: 0;
+    border-radius: 3px;
+}
+
+QTabBar:focus
+{
+    border: 0px transparent black;
+}
+
+QTabBar::close-button  {
+    image: url(:/qss_icons/rc/close.png);
+    background: transparent;
+}
+
+QTabBar::close-button:hover
+{
+    image: url(:/qss_icons/rc/close-hover.png);
+    background: transparent;
+}
+
+QTabBar::close-button:pressed {
+    image: url(:/qss_icons/rc/close-pressed.png);
+    background: transparent;
+}
+
+/* TOP TABS */
+QTabBar::tab:top {
+    color: #eff0f1;
+    border: 1px solid #76797C;
+    border-bottom: 1px transparent black;
+    background-color: #31363b;
+    padding: 5px;
+    min-width: 50px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+QTabBar::tab:top:!selected
+{
+    color: #eff0f1;
+    background-color: #54575B;
+    border: 1px solid #76797C;
+    border-bottom: 1px transparent black;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;    
+}
+
+QTabBar::tab:top:!selected:hover {
+    background-color: #3daee9;
+}
+
+/* BOTTOM TABS */
+QTabBar::tab:bottom {
+    color: #eff0f1;
+    border: 1px solid #76797C;
+    border-top: 1px transparent black;
+    background-color: #31363b;
+    padding: 5px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    min-width: 50px;
+}
+
+QTabBar::tab:bottom:!selected
+{
+    color: #eff0f1;
+    background-color: #54575B;
+    border: 1px solid #76797C;
+    border-top: 1px transparent black;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+QTabBar::tab:bottom:!selected:hover {
+    background-color: #3daee9;
+}
+
+/* LEFT TABS */
+QTabBar::tab:left {
+    color: #eff0f1;
+    border: 1px solid #76797C;
+    border-left: 1px transparent black;
+    background-color: #31363b;
+    padding: 5px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    min-height: 50px;
+}
+
+QTabBar::tab:left:!selected
+{
+    color: #eff0f1;
+    background-color: #54575B;
+    border: 1px solid #76797C;
+    border-left: 1px transparent black;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+QTabBar::tab:left:!selected:hover {
+    background-color: #3daee9;
+}
+
+
+
+
+QTableView::item:pressed {
+    background: #18465d;
+    color: #eff0f1;
+}
+
+
+
+QHeaderView
+{
+    background-color: #31363b;
+    border: 1px transparent;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+QHeaderView::section  {
+    background-color: #31363b;
+    color: #eff0f1;
+    padding: 5px;
+    border: 1px solid #76797C;
+    border-radius: 0px;
+    text-align: center;
+}
+
+
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -19,128 +386,127 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>711</width>
-      <height>521</height>
+      <width>811</width>
+      <height>431</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Transactions</string>
      </attribute>
+     <widget class="QTableWidget" name="transactionsTable">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>741</width>
+        <height>291</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="invalidRowSelectedMsg">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>360</y>
+        <width>211</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+color:red
+};</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <widget class="QPushButton" name="loadAllTransactionsButton">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>310</y>
-        <width>161</width>
-        <height>32</height>
+        <x>21</x>
+        <y>348</y>
+        <width>173</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
        <string>Load All Transactions</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="transactionsTable">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>10</y>
-        <width>551</width>
-        <height>371</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="editTransactionRowButton">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>340</y>
-        <width>141</width>
-        <height>32</height>
+        <x>200</x>
+        <y>348</y>
+        <width>173</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
        <string>Edit Selected Row</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="showSalesByMemberIDButton">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>160</y>
-        <width>113</width>
-        <height>32</height>
+        <x>460</x>
+        <y>2</y>
+        <width>271</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Show Sales</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="memberIDField">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>129</y>
-        <width>48</width>
-        <height>24</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>130</y>
-        <width>81</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Member ID:</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>213</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QLabel" name="salesDateLabel">
-             <property name="text">
-              <string>Sales Day:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="salesDayInput"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QPushButton" name="showSalesButton">
-           <property name="text">
-            <string>Show Sales</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QLabel" name="salesDateLabel">
+         <property name="text">
+          <string>Sales Day:</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QLabel" name="invalidSalesDateLabel">
+        <widget class="QLineEdit" name="salesDayInput"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="showSalesButton">
          <property name="text">
-          <string/>
+          <string>Show Sales</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>2</y>
+        <width>291</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Customer ID:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="memberIDField"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="showSalesByMemberIDButton">
+         <property name="text">
+          <string>Show Sales</string>
          </property>
         </widget>
        </item>
@@ -151,23 +517,13 @@
      <attribute name="title">
       <string>Items</string>
      </attribute>
-     <widget class="QTableView" name="itemsView">
-      <property name="geometry">
-       <rect>
-        <x>305</x>
-        <y>11</y>
-        <width>461</width>
-        <height>351</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>10</y>
         <width>251</width>
-        <height>146</height>
+        <height>162</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -215,59 +571,133 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>30</y>
+        <width>281</width>
+        <height>331</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="customersPage">
      <attribute name="title">
       <string>Customers</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="customersTable">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>10</y>
-        <width>371</width>
-        <height>371</height>
+        <x>20</x>
+        <y>60</y>
+        <width>751</width>
+        <height>261</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QPushButton" name="loadAllCustomersButton">
       <property name="geometry">
        <rect>
-        <x>46</x>
-        <y>12</y>
-        <width>191</width>
-        <height>20</height>
+        <x>60</x>
+        <y>340</y>
+        <width>161</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>Display Expiring Memberships</string>
+       <string>Load All Customers</string>
       </property>
      </widget>
-     <widget class="Line" name="line">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>30</y>
-        <width>340</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>80</y>
-        <width>113</width>
+        <x>20</x>
+        <y>10</y>
+        <width>491</width>
         <height>32</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Display</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Search by Expiration Month:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="monthSelectBox">
+         <item>
+          <property name="text">
+           <string>(01) January </string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(02) February</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(03) March</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(04) April</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(05) May</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(06) June</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(07) July</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(08) August</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(09) September</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(10) October</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(11) November</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>(12) December</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="displayExpiringMembershipsButton">
+         <property name="text">
+          <string>Show</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -277,7 +707,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>785</width>
+     <width>811</width>
      <height>22</height>
     </rect>
    </property>
@@ -290,7 +720,17 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
