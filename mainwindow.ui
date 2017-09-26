@@ -37,6 +37,10 @@ QTableCornerButton::section {
     border-radius: 0px;
 }
 
+QTableWidget {
+border: 1px solid #6A6969;
+}
+
 QComboBox
 {
     selection-background-color: #3daee9;
@@ -65,7 +69,9 @@ QMenuBar::item
     background: transparent;
 }
 
-
+QLineEdit:focus {
+border: 2px solid #3daee9;
+}
 
 QLineEdit
 {
@@ -167,16 +173,6 @@ QComboBox::drop-down
     border-bottom-right-radius: 3px;
 }
 
-QComboBox::down-arrow
-{
-    image: url(:/qss_icons/rc/down_arrow_disabled.png);
-}
-
-QComboBox::down-arrow:on, QComboBox::down-arrow:hover,
-QComboBox::down-arrow:focus
-{
-    image: url(:/qss_icons/rc/down_arrow.png);
-}
 
 QAbstractSpinBox {
     padding: 5px;
@@ -201,28 +197,6 @@ QAbstractSpinBox:down-button
     subcontrol-position: center left;
 }
 
-QAbstractSpinBox::up-arrow,QAbstractSpinBox::up-arrow:disabled,QAbstractSpinBox::up-arrow:off {
-    image: url(:/qss_icons/rc/up_arrow_disabled.png);
-    width: 10px;
-    height: 10px;
-}
-QAbstractSpinBox::up-arrow:hover
-{
-    image: url(:/qss_icons/rc/up_arrow.png);
-}
-
-
-QAbstractSpinBox::down-arrow,QAbstractSpinBox::down-arrow:disabled,QAbstractSpinBox::down-arrow:off
-{
-    image: url(:/qss_icons/rc/down_arrow_disabled.png);
-    width: 10px;
-    height: 10px;
-}
-QAbstractSpinBox::down-arrow:hover
-{
-    image: url(:/qss_icons/rc/down_arrow.png);
-}
-
 
 QLabel
 {
@@ -240,37 +214,11 @@ QTabWidget::pane {
 }
 
 QTabWidget::tab-bar {
-    left: 5px; /* move to the right by 5px */
+    left: 5px; /* move tab bar to the right by 5px */
 }
 
-QTabBar
-{
-    qproperty-drawBase: 0;
-    border-radius: 3px;
-}
 
-QTabBar:focus
-{
-    border: 0px transparent black;
-}
 
-QTabBar::close-button  {
-    image: url(:/qss_icons/rc/close.png);
-    background: transparent;
-}
-
-QTabBar::close-button:hover
-{
-    image: url(:/qss_icons/rc/close-hover.png);
-    background: transparent;
-}
-
-QTabBar::close-button:pressed {
-    image: url(:/qss_icons/rc/close-pressed.png);
-    background: transparent;
-}
-
-/* TOP TABS */
 QTabBar::tab:top {
     color: #eff0f1;
     border: 1px solid #76797C;
@@ -295,68 +243,6 @@ QTabBar::tab:top:!selected
 QTabBar::tab:top:!selected:hover {
     background-color: #3daee9;
 }
-
-/* BOTTOM TABS */
-QTabBar::tab:bottom {
-    color: #eff0f1;
-    border: 1px solid #76797C;
-    border-top: 1px transparent black;
-    background-color: #31363b;
-    padding: 5px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    min-width: 50px;
-}
-
-QTabBar::tab:bottom:!selected
-{
-    color: #eff0f1;
-    background-color: #54575B;
-    border: 1px solid #76797C;
-    border-top: 1px transparent black;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
-
-QTabBar::tab:bottom:!selected:hover {
-    background-color: #3daee9;
-}
-
-/* LEFT TABS */
-QTabBar::tab:left {
-    color: #eff0f1;
-    border: 1px solid #76797C;
-    border-left: 1px transparent black;
-    background-color: #31363b;
-    padding: 5px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    min-height: 50px;
-}
-
-QTabBar::tab:left:!selected
-{
-    color: #eff0f1;
-    background-color: #54575B;
-    border: 1px solid #76797C;
-    border-left: 1px transparent black;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
-
-QTabBar::tab:left:!selected:hover {
-    background-color: #3daee9;
-}
-
-
-
-
-QTableView::item:pressed {
-    background: #18465d;
-    color: #eff0f1;
-}
-
-
 
 QHeaderView
 {
@@ -394,7 +280,7 @@ QHeaderView::section  {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -413,7 +299,7 @@ QHeaderView::section  {
      <widget class="QLabel" name="invalidRowSelectedMsg">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>470</x>
         <y>360</y>
         <width>211</width>
         <height>20</height>
@@ -431,7 +317,7 @@ color:red
      <widget class="QPushButton" name="loadAllTransactionsButton">
       <property name="geometry">
        <rect>
-        <x>21</x>
+        <x>51</x>
         <y>348</y>
         <width>173</width>
         <height>41</height>
@@ -444,7 +330,7 @@ color:red
      <widget class="QPushButton" name="editTransactionRowButton">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>270</x>
         <y>348</y>
         <width>173</width>
         <height>41</height>
