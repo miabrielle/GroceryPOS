@@ -1,7 +1,7 @@
 #include "dbmanager.h"
 #include "customer.h"
 #include <QMessageBox>
-
+#include <QDate>
 
 /************************************************************************
  * DBManager Constructor
@@ -154,12 +154,21 @@ std::vector<Item> DBManager::getAllItems()
     return items;
 }
 
-std::vector<Transaction> DBManager::getTransactionsBySalesDate(QString salesDate)
+std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
 {
-    std::vector<Transaction> transactionsByIDList;
     QSqlQuery query;
-    query.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE date=:salesDate");
-    query.bindValue(":salesDate", salesDate);
+    std::vector<Transaction> transactionsBySalesDateList;
+    int month = salesDate.month();
+    int day = salesDate.day();
+    int year = salesDate.year();
+
+    // to be documented....
+    std::string salesDateString = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
+    QString salesDateQString = QString::fromStdString(salesDateString);
+
+    qDebug() << salesDateQString;
+    query.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE date=:salesDateString");
+    query.bindValue(":salesDateString", salesDateQString);
 
     qDebug() << query.lastError();
     // cid = 0
@@ -182,13 +191,18 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QString salesDate
 
 
                 Transaction tempTransaction(customerID, itemName, quantityPurchased, datePurchased); // creates transaction
-                transactionsByIDList.push_back(tempTransaction); // Adds transaction to list
+                transactionsBySalesDateList.push_back(tempTransaction); // Adds transaction to list
 
                 query.next(); // Goes to next query result
             }
         }
+        else
+        {
+            // We push a blank customer to the vector to let the UI layer know there was an error
+            transactionsBySalesDateList.push_back(Transaction(0, "", 0, ""));
+        }
     }
-    return transactionsByIDList;
+    return transactionsBySalesDateList;
 }
 
 std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
@@ -301,7 +315,7 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month) /
 
         }
     }
-            qDebug() << customersQuery.lastError();
+    qDebug() << customersQuery.lastError();
     return customers;
 }
 

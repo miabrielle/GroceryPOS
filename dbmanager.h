@@ -50,7 +50,7 @@ public:
 
 
     // Get transactions by purchase date from database
-    std::vector<Transaction> getTransactionsBySalesDate(QString salesDate);
+    std::vector<Transaction> getTransactionsBySalesDate(QDate salesDate);
 
     // Get transactions by MemberID
     std::vector<Transaction> getTransactionsByMemberID(int memberID);

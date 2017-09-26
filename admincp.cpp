@@ -7,6 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->customersTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->transactionsTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // Sets the date format
+    ui->salesDateInputField->setDisplayFormat("MM/dd/yyyy");
+    ui->salesDateInputField->setCalendarPopup(true);
 
     // Sets the Admin CP to be non resizable
     this->setFixedSize(this->geometry().width(),this->geometry().height());
@@ -485,20 +490,28 @@ void MainWindow::on_editTransactionRowButton_clicked()
 
 void MainWindow::on_showSalesButton_clicked()
 {
-    QString salesDate = ui->salesDayInput->text(); // get the user input sales date
+    // Gets the sales date from the date input widget
 
-    if (salesDate.isEmpty()) {
+    // 1 = January
+    // 2 = February
+    // 3 = etc...
+    QDate salesDate = ui->salesDateInputField->date();
+
+    // return a vector of all transactions on specified sales date
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsBySalesDate(salesDate);
+
+    // Check to make sure there are transactions for given sales date
+    if (transactionsList[0].getCustomerID() == 0)
+    {
         QMessageBox errorMsg;
-        errorMsg.setText("Invalid sales date (mm/dd/yyyy)");
-        errorMsg.exec();
+        errorMsg.critical(0,"Error","No transactions found for specified date");
+        errorMsg.setFixedSize(500,200);
     }
     else
     {
-        // return a vector of all transactions on specified sales date
-        std::vector<Transaction> transactionsList = dbPointer->getTransactionsBySalesDate(salesDate);
-
-        // Clear the table
+        // Clears the transactions table before updating it
         ui->transactionsTable->setRowCount(0);
+
         // populate table with new data
         addTransactionsVectorToTable(transactionsList);
     }
