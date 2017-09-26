@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Renders tables
     renderTransactions(); // Renders all transactions to table
     renderCustomers();    // Renders all customers to table
+    renderItems();        // Creates items table
+    displayItems();       // Populates items table
 
 }
 
@@ -133,6 +135,182 @@ void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transacti
     }
 }
 // ============================ END OF TRANSACTION FUNCTIONS ===============================/
+
+/*****************************************************************************************
+* Item Functions
+* ---------------------------------------------------------------------------------------
+*   (1) void renderItems();
+*       x uses getAllItems function to populate a vector array that is a private data member
+*         with information from the database
+*       x Allows for single row to be selected
+*       x Sets headers
+*
+* ---------------------------------------------------------------------------------------
+*   (2) void displayItems()
+*       x fills in information for item table
+*
+* ---------------------------------------------------------------------------------------
+*   (3) void addItem(QString itemName, float itemPrice)
+*       x adds row to table in database
+*
+* ---------------------------------------------------------------------------------------
+*   (4) void deleteItem(QString itemName)
+*       x deletes row from database
+*
+* ---------------------------------------------------------------------------------------
+*   (5) void on_deleteItemButton_clicked()
+*       x when delete button clicked on program
+*       x erases row from GUI
+*       x erases item in list and moves all items back (gets rid of empty space)
+*       x calls deleteItem function
+*
+* ---------------------------------------------------------------------------------------
+*   (6) void on_addItemButton_clicked()
+*       x reads info from text box
+*       x adds info to new row in GUI
+*       x adds info to list
+*       x calls addItem function
+*
+*****************************************************************************************/
+//Sets up items table with proper headers and populates a list with items from database
+void MainWindow::renderItems()
+{
+    //create a list for items with 2 columns
+    itemList = dbPointer->getAllItems();
+
+    //Allows for single row to get selected
+    ui->itemsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->itemsTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    //Sets headers to item name and price
+    ui->itemsTable->setColumnCount(2);
+    ui->itemsTable->setRowCount(itemList.size());
+    ui->itemsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Item Name"));
+    ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
+    ui->itemsTable->setColumnWidth(0, 175);
+    ui->itemsTable->setColumnWidth(1, 175);
+}
+
+//Displays any items from list created in renderItems
+void MainWindow::displayItems()
+{
+    //iterates through rows and columns
+    for(int row = 0; row < static_cast<int>(itemList.size()); row++)
+    {
+        for (int column = 0; column < ui->itemsTable->columnCount(); column++)
+        {
+            //creates a cell if one is not available
+            QTableWidgetItem *cell = ui->itemsTable->item(row,column);
+            if (!cell)
+            {
+                cell = new QTableWidgetItem;
+                ui->itemsTable->setItem(row,column,cell);
+            }
+            //switches on column to fill in name and price seperately
+            switch (column)
+            {
+
+            case 0:
+                cell->setData(0, QVariant(itemList[row].getItemName()));
+                break;
+            case 1:
+                cell->setData(0, QVariant(itemList[row].getItemPrice()));
+                break;
+            }
+        }
+    }
+}
+
+//Adds an item to the table in the database
+void MainWindow::addItem(QString itemName, float itemPrice)
+{
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO items (name, price) VALUES (:itemName, :itemPrice)");
+    query.bindValue(":itemName", itemName);
+    query.bindValue(":itemPrice", itemPrice);
+    query.exec();
+}
+
+//Deletes item from table in database
+void MainWindow::deleteItem(QString itemName)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM items WHERE name = :itemName");
+    query.bindValue(":itemName", itemName);
+    query.exec();
+}
+
+//When you press the delete item button, this function deletes the item from the UI
+//Then finds the correct row in the vector array and erases the entire row from the array
+void MainWindow::on_deleteItemButton_clicked()
+{
+    //Returns the selected row number and erases row in UI
+    int selectedRow;
+    QItemSelectionModel* selectionModel = ui->itemsTable->selectionModel();
+    selectedRow = ui->itemsTable->selectionModel()->currentIndex().row();
+    QModelIndexList selected = selectionModel->selectedRows();
+    for(int i= 0; i< selected.count();i++)
+    {
+        QModelIndex index = selected.at(i);
+        selectedRow = index.row();
+    }
+    ui->itemsTable->removeRow(selectedRow);
+
+    //Erases element in the database
+    QString itemName = itemList[selectedRow].getItemName();
+    deleteItem(itemName);
+
+    //Moves all items in the list back one index in the array then erases the last element in the array
+    for(int i = selectedRow; i < static_cast<int>(itemList.size()) - 1; i++)
+    {
+        itemList[i].setItemName(itemList[i + 1].getItemName());
+        itemList[i].setItemPrice(itemList[i + 1].getItemPrice());
+    }
+    itemList.erase(itemList.begin() + itemList.size() - 1);
+}
+
+//adds item to inventory on screen
+void MainWindow::on_addItemButton_clicked()
+{
+    //Gets all items then loads in new item from text boxes in ui and pushes new item onto list
+    Item tempItem;
+    tempItem.setItemName(ui->itemNameField->text());
+    tempItem.setItemPrice(ui->itemPriceField->text().toFloat());
+    if(tempItem.getItemName() != "")
+    {
+        itemList.push_back(tempItem);
+
+        //Creates new row and adds new item to row
+        ui->itemsTable->setRowCount(itemList.size());
+
+        // Gets the item name and price cell for the new item to be added
+        QTableWidgetItem *cellName = ui->itemsTable->item(itemList.size() - 1, 0);
+        QTableWidgetItem *cellPrice = ui->itemsTable->item(itemList.size() - 1, 1);
+
+        //Adds item to UI page with items table
+        if (!cellPrice && !cellName) {
+            cellPrice = new QTableWidgetItem;
+            cellName = new QTableWidgetItem;
+        }
+        cellName->setData(0, QVariant(itemList[itemList.size() - 1].getItemName() ));
+        cellPrice->setData(0, QVariant(itemList[itemList.size() - 1].getItemPrice() ));
+        ui->itemsTable->setItem(itemList.size() - 1, 0, cellName);
+        ui->itemsTable->setItem(itemList.size() - 1, 1, cellPrice);
+
+        //clears fields to enter new items
+        ui->itemNameField->clear();
+        ui->itemPriceField->clear();
+
+        //Adds item to database list
+        addItem(tempItem.getItemName(), tempItem.getItemPrice());
+    }
+    else
+    {
+        qDebug() << "No item entered";
+    }
+}
+
 
 /*****************************************************************************************
 * Customer Functions

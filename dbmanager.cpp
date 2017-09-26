@@ -40,8 +40,6 @@ void DBManager::initDB()
     {
         qWarning() << "DBManager::initDB - Error: " << query.lastError().text();
     }
-
-
 }
 
 /************************************************************************
@@ -128,6 +126,32 @@ std::vector<Transaction> DBManager::getAllTransactions()
         }
     }
     return transactions;
+}
+
+//Gets all items from the database and returns them to the program placing them
+//inside a vector of items from class Item and returns vector
+std::vector<Item> DBManager::getAllItems()
+{
+    std::vector<Item> items;
+    QSqlQuery itemsQuery;
+    itemsQuery.exec("SELECT name, price FROM items");
+
+    //checks to see if database has values
+    if(itemsQuery.first())
+    {
+        while(itemsQuery.isValid())
+        {
+            Item tempItem;
+
+            tempItem.setItemName(itemsQuery.value(0).toString());
+            tempItem.setItemPrice(itemsQuery.value(1).toFloat());
+
+            items.push_back(tempItem);
+
+            itemsQuery.next();
+        }
+    }
+    return items;
 }
 
 std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
