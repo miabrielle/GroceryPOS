@@ -21,6 +21,11 @@ public:
     void setDBPointer(DBManager* dbPointer);
     void addTransactionsVectorToTable(std::vector<Transaction> transactionsList);
 
+    void renderItems();
+    void displayItems();
+    void addItem(QString itemName, float itemPrice);
+    void deleteItem(QString itemName);
+
     void addCustomersVectorToTable(std::vector<Customer> customersList);
     ~MainWindow();
 
@@ -36,6 +41,9 @@ private slots:
 
     void on_showSalesByMemberIDButton_clicked();
 
+    void on_addItemButton_clicked();
+
+    void on_deleteItemButton_clicked();
 
     void on_displayExpiringMembershipsButton_clicked();
 
@@ -45,6 +53,7 @@ private:
     Ui::MainWindow *ui;
     DBManager* dbPointer;
     Transaction transactionSelected;
+    std::vector<Item> itemList;
 };
 
 #endif // MAINWINDOW_H

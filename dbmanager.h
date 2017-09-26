@@ -38,6 +38,9 @@ public:
     // Get and return data functions to UI
     std::vector<Transaction> getAllTransactions();
 
+    //Gets all items from database and returns to program
+    std::vector<Item> getAllItems();
+
     // Takes in customerID, finds customerName associated with ID, return it as QString
     QString getCustomerNameFromID(int customerID);
 
