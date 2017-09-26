@@ -22,30 +22,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::renderCustomers()
-{
-    // Gets a vector of all customers in SQL database
-    std::vector<Customer> customersList = dbPointer->getAllCustomers();
-
-    // Set the behavior of the customers table
-    ui->customersTable->setEditTriggers((QAbstractItemView::NoEditTriggers));
-    ui->customersTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->customersTable->setSelectionMode(QAbstractItemView::SingleSelection);
-
-    ui->customersTable->setColumnCount(4);
-
-    ui->customersTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Customer ID"));
-    ui->customersTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Name"));
-    ui->customersTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Member Type"));
-    ui->customersTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Exp. Date"));
-
-    ui->customersTable->setColumnWidth(0, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(1, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(2, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(3, ui->customersTable->width()/4);
-
-    addCustomersVectorToTable(customersList);
-}
+/*****************************************************************************************
+* Transaction Functions
+* ----------------------
+*   (1) void renderTransactions();
+*       x gets a vector list of all transactions in database.
+*       x Sets up columns and header, edit and selection behaviors of the table
+*       x Calls addTransactionsVectorToTable and passes it the vector from above.
+*
+* ---------------------------------------------------------------------------------------
+*   (2) void addTransactionsVectorToTable(vector<Transaction> transactionsList)
+*       x Takes a vector of transactions, iterates through vector and adds to table.
+*
+* ---------------------------------------------------------------------------------------
+*
+*****************************************************************************************/
 void MainWindow::renderTransactions()
 {
     qDebug() << "Rendering transactions..";
@@ -81,57 +72,6 @@ void MainWindow::renderTransactions()
     // Updates the transactions table with the vector of customers from above
     addTransactionsVectorToTable(transactionsList);
 }
-
-void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
-{
-    int row = 0;
-
-    // Sets the number of rows in the table to the exact amount of transaction records found in the vector
-    ui->customersTable->setRowCount(customersList.size());
-
-    // Loops through all transactions
-    // Populates QTableWidget with appropriate data
-    std::vector<Customer>::iterator custIt = customersList.begin();
-
-    while (custIt != customersList.end())
-    {
-        for (int column = 0; column < ui->customersTable->columnCount(); column++)
-        {
-            QTableWidgetItem *cell = ui->customersTable->item(row,column);
-            if (!cell)
-            {
-                cell = new QTableWidgetItem;
-                ui->customersTable->setItem(row,column,cell);
-            }
-            switch (column)
-            {
-            // Customer ID column
-            case 0:
-                cell->setData(0, QVariant(custIt->getCustomerID()));
-                break;
-
-                // Customer Name column
-            case 1:
-                cell->setData(0, QVariant(customersList.at(row).getCustomerName()));
-                break;
-
-                // Member Type Column
-            case 2:
-                cell->setData(0, QVariant(customersList.at(row).getMemberType()));
-                break;
-                // Member expiration date Column
-            case 3:
-                cell->setData(0, QVariant(customersList.at(row).getExpDate()));
-                break;
-
-            }
-        }
-        row++;      // Updates to the next row in the table
-        custIt++;  // Updates the transactionsList iterator to read from the next transaction on next iteration
-    }
-}
-
-
 
 void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transactionsList)
 {
@@ -187,13 +127,113 @@ void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transacti
         transIt++;  // Updates the transactionsList iterator to read from the next transaction on next iteration
     }
 }
+// ============================ END OF TRANSACTION FUNCTIONS ===============================/
 
+/*****************************************************************************************
+* Customer Functions
+* ---------------------------------------------------------------------------------------
+*   (1) void renderCustomers();
+*       x creates a vector list of all customers from database.
+*       x Sets up columns and header, edit and selection behaviors of the table
+*       x Calls addCustomersVectorToTable and passes it the vector from above.
+*
+* ---------------------------------------------------------------------------------------
+*   (2) void addCustomersVectorToTable(vector<Customer> customersList)
+*       x Takes a vector of customers, iterates through vector and adds to table.
+*
+* ---------------------------------------------------------------------------------------
+*
+*****************************************************************************************/
+void MainWindow::renderCustomers()
+{
+    // Gets a vector of all customers in SQL database
+    std::vector<Customer> customersList = dbPointer->getAllCustomers();
+
+    // Set the behavior of the customers table
+    ui->customersTable->setEditTriggers((QAbstractItemView::NoEditTriggers));
+    ui->customersTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->customersTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->customersTable->setColumnCount(4);
+
+    ui->customersTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Customer ID"));
+    ui->customersTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Name"));
+    ui->customersTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Member Type"));
+    ui->customersTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Exp. Date"));
+
+    ui->customersTable->setColumnWidth(0, ui->customersTable->width()/4);
+    ui->customersTable->setColumnWidth(1, ui->customersTable->width()/4);
+    ui->customersTable->setColumnWidth(2, ui->customersTable->width()/4);
+    ui->customersTable->setColumnWidth(3, ui->customersTable->width()/4);
+
+    // Updates the table with new list of customers obtained from database
+    addCustomersVectorToTable(customersList);
+}
+void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
+{
+    int row = 0;
+
+    // Sets the number of rows in the table to the exact amount of transaction records found in the vector
+    ui->customersTable->setRowCount(customersList.size());
+
+    // Loops through all transactions
+    // Populates QTableWidget with appropriate data
+    std::vector<Customer>::iterator custIt = customersList.begin();
+
+    while (custIt != customersList.end())
+    {
+        for (int column = 0; column < ui->customersTable->columnCount(); column++)
+        {
+            QTableWidgetItem *cell = ui->customersTable->item(row,column);
+            if (!cell)
+            {
+                cell = new QTableWidgetItem;
+                ui->customersTable->setItem(row,column,cell);
+            }
+            switch (column)
+            {
+            // Customer ID column
+            case 0:
+                cell->setData(0, QVariant(custIt->getCustomerID()));
+                break;
+
+                // Customer Name column
+            case 1:
+                cell->setData(0, QVariant(customersList.at(row).getCustomerName()));
+                break;
+
+                // Member Type Column
+            case 2:
+                cell->setData(0, QVariant(customersList.at(row).getMemberType()));
+                break;
+                // Member expiration date Column
+            case 3:
+                cell->setData(0, QVariant(customersList.at(row).getExpDate()));
+                break;
+
+            }
+        }
+        row++;      // Updates to the next row in the table
+        custIt++;   // Updates the transactionsList iterator to read from the next transaction on next iteration
+    }
+}
+
+// ============================ END OF CUSTOMER FUNCTIONS ===============================/
+
+/*****************************************************************************************
+* void setDBPointer(DBManager* dbPointer)
+*   Used once in the beginning of the program to pass the database manager instance from
+*   main into adminCP, editTransactionDialog, and anywhere else database access is needed.
+*
+*****************************************************************************************/
 void MainWindow::setDBPointer(DBManager* dbPointer)
 {
     this->dbPointer = dbPointer;
 }
 
-// Event is fired every single time a cell is clicked on.
+/*****************************************************************************************
+* UI Events
+*****************************************************************************************/
 void MainWindow::on_transactionsTable_cellClicked(int row)
 {
     QString itemPurchased, datePurchased, customerName;
@@ -246,8 +286,6 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
     qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased() << endl << endl;
 }
 
-
-
 void MainWindow::on_editTransactionRowButton_clicked()
 {
     int customerID = transactionSelected.getCustomerID();
@@ -288,11 +326,6 @@ void MainWindow::on_showSalesButton_clicked()
     }
 }
 
-void MainWindow::on_loadAllTransactionsButton_clicked()
-{
-    renderTransactions();
-}
-
 void MainWindow::on_showSalesByMemberIDButton_clicked()
 {
     int memberID = ui->memberIDField->value();
@@ -302,12 +335,6 @@ void MainWindow::on_showSalesByMemberIDButton_clicked()
 
     addTransactionsVectorToTable(membersList);
 }
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
 
 void MainWindow::on_displayExpiringMembershipsButton_clicked()
 {
@@ -319,6 +346,8 @@ void MainWindow::on_displayExpiringMembershipsButton_clicked()
     QString expirationMonth;
     std::vector<Customer> customersList;
 
+    // This switch statement takes the index number of the option selected,
+    // then converts it to its appropriate double-digit month.
     switch (monthIndex)
     {
     case 0: // January
@@ -361,7 +390,7 @@ void MainWindow::on_displayExpiringMembershipsButton_clicked()
     }
 
     // Queries and returns vector of customers with matching expiraiton dates
-        customersList = dbPointer->getExpiringMembershipsForMonth(expirationMonth);
+    customersList = dbPointer->getExpiringMembershipsForMonth(expirationMonth);
 
     addCustomersVectorToTable(customersList); // updates the table with the new results
 }
@@ -369,4 +398,14 @@ void MainWindow::on_displayExpiringMembershipsButton_clicked()
 void MainWindow::on_loadAllCustomersButton_clicked()
 {
     renderCustomers();
+}
+
+void MainWindow::on_loadAllTransactionsButton_clicked()
+{
+    renderTransactions();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }

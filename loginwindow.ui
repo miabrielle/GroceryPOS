@@ -15,36 +15,93 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
-	background-color: black;
+
+    color: #eff0f1;
+    background-color: #31363b;
+    selection-background-color:#3daee9;
+    selection-color: #eff0f1;
+    background-clip: border;
+    border-image: none;
+    border: 0px transparent black;
+    outline: 0;
 }
+QWidget
+{
+    color: #eff0f1;
+    background-color: #31363b;
+    selection-background-color:#3daee9;
+    selection-color: #eff0f1;
+    background-clip: border;
+    border-image: none;
+    border: 0px transparent black;
+    outline: 0;
+}
+
+QWidget:item:selected
+{
+    background-color: #18465d;
+}
+
 QVBoxLayout {
 	background-color: black;
 }
 
-QPushButton {
-	color: white;
-	background-color: black;
-	border: 1px solid #616468;
+QPushButton
+{
+    color: #eff0f1;
+    background-color: #31363b;
+    border-width: 1px;
+    border-color: #76797C;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 2px;
+    outline: none;
+}
 
+
+QPushButton:focus {
+    background-color: #3daee9;
+    color: white;
+}
+
+QPushButton:pressed
+{
+    background-color: #3daee9;
+    padding-top: -15px;
+    padding-bottom: -17px;
 }
 QLabel {
-	color: green;
-	font-weight
+	color: white;
 }
 
-QLineEdit {
-	color: white;
-	background-color: black;
-	border: 1px solid #616468;
-	}</string>
+QLineEdit
+{
+    background-color: #232629;
+    padding: 5px;
+    border-style: solid;
+    border: 1px solid #76797C;
+    border-radius: 2px;
+    color: #eff0f1;
+}
+
+QLineEdit:focus {
+	border: 2px solid #3daee9;
+}
+
+QComboBox:hover,QPushButton:hover,QAbstractSpinBox:hover,QLineEdit:hover
+{
+    border: 1px solid #3daee9;
+    color: #eff0f1;
+}
+</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>37</y>
      <width>371</width>
-     <height>22</height>
+     <height>32</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -60,13 +117,13 @@ QLineEdit {
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>11</x>
      <y>68</y>
      <width>371</width>
-     <height>22</height>
+     <height>32</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -98,8 +155,8 @@ QLineEdit {
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>110</y>
+     <x>100</x>
+     <y>130</y>
      <width>81</width>
      <height>32</height>
     </rect>
@@ -111,8 +168,8 @@ QLineEdit {
   <widget class="QPushButton" name="loginButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>110</y>
+     <x>250</x>
+     <y>131</y>
      <width>76</width>
      <height>32</height>
     </rect>
