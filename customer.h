@@ -18,7 +18,7 @@ public:
     Customer(int customerID, QString customerName, QString memberType);
 
 
- // ================== ACCESSOR FUNCTIONS =============================/
+// ==================== ACCESSOR FUNCTIONS =============================/
     // Get Functions
     QString getCustomerName();
     QString getExpDate();

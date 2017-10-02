@@ -31,10 +31,11 @@ void DBManager::initDB()
     // Checks to see if the database file exists, if it hasnt been created yet:
     // executes SQL queries on the database 'bulkclub.db' initializing tables with their
     // respective data values
-    QSqlQuery query("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)");
+    QSqlQuery query;
+    query.exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)");
     query.exec("CREATE TABLE customers (id INTEGER, name TEXT, type TEXT, expirationDate REAL)");
     query.exec("CREATE TABLE items (id INTEGER PRIMARY KEY, name TEXT, price REAL)");
-    query.exec("CREATE TABLE transactions (id INTEGER PRIMARY KEY, cid INTEGER, customerName TEXT, itemPurchased TEXT, quantityPurchased INTEGER, date REAL)");
+    query.exec("CREATE TABLE transactions (id INTEGER PRIMARY KEY, cid INTEGER, customerName TEXT, itemPurchased TEXT, quantityPurchased INTEGER, date REAL, salePrice REAL)");
 
     if(!query.isActive())
     {
@@ -81,7 +82,6 @@ QString DBManager::getCustomerNameFromID(int customerID)
 {
     QString customerName;
     QSqlQuery customersQuery;
-
     customersQuery.prepare("SELECT name FROM customers WHERE id = :customerID");
 
     customersQuery.bindValue(":customerID", customerID);
@@ -103,10 +103,8 @@ std::vector<Transaction> DBManager::getAllTransactions()
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
 
-    if(transactionsQuery.exec("SELECT cid, itempurchased, quantitypurchased, date FROM transactions"))
+    if(transactionsQuery.exec("SELECT cid, itempurchased, quantitypurchased, date, salePrice FROM transactions"))
     {
-
-
         // Check if the query has at least one result
         if (transactionsQuery.first())
         {
@@ -167,7 +165,7 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
     QString salesDateQString = QString::fromStdString(salesDateString);
 
     qDebug() << salesDateQString;
-    query.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE date=:salesDateString");
+    query.prepare("SELECT cid, itempurchased, quantitypurchased, date, salePrice FROM transactions WHERE date=:salesDateString");
     query.bindValue(":salesDateString", salesDateQString);
 
     qDebug() << query.lastError();
@@ -210,7 +208,7 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
 
-    transactionsQuery.prepare("SELECT cid, itempurchased, quantitypurchased, date FROM transactions WHERE cid=:memberID");
+    transactionsQuery.prepare("SELECT cid, itempurchased, quantitypurchased, date, salePrice FROM transactions WHERE cid=:memberID");
     transactionsQuery.bindValue(":memberID", memberID);
 
     if (transactionsQuery.exec())
@@ -272,13 +270,39 @@ std::vector<Customer> DBManager::getAllCustomers()
             // returns a fake transaction to the table to inform user that the ID they entered
             // was not found.
             customers.push_back(Customer(0, "Error loading customers from database", ""));
-
         }
     }
     return customers;
 }
 
-std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month) //<! ry
+float DBManager::getSalesPriceForTransaction(Transaction transaction)
+{
+    QString itemName = transaction.getItemName(); // Gets the item name associated with the transaction
+    int itemQuantityPurchased = transaction.getQuantityPurchased();
+    float salePrice = 0;
+    QSqlQuery itemsQuery;
+    QSqlQuery transactionsQuery;
+
+
+    itemsQuery.exec("SELECT name, price FROM items");
+
+    transactionsQuery.prepare("SELECT id, itempurchased, salePrice FROM transactions WHERE itempurchased=:itemName");
+    transactionsQuery.bindValue(":itemName", itemName);
+    transactionsQuery.exec();
+
+    transactionsQuery.first();
+    while (itemsQuery.value(0) != transactionsQuery.value(1) && itemsQuery.next())
+    {
+        qDebug() << "Comparing" << itemsQuery.value(0).toString();
+        if (itemsQuery.value(0) == transactionsQuery.value(1))
+        {
+            qDebug() << itemsQuery.value(1).toFloat();
+            salePrice = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
+        }
+    }
+    return salePrice;
+}
+std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
 {
     QSqlQuery customersQuery;
 
@@ -289,8 +313,6 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month) /
 
     if (customersQuery.exec())
     {
-        qDebug() << "Entered customer loop";
-
         if (customersQuery.first())
         {
             while(customersQuery.isValid())
@@ -318,6 +340,26 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month) /
     qDebug() << customersQuery.lastError();
     return customers;
 }
+
+//Adds an item to the table in the database
+void DBManager::addItem(QString itemName, float itemPrice)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO items (name, price) VALUES (:itemName, :itemPrice)");
+    query.bindValue(":itemName", itemName);
+    query.bindValue(":itemPrice", itemPrice);
+    query.exec();
+}
+
+//Deletes item from table in database
+void DBManager::deleteItem(QString itemName)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM items WHERE name = :itemName");
+    query.bindValue(":itemName", itemName);
+    query.exec();
+}
+
 
 QSqlDatabase* DBManager::getDB()
 {

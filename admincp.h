@@ -23,8 +23,6 @@ public:
 
     void renderItems();
     void displayItems();
-    void addItem(QString itemName, float itemPrice);
-    void deleteItem(QString itemName);
 
     void addCustomersVectorToTable(std::vector<Customer> customersList);
     ~MainWindow();

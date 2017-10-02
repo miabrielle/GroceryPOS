@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->customersTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->transactionsTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     // Sets the date format
     ui->salesDateInputField->setDisplayFormat("MM/dd/yyyy");
     ui->salesDateInputField->setCalendarPopup(true);
@@ -53,7 +54,7 @@ void MainWindow::renderTransactions()
     std::vector<Transaction> transactionsList = dbPointer->getAllTransactions();
 
     // Number of columns. Usually specific, easily change-able
-    ui->transactionsTable->setColumnCount(5);
+    ui->transactionsTable->setColumnCount(6);
 
     // Table behavior
     ui->transactionsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -61,20 +62,21 @@ void MainWindow::renderTransactions()
     ui->transactionsTable->setEditTriggers((QAbstractItemView::NoEditTriggers));
 
     // Sets the header labels for each column
-    ui->transactionsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("ID"));
+    ui->transactionsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("CID"));
     ui->transactionsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Purchased"));
     ui->transactionsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Qty"));
     ui->transactionsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Date"));
     ui->transactionsTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Name"));
+    ui->transactionsTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Sale Price"));
 
 
     // Makes the customer ID column smaller than the rest.
-    ui->transactionsTable->setColumnWidth(0, ui->transactionsTable->width()/5.6);
-    ui->transactionsTable->setColumnWidth(1, ui->transactionsTable->width()/5);
-    ui->transactionsTable->setColumnWidth(2, ui->transactionsTable->width()/5);
-    ui->transactionsTable->setColumnWidth(3, ui->transactionsTable->width()/5);
-    ui->transactionsTable->setColumnWidth(4, ui->transactionsTable->width()/5);
-
+    ui->transactionsTable->setColumnWidth(0, 90);
+    ui->transactionsTable->setColumnWidth(1, 150);
+    ui->transactionsTable->setColumnWidth(2, 90);
+    ui->transactionsTable->setColumnWidth(3, 200);
+    ui->transactionsTable->setColumnWidth(4, 200);
+    ui->transactionsTable->setColumnWidth(5, 100);
 
     // Updates the transactions table with the vector of customers from above
     addTransactionsVectorToTable(transactionsList);
@@ -128,11 +130,16 @@ void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transacti
             case 4:
                 cell->setData(0, QVariant(dbPointer->getCustomerNameFromID(transIt->getCustomerID())));
                 break;
+
+            case 5:
+                cell->setData(0, QVariant(dbPointer->getSalesPriceForTransaction(*transIt)));
+                break;
             }
         }
         row++;      // Updates to the next row in the table
         transIt++;  // Updates the transactionsList iterator to read from the next transaction on next iteration
     }
+
 }
 // ============================ END OF TRANSACTION FUNCTIONS ===============================/
 
@@ -187,8 +194,8 @@ void MainWindow::renderItems()
     ui->itemsTable->setRowCount(itemList.size());
     ui->itemsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Item Name"));
     ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
-    ui->itemsTable->setColumnWidth(0, 175);
-    ui->itemsTable->setColumnWidth(1, 175);
+    ui->itemsTable->setColumnWidth(0, ui->itemsTable->width() / 2);
+    ui->itemsTable->setColumnWidth(1, ui->itemsTable->width() / 2);
 }
 
 //Displays any items from list created in renderItems
@@ -209,7 +216,6 @@ void MainWindow::displayItems()
             //switches on column to fill in name and price seperately
             switch (column)
             {
-
             case 0:
                 cell->setData(0, QVariant(itemList[row].getItemName()));
                 break;
@@ -219,26 +225,6 @@ void MainWindow::displayItems()
             }
         }
     }
-}
-
-//Adds an item to the table in the database
-void MainWindow::addItem(QString itemName, float itemPrice)
-{
-
-    QSqlQuery query;
-    query.prepare("INSERT INTO items (name, price) VALUES (:itemName, :itemPrice)");
-    query.bindValue(":itemName", itemName);
-    query.bindValue(":itemPrice", itemPrice);
-    query.exec();
-}
-
-//Deletes item from table in database
-void MainWindow::deleteItem(QString itemName)
-{
-    QSqlQuery query;
-    query.prepare("DELETE FROM items WHERE name = :itemName");
-    query.bindValue(":itemName", itemName);
-    query.exec();
 }
 
 //When you press the delete item button, this function deletes the item from the UI
@@ -259,7 +245,7 @@ void MainWindow::on_deleteItemButton_clicked()
 
     //Erases element in the database
     QString itemName = itemList[selectedRow].getItemName();
-    deleteItem(itemName);
+    dbPointer->deleteItem(itemName);
 
     //Moves all items in the list back one index in the array then erases the last element in the array
     for(int i = selectedRow; i < static_cast<int>(itemList.size()) - 1; i++)
@@ -303,7 +289,7 @@ void MainWindow::on_addItemButton_clicked()
         ui->itemPriceField->clear();
 
         //Adds item to database list
-        addItem(tempItem.getItemName(), tempItem.getItemPrice());
+        dbPointer->addItem(tempItem.getItemName(), tempItem.getItemPrice());
     }
     else
     {
@@ -352,6 +338,7 @@ void MainWindow::renderCustomers()
     // Updates the table with new list of customers obtained from database
     addCustomersVectorToTable(customersList);
 }
+
 void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
 {
     int row = 0;

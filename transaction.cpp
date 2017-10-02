@@ -3,6 +3,7 @@
 
 Transaction::Transaction()
 {
+
 }
 
 Transaction::Transaction(int customerID, QString itemName, int quantityPurchased, QString purchaseDate)

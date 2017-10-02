@@ -10,7 +10,6 @@ this->customerName = customerName;
 this->memberType = memberType;
 }
 
-
 // Customer::get Functions
 QString Customer::getCustomerName()
 {

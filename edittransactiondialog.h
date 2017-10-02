@@ -18,6 +18,7 @@ public:
 
     void setTransactionsTablePointer(QTableWidget* transactionsTable);
     void setDBPointer(DBManager* dbPointer);
+
 private slots:
     void on_cancelEditTransactionButton_clicked();
 

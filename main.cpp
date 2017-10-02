@@ -13,5 +13,6 @@ int main(int argc, char *argv[])
 
     lw.setDBPointer(dbManager);
     lw.show();
+
     return a.exec();
 }

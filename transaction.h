@@ -9,12 +9,14 @@ private:
     QString itemName;
     int customerID;
     int quantityPurchased;
+    float salePrice;
 
 public:
 
     Transaction();
     Transaction(int customerID, QString itemName, int quantityPurchased, QString purchaseDate);
-// ================== ACCESSOR FUNCTIONS =============================/
+
+    // ================== ACCESSOR FUNCTIONS =============================/
     // Get Functions
     QString getPurchaseDate();
     QString getItemName();
