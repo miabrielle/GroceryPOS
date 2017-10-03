@@ -360,6 +360,20 @@ void DBManager::deleteItem(QString itemName)
     query.exec();
 }
 
+void DBManager::updateItemInDB(Item item)
+{
+    QSqlQuery query;
+    QString itemName = item.getItemName();
+    int itemQuantity = item.getQuantitySold();
+    float itemRevenue = item.getTotalRevenue();
+
+    query.prepare("UPDATE items SET quantity = :itemQuantity, revenue = :itemRevenue WHERE name = :itemName");
+    query.bindValue(":itemQuantity", itemQuantity);
+    query.bindValue(":itemRevenue", itemRevenue);
+    query.bindValue(":itemName", itemName);
+    query.exec();
+}
+
 
 QSqlDatabase* DBManager::getDB()
 {
