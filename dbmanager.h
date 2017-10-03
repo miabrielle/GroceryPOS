@@ -63,7 +63,7 @@ public:
     // Get customers by expirationDate from database
     std::vector<Customer> getExpiringMembershipsForMonth(QString month);
 
-    float getSalesPriceForTransaction(Transaction transaction);
+    QString getSalesPriceForTransaction(Transaction transaction);
     void deleteItem(QString itemName);
     void addItem(QString itemName, float itemPrice);
     QSqlDatabase* getDB();
