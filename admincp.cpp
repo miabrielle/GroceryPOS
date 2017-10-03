@@ -71,11 +71,11 @@ void MainWindow::renderTransactions()
 
 
     // Makes the customer ID column smaller than the rest.
-    ui->transactionsTable->setColumnWidth(0, 90);
-    ui->transactionsTable->setColumnWidth(1, 150);
-    ui->transactionsTable->setColumnWidth(2, 90);
-    ui->transactionsTable->setColumnWidth(3, 200);
-    ui->transactionsTable->setColumnWidth(4, 200);
+    ui->transactionsTable->setColumnWidth(0, 70);
+    ui->transactionsTable->setColumnWidth(1, 250);
+    ui->transactionsTable->setColumnWidth(2, 50);
+    ui->transactionsTable->setColumnWidth(3, 80);
+    ui->transactionsTable->setColumnWidth(4, 150);
     ui->transactionsTable->setColumnWidth(5, 100);
 
     // Updates the transactions table with the vector of customers from above

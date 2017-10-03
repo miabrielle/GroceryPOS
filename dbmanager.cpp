@@ -275,11 +275,12 @@ std::vector<Customer> DBManager::getAllCustomers()
     return customers;
 }
 
-float DBManager::getSalesPriceForTransaction(Transaction transaction)
+QString DBManager::getSalesPriceForTransaction(Transaction transaction)
 {
     QString itemName = transaction.getItemName(); // Gets the item name associated with the transaction
     int itemQuantityPurchased = transaction.getQuantityPurchased();
-    float salePrice = 0;
+    QString salePriceString;
+    float salePriceFloat = 0;
     QSqlQuery itemsQuery;
     QSqlQuery transactionsQuery;
 
@@ -297,10 +298,11 @@ float DBManager::getSalesPriceForTransaction(Transaction transaction)
         if (itemsQuery.value(0) == transactionsQuery.value(1))
         {
             qDebug() << itemsQuery.value(1).toFloat();
-            salePrice = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
+            salePriceFloat = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
         }
     }
-    return salePrice;
+    salePriceString = "$ " + QString::number(salePriceFloat);
+    return salePriceString;
 }
 std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
 {
