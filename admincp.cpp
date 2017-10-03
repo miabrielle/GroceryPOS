@@ -1,6 +1,7 @@
 #include "admincp.h"
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
+#include <iomanip>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     renderCustomers();    // Renders all customers to table
     renderItems();        // Creates items table
     displayItems();       // Populates items table
+    setUpRevenueTable();  // Creates revenue table
 
 }
 
@@ -183,7 +185,7 @@ void MainWindow::addTransactionsVectorToTable(std::vector<Transaction> transacti
 void MainWindow::renderItems()
 {
     //create a list for items with 2 columns
-    itemList = dbPointer->getAllItems();
+    itemsList = dbPointer->getAllItems();
 
     //Allows for single row to get selected
     ui->itemsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -191,7 +193,7 @@ void MainWindow::renderItems()
 
     //Sets headers to item name and price
     ui->itemsTable->setColumnCount(2);
-    ui->itemsTable->setRowCount(itemList.size());
+    ui->itemsTable->setRowCount(itemsList.size());
     ui->itemsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Item Name"));
     ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
     ui->itemsTable->setColumnWidth(0, ui->itemsTable->width() / 2);
@@ -202,7 +204,7 @@ void MainWindow::renderItems()
 void MainWindow::displayItems()
 {
     //iterates through rows and columns
-    for(int row = 0; row < static_cast<int>(itemList.size()); row++)
+    for(int row = 0; row < static_cast<int>(itemsList.size()); row++)
     {
         for (int column = 0; column < ui->itemsTable->columnCount(); column++)
         {
@@ -217,10 +219,10 @@ void MainWindow::displayItems()
             switch (column)
             {
             case 0:
-                cell->setData(0, QVariant(itemList[row].getItemName()));
+                cell->setData(0, QVariant(itemsList[row].getItemName()));
                 break;
             case 1:
-                cell->setData(0, QVariant(itemList[row].getItemPrice()));
+                cell->setData(0, QVariant(itemsList[row].getItemPrice()));
                 break;
             }
         }
@@ -244,16 +246,16 @@ void MainWindow::on_deleteItemButton_clicked()
     ui->itemsTable->removeRow(selectedRow);
 
     //Erases element in the database
-    QString itemName = itemList[selectedRow].getItemName();
+    QString itemName = itemsList[selectedRow].getItemName();
     dbPointer->deleteItem(itemName);
 
     //Moves all items in the list back one index in the array then erases the last element in the array
-    for(int i = selectedRow; i < static_cast<int>(itemList.size()) - 1; i++)
+    for(int i = selectedRow; i < static_cast<int>(itemsList.size()) - 1; i++)
     {
-        itemList[i].setItemName(itemList[i + 1].getItemName());
-        itemList[i].setItemPrice(itemList[i + 1].getItemPrice());
+        itemsList[i].setItemName(itemsList[i + 1].getItemName());
+        itemsList[i].setItemPrice(itemsList[i + 1].getItemPrice());
     }
-    itemList.erase(itemList.begin() + itemList.size() - 1);
+    itemsList.erase(itemsList.begin() + itemsList.size() - 1);
 }
 
 //adds item to inventory on screen
@@ -263,26 +265,27 @@ void MainWindow::on_addItemButton_clicked()
     Item tempItem;
     tempItem.setItemName(ui->itemNameField->text());
     tempItem.setItemPrice(ui->itemPriceField->text().toFloat());
+
     if(tempItem.getItemName() != "")
     {
-        itemList.push_back(tempItem);
+        itemsList.push_back(tempItem);
 
         //Creates new row and adds new item to row
-        ui->itemsTable->setRowCount(itemList.size());
+        ui->itemsTable->setRowCount(itemsList.size());
 
         // Gets the item name and price cell for the new item to be added
-        QTableWidgetItem *cellName = ui->itemsTable->item(itemList.size() - 1, 0);
-        QTableWidgetItem *cellPrice = ui->itemsTable->item(itemList.size() - 1, 1);
+        QTableWidgetItem *cellName = ui->itemsTable->item(itemsList.size() - 1, 0);
+        QTableWidgetItem *cellPrice = ui->itemsTable->item(itemsList.size() - 1, 1);
 
         //Adds item to UI page with items table
         if (!cellPrice && !cellName) {
             cellPrice = new QTableWidgetItem;
             cellName = new QTableWidgetItem;
         }
-        cellName->setData(0, QVariant(itemList[itemList.size() - 1].getItemName() ));
-        cellPrice->setData(0, QVariant(itemList[itemList.size() - 1].getItemPrice() ));
-        ui->itemsTable->setItem(itemList.size() - 1, 0, cellName);
-        ui->itemsTable->setItem(itemList.size() - 1, 1, cellPrice);
+        cellName->setData(0, QVariant(itemsList[itemsList.size() - 1].getItemName() ));
+        cellPrice->setData(0, QVariant(itemsList[itemsList.size() - 1].getItemPrice() ));
+        ui->itemsTable->setItem(itemsList.size() - 1, 0, cellName);
+        ui->itemsTable->setItem(itemsList.size() - 1, 1, cellPrice);
 
         //clears fields to enter new items
         ui->itemNameField->clear();
@@ -389,6 +392,118 @@ void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
 }
 
 // ============================ END OF CUSTOMER FUNCTIONS ===============================/
+
+
+/*****************************************************************************************
+* Revenue Functions
+* ---------------------------------------------------------------------------------------
+*   (1) void setUpRevenueTable()
+*       x adds columns and a row to the table showing quantity sold and revenue
+*
+* ---------------------------------------------------------------------------------------
+*   (2) void MainWindow::calculateRevenue(Item & item)
+*       x takes in an item and searches through the transactions list for items with the same name
+*       x sums up the total quantity sold from this list
+*       x uses the quantity sold and item price to calculate total revenue
+*       x writes those values as members of class object
+*
+* ---------------------------------------------------------------------------------------
+*   (3) void on_searchButton_clicked()
+*       x Reads in item name the user is searching for
+*       x Determines if item exists in vector
+*       x Calls calculateRevenue function if so
+*       x Outputs values to screen
+*       x will output new values each time button is pressed
+*
+*****************************************************************************************/
+//adds columns and a row to the table showing quantity sold and revenue
+void MainWindow::setUpRevenueTable()
+{
+    ui->revenueTable->setColumnCount(2);
+    ui->revenueTable->setRowCount(1);
+    ui->revenueTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Quantity Sold"));
+    ui->revenueTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Total Revenue"));
+    ui->revenueTable->setColumnWidth(0, ui->revenueTable->width()/2.15);
+    ui->revenueTable->setColumnWidth(1, ui->revenueTable->width()/2.1);
+}
+
+
+//Calculates total quantity and revenue sold of item class by going through
+//transactions class
+void MainWindow::calculateRevenue(Item & item)
+{
+    int quantitySum = 0;
+    int revenue;
+    std::vector<Transaction> transactionsList = dbPointer->getAllTransactions();
+
+    //Goes through vector to find which items match the name of this item
+    for(int i = 0; i < static_cast<int>(transactionsList.size()); i++)
+    {
+        //Sums up the total quantity of these sold
+        if(item.getItemName() == transactionsList[i].getItemName())
+        {
+            quantitySum += transactionsList[i].getQuantityPurchased();
+        }
+    }
+
+    //Calculates total revenue based on quantity sold and price of item
+    revenue = quantitySum * item.getItemPrice();
+
+    //Changes these numbers in the vector
+    item.setQuantitySold(quantitySum);
+    item.setTotalRevenue(revenue);
+
+    //Changes values in DBManager class to change database
+    dbPointer->updateItemInDB(item);
+}
+
+void MainWindow::on_searchButton_clicked()
+{
+    //Reads in name of item from text box
+    QString itemName = ui->searchItemBox->text();
+    int index = -1;
+
+    //Prepares program to add info to table, which is done in conditional
+    //Gets the item name and price cell for the new item to be added
+    QTableWidgetItem *cellQuantity = ui->revenueTable->item(0, 0);
+    QTableWidgetItem *cellRevenue = ui->revenueTable->item(0, 1);
+
+    //Checks if cell items created, creates if not
+    if (!cellQuantity && !cellRevenue) {
+        cellQuantity = new QTableWidgetItem;
+        cellRevenue = new QTableWidgetItem;
+    }
+
+    //Goes through vector to see if items match the name of this item
+    for(int i = 0; i < static_cast<int>(itemsList.size()); i++)
+    {
+        //Finds index where one transaction of that item occurred
+        if(itemName == itemsList[i].getItemName())
+        {
+            index = i;
+        }
+    }
+    //calculates quantity sold and revenue if so, if not outputs an error message
+    if(index != -1)
+    {
+        calculateRevenue(itemsList[index]);
+        cellQuantity->setData(0, QVariant(itemsList[index].getQuantitySold()));
+        cellRevenue->setData(0, QVariant(itemsList[index].getTotalRevenue()));
+        ui->revenueTable->setItem(0, 0, cellQuantity);
+        ui->revenueTable->setItem(0, 1, cellRevenue);
+    }
+    else
+    {
+        //populates the text box with an error message
+        cellQuantity->setData(0, QVariant("Item not found"));
+    }
+
+    //clears fields to enter new items
+    ui->searchItemBox->clear();
+}
+
+// ============================ END OF REVENUE FUNCTIONS ===============================/
+
 
 /*****************************************************************************************
 * void setDBPointer(DBManager* dbPointer)

@@ -48,6 +48,8 @@ public:
     // username and password are passed from user input on login screen
     bool authenticateUser(QString username, QString password);
 
+    //When information on an item is updated, this is called to update the database
+    void updateItemInDB(Item item);
 
     // Get transactions by purchase date from database
     std::vector<Transaction> getTransactionsBySalesDate(QDate salesDate);
