@@ -64,12 +64,18 @@ public:
     std::vector<Customer> getExpiringMembershipsForMonth(QString month);
 
     QString getSalesPriceForTransaction(Transaction transaction);
+    float getSalesPriceTotalFloat(Transaction transaction);
 
     // Update transaction in database
     void updateTransactionInDB(Transaction newTransaction, int transactionID);
 
     void deleteItem(QString itemName);
     void addItem(QString itemName, float itemPrice);
+
+    // Get all executive customers
+    std::vector<Customer> getAllExecutiveCustomers();
+
+
     QSqlDatabase* getDB();
 
     ~DBManager();

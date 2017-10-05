@@ -277,7 +277,7 @@ std::vector<Customer> DBManager::getAllCustomers()
 QString DBManager::getSalesPriceForTransaction(Transaction transaction)
 {
     QString itemName = transaction.getItemName(); // Gets the item name associated with the transaction
-    int itemQuantityPurchased = transaction.getQuantityPurchased();
+    //int itemQuantityPurchased = transaction.getQuantityPurchased();
     QString salePriceString;
     float salePriceFloat = 0;
     QSqlQuery itemsQuery;
@@ -303,6 +303,35 @@ QString DBManager::getSalesPriceForTransaction(Transaction transaction)
     salePriceString = "$" + QString::number(salePriceFloat);
     return salePriceString;
 }
+
+float DBManager::getSalesPriceTotalFloat(Transaction transaction)
+{
+    QString itemName = transaction.getItemName();
+    float salePriceFloat;
+    QSqlQuery itemsQuery;
+    QSqlQuery transactionsQuery;
+
+
+    itemsQuery.exec("SELECT name, price FROM items");
+
+    transactionsQuery.prepare("SELECT id, itempurchased, salePrice FROM transactions WHERE itempurchased=:itemName");
+    transactionsQuery.bindValue(":itemName", itemName);
+    transactionsQuery.exec();
+
+    transactionsQuery.first();
+    while (itemsQuery.value(0) != transactionsQuery.value(1) && itemsQuery.next())
+    {
+        qDebug() << "Comparing" << itemsQuery.value(0).toString();
+        if (itemsQuery.value(0) == transactionsQuery.value(1))
+        {
+            qDebug() << itemsQuery.value(1).toFloat();
+            salePriceFloat = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
+        }
+    }
+
+    return salePriceFloat;
+}
+
 std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
 {
     QSqlQuery customersQuery;
@@ -400,6 +429,47 @@ void DBManager::updateItemInDB(Item item)
     query.exec();
 }
 
+std::vector<Customer> DBManager::getAllExecutiveCustomers()
+{
+    std::vector<Customer> execCustomers;
+    QSqlQuery customerQuery;
+    QString memberType = "Executive";
+
+    customerQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE type=:memberType");
+    customerQuery.bindValue(":memberType", memberType);
+
+    if (customerQuery.exec())
+    {
+        qDebug() << "Entered customer loop";
+
+        if (customerQuery.first())
+        {
+            while(customerQuery.isValid())
+            {
+                Customer tempCustomer;
+
+                tempCustomer.setCustomerID(customerQuery.value(0).toInt());      // Sets customer ID
+                tempCustomer.setCustomerName(customerQuery.value(1).toString()); // Sets customer name
+                tempCustomer.setMemberType(customerQuery.value(2).toString());   // Sets customer member type
+                tempCustomer.setExpDate(customerQuery.value(3).toString());      // Sets customer exp date
+
+                execCustomers.push_back(tempCustomer); // Pushes customer to vector
+
+                customerQuery.next(); // Goes to next query result matching our customersQuery
+            }
+        }
+        else
+        {
+            // returns a fake transaction to the table to inform user that the ID they entered
+            // was not found.
+            execCustomers.push_back(Customer(0, "No customers found", "in database with given member type." ));
+
+        }
+    }
+    qDebug() << customerQuery.lastError();
+
+    return execCustomers;
+}
 
 QSqlDatabase* DBManager::getDB()
 {
