@@ -287,7 +287,6 @@ void MainWindow::on_deleteItemButton_clicked()
 
     //Erases element in the database
     QString itemName = itemsList[selectedRow].getItemName();
-    dbPointer->deleteItem(itemName);
 
     //Moves all items in the list back one index in the array then erases the last element in the array
     for(int i = selectedRow; i < static_cast<int>(itemsList.size()) - 1; i++)
@@ -298,6 +297,7 @@ void MainWindow::on_deleteItemButton_clicked()
         itemsList[i].setTotalRevenue(itemsList[i + 1].getTotalRevenue());
     }
     itemsList.erase(itemsList.begin() + itemsList.size() - 1);
+    dbPointer->deleteItem(itemName);
 }
 
 //adds item to inventory on screen
@@ -587,8 +587,10 @@ void MainWindow::setDBPointer(DBManager* dbPointer)
 *****************************************************************************************/
 void MainWindow::on_transactionsTable_cellClicked(int row)
 {
+    this->rowSelected = row;
     QString itemPurchased, datePurchased, customerName;
     int customerID, quantityPurchased;
+    float salePrice;
 
     // 0 = CustomerID
     // 1 = Item Purchased
@@ -625,16 +627,22 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
         case 4:
             customerName = ui->transactionsTable->item(row, col)->text();
             break;
+
+        case 5:
+            salePrice = ui->transactionsTable->item(row, col)->text().toFloat();
+
         }
     }
     transactionSelected.setCustomerID(customerID);
     transactionSelected.setItemName(itemPurchased);
     transactionSelected.setPurchaseDate(datePurchased);
     transactionSelected.setQuantityPurchased(quantityPurchased);
+
     qDebug() << "CID: " << transactionSelected.getCustomerID();
     qDebug() << "Item name: " << transactionSelected.getItemName();
     qDebug() << "Purchase Date: " << transactionSelected.getPurchaseDate();
-    qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased() << endl << endl;
+    qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased();
+    qDebug() << "Sale Price: " << salePrice << endl << endl;
 }
 
 void MainWindow::on_editTransactionRowButton_clicked()
@@ -644,16 +652,22 @@ void MainWindow::on_editTransactionRowButton_clicked()
     QString purchaseDate = transactionSelected.getPurchaseDate();
     int quantityPurchased = transactionSelected.getQuantityPurchased();
 
+
     if (itemPurchased == "")
     {
         ui->invalidRowSelectedMsg->setText("Error: You must select a valid row.");
     }
     else
     {
-        EditTransactionDialog* editTransWindow = new EditTransactionDialog(this, customerID, itemPurchased, quantityPurchased, purchaseDate);
+        EditTransactionDialog* editTransWindow = new EditTransactionDialog(this, transactionSelected, this->rowSelected);
 
         editTransWindow->show();
+        editTransWindow->setTransactionsTablePointer(ui->transactionsTable);
+        editTransWindow->setDBPointer(this->dbPointer);
+        editTransWindow->setTransactionSelectedPointer(&transactionSelected);
     }
+    qDebug() << "Transactions edit window opened.";
+
 }
 
 void MainWindow::on_showSalesButton_clicked()

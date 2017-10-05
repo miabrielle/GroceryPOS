@@ -26,6 +26,7 @@ public:
     void displayItems();
 
     void addCustomersVectorToTable(std::vector<Customer> customersList);
+
     ~MainWindow();
 
 private slots:
@@ -53,11 +54,12 @@ private slots:
     void on_displayAllButton_clicked();
 
     void on_sortItemsByButton_clicked();
-
+    
 private:
     Ui::MainWindow *ui;
     DBManager* dbPointer;
     Transaction transactionSelected;
+    int rowSelected;
     std::vector<Item> itemsList;
 };
 

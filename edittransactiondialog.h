@@ -13,7 +13,9 @@ class EditTransactionDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditTransactionDialog(QWidget *parent, int ID, QString itemName, int qtyPurchased, QString date);
+    explicit EditTransactionDialog(QWidget *parent, Transaction transactionSelected, int rowSelected);
+    void setTransactionSelectedPointer(Transaction* transactionSelected);
+
     ~EditTransactionDialog();
 
     void setTransactionsTablePointer(QTableWidget* transactionsTable);
@@ -26,6 +28,8 @@ private slots:
 
 private:
     Ui::EditTransactionDialog *ui;
+    int rowSelected;
+    Transaction* transactionSelectedPointer;
     QTableWidget* transactionsTablePointer;
     DBManager* dbPointer;
 };
