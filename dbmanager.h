@@ -65,6 +65,10 @@ public:
 
     QString getSalesPriceForTransaction(Transaction transaction);
     float getSalesPriceTotalFloat(Transaction transaction);
+
+    // Update transaction in database
+    void updateTransactionInDB(Transaction newTransaction, int transactionID);
+
     void deleteItem(QString itemName);
     void addItem(QString itemName, float itemPrice);
 
