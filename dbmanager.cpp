@@ -164,11 +164,9 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
     std::string salesDateString = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
     QString salesDateQString = QString::fromStdString(salesDateString);
 
-    qDebug() << salesDateQString;
     query.prepare("SELECT cid, itempurchased, quantitypurchased, date, salePrice FROM transactions WHERE date=:salesDateString");
     query.bindValue(":salesDateString", salesDateQString);
 
-    qDebug() << query.lastError();
     // cid = 0
     // itempurchased = 1
     // quantitypurchased = 2
@@ -245,7 +243,6 @@ std::vector<Customer> DBManager::getAllCustomers()
     std::vector<Customer> customers;
     QSqlQuery customersQuery;
     customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers"); //<! checks the first two characters of expirationDate column in database
-    qDebug() << customersQuery.lastError();
 
     if (customersQuery.exec())
     {
@@ -291,14 +288,14 @@ QString DBManager::getSalesPriceForTransaction(Transaction transaction)
     transactionsQuery.bindValue(":itemName", itemName);
     transactionsQuery.exec();
 
-    transactionsQuery.first();
-    while (itemsQuery.value(0) != transactionsQuery.value(1) && itemsQuery.next())
+    if (transactionsQuery.first())
     {
-        qDebug() << "Comparing" << itemsQuery.value(0).toString();
-        if (itemsQuery.value(0) == transactionsQuery.value(1))
+        while (itemsQuery.value(0) != transactionsQuery.value(1) && itemsQuery.next())
         {
-            qDebug() << itemsQuery.value(1).toFloat();
-            salePriceFloat = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
+            if (itemsQuery.value(0) == transactionsQuery.value(1))
+            {
+                salePriceFloat = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
+            }
         }
     }
     salePriceString = "$ " + QString::number(salePriceFloat);
@@ -308,7 +305,6 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
 {
     QSqlQuery customersQuery;
 
-    qDebug() << "Month: " << month;
     customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE substr(expirationdate, 1, 2)=:month"); //<! checks the first two characters of expirationDate column in database
     customersQuery.bindValue(":month", month);
     std::vector<Customer> customers;
@@ -343,6 +339,28 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
     return customers;
 }
 
+void DBManager::updateTransactionInDB(Transaction newTransaction, int transactionID)
+{
+    // Converts row number to transactionID
+    QSqlQuery query;
+
+    QString itemPurchased = newTransaction.getItemName();
+    int quantityPurchased = newTransaction.getQuantityPurchased();
+    QString datePurchased = newTransaction.getPurchaseDate();
+
+
+    query.prepare("UPDATE transactions SET itempurchased=:itemPurchased, quantityPurchased=:quantityPurchased, date=:datePurchased WHERE id=:transactionID");
+    query.bindValue(":itemPurchased", itemPurchased);
+    query.bindValue(":quantityPurchased", quantityPurchased);
+    query.bindValue(":datePurchased", datePurchased);
+    query.bindValue(":transactionID", transactionID);
+    query.exec();
+
+    qDebug() << "TRANSACTION EDITED.";
+    qDebug() << query.lastError();
+}
+
+
 //Adds an item to the table in the database
 void DBManager::addItem(QString itemName, float itemPrice)
 {
@@ -361,6 +379,7 @@ void DBManager::deleteItem(QString itemName)
     query.bindValue(":itemName", itemName);
     query.exec();
 }
+
 
 void DBManager::updateItemInDB(Item item)
 {
@@ -393,6 +412,7 @@ void DBManager::close()
 
 
 }
+
 DBManager::~DBManager()
 {
 
