@@ -34,7 +34,7 @@ void DBManager::initDB()
     QSqlQuery query;
     query.exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)");
     query.exec("CREATE TABLE customers (id INTEGER, name TEXT, type TEXT, expirationDate REAL)");
-    query.exec("CREATE TABLE items (id INTEGER PRIMARY KEY, name TEXT, price REAL)");
+    query.exec("CREATE TABLE items (id INTEGER PRIMARY KEY, name TEXT, price REAL, quantity INTEGER PRIMARY KEY, revenue REAL)");
     query.exec("CREATE TABLE transactions (id INTEGER PRIMARY KEY, cid INTEGER, customerName TEXT, itemPurchased TEXT, quantityPurchased INTEGER, date REAL, salePrice REAL)");
 
     if(!query.isActive())
@@ -132,7 +132,7 @@ std::vector<Item> DBManager::getAllItems()
 {
     std::vector<Item> items;
     QSqlQuery itemsQuery;
-    itemsQuery.exec("SELECT name, price FROM items");
+    itemsQuery.exec("SELECT name, price, quantity, revenue FROM items");
 
     //checks to see if database has values
     if(itemsQuery.first())
@@ -143,6 +143,8 @@ std::vector<Item> DBManager::getAllItems()
 
             tempItem.setItemName(itemsQuery.value(0).toString());
             tempItem.setItemPrice(itemsQuery.value(1).toFloat());
+            tempItem.setQuantitySold(itemsQuery.value(2).toInt());
+            tempItem.setTotalRevenue(itemsQuery.value(3).toFloat());
 
             items.push_back(tempItem);
 
@@ -298,7 +300,7 @@ QString DBManager::getSalesPriceForTransaction(Transaction transaction)
             }
         }
     }
-    salePriceString = "$ " + QString::number(salePriceFloat);
+    salePriceString = "$" + QString::number(salePriceFloat);
     return salePriceString;
 }
 std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
@@ -365,7 +367,7 @@ void DBManager::updateTransactionInDB(Transaction newTransaction, int transactio
 void DBManager::addItem(QString itemName, float itemPrice)
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO items (name, price) VALUES (:itemName, :itemPrice)");
+    query.prepare("INSERT INTO items (name, price, quantity, revenue) VALUES (:itemName, :itemPrice, 0, 0)");
     query.bindValue(":itemName", itemName);
     query.bindValue(":itemPrice", itemPrice);
     query.exec();
@@ -385,13 +387,16 @@ void DBManager::updateItemInDB(Item item)
 {
     QSqlQuery query;
     QString itemName = item.getItemName();
+    float itemPrice = item.getItemPrice();
     int itemQuantity = item.getQuantitySold();
     float itemRevenue = item.getTotalRevenue();
 
-    query.prepare("UPDATE items SET quantity = :itemQuantity, revenue = :itemRevenue WHERE name = :itemName");
+    query.prepare("UPDATE items SET price = :itemPrice, quantity = :itemQuantity, revenue = :itemRevenue WHERE name = :itemName");
+    query.bindValue(":itemName", itemName);
+    query.bindValue(":itemPrice", itemPrice);
     query.bindValue(":itemQuantity", itemQuantity);
     query.bindValue(":itemRevenue", itemRevenue);
-    query.bindValue(":itemName", itemName);
+
     query.exec();
 }
 

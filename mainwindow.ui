@@ -415,7 +415,7 @@ color:red
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>251</width>
+        <width>253</width>
         <height>162</height>
        </rect>
       </property>
@@ -442,23 +442,23 @@ color:red
          <item>
           <widget class="QLineEdit" name="itemPriceField"/>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="deleteItemButton">
-           <property name="text">
-            <string>Delete Item</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="addItemButton">
-           <property name="text">
-            <string>Add Item</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="deleteItemButton">
+             <property name="text">
+              <string>Delete Item</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addItemButton">
+             <property name="text">
+              <string>Add Item</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
@@ -468,10 +468,135 @@ color:red
       <property name="geometry">
        <rect>
         <x>290</x>
-        <y>30</y>
+        <y>60</y>
         <width>481</width>
-        <height>331</height>
+        <height>311</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="itemNameLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>247</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Item Name:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="displayAllButton">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>310</y>
+        <width>117</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display All</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="itemNameLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>0</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sort by:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sortItemsByButton">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>20</y>
+        <width>71</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortItemsByField">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>20</y>
+        <width>148</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string> Item Name (A - Z)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Item Name (Z - A)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Item Price (Low - High)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Item Price (High - Low)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Quantity Sold (Low - High)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Quantity Sold (High - Low)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Total Revenue (Low - High)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Total Revenue (High - Low)</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="searchItemBox">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>270</y>
+        <width>247</width>
+        <height>30</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>310</y>
+        <width>117</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Search for Item</string>
       </property>
      </widget>
     </widget>
@@ -591,57 +716,6 @@ color:red
         </widget>
        </item>
       </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>Revenue</string>
-     </attribute>
-     <widget class="QTableWidget" name="revenueTable">
-      <property name="geometry">
-       <rect>
-        <x>299</x>
-        <y>49</y>
-        <width>361</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="searchItemBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>247</width>
-        <height>30</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="searchButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>117</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="itemNameLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>247</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Item Name:</string>
-      </property>
      </widget>
     </widget>
    </widget>
