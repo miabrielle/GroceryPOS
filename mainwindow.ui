@@ -280,7 +280,7 @@ QHeaderView::section  {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -652,7 +652,7 @@ color:red
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>22</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

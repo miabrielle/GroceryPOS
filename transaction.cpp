@@ -58,4 +58,3 @@ void Transaction::setQuantityPurchased(int quantityPurchased)
 {
     this->quantityPurchased = quantityPurchased;
 }
-

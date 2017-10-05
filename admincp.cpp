@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
 #include <iomanip>
+#include <vector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -320,31 +321,79 @@ void MainWindow::renderCustomers()
 {
     // Gets a vector of all customers in SQL database
     std::vector<Customer> customersList = dbPointer->getAllCustomers();
+    customersList = calcExecutiveRebates();
 
     // Set the behavior of the customers table
     ui->customersTable->setEditTriggers((QAbstractItemView::NoEditTriggers));
     ui->customersTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->customersTable->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    ui->customersTable->setColumnCount(4);
+    ui->customersTable->setColumnCount(5);
 
     ui->customersTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Customer ID"));
     ui->customersTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Name"));
     ui->customersTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Member Type"));
     ui->customersTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Exp. Date"));
+    ui->customersTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Rebate Amount"));
 
     ui->customersTable->setColumnWidth(0, ui->customersTable->width()/4);
     ui->customersTable->setColumnWidth(1, ui->customersTable->width()/4);
     ui->customersTable->setColumnWidth(2, ui->customersTable->width()/4);
     ui->customersTable->setColumnWidth(3, ui->customersTable->width()/4);
+    ui->customersTable->setColumnWidth(4, ui->customersTable->width()/4);
+
 
     // Updates the table with new list of customers obtained from database
     addCustomersVectorToTable(customersList);
 }
 
+std::vector<Customer> MainWindow::calcExecutiveRebates()
+{
+    std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
+    std::vector<Transaction> executiveTransactions;
+    QString memberType;
+    int memberID, transactionSize, count = 0;
+    float amountSpent = 0, rebateAmount;
+    Customer p;
+
+    for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
+            ++it)
+    {
+        amountSpent  = 0;  //resets amount spent
+        rebateAmount = 0; //resets rebate amount
+        memberType = allCustomers[count].getMemberType(); //gets member type of customer
+
+        //Checks if member is executive; if it is, enters loop
+        if(memberType == "Executive")
+        {
+            memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
+            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
+            transactionSize = executiveTransactions.size();
+
+            for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
+            {
+                amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
+            }
+        }
+
+        rebateAmount = amountSpent * .03; //calcs rebate amount
+
+        //sets ALL custumers rebate amount; if the customer is not executive the rebate amount is set to zero
+        allCustomers[count].setRebateAmt(rebateAmount);
+
+
+        executiveTransactions.clear(); //clears transaction vector
+        count++;                       //adds to count
+    }
+
+    return allCustomers;
+}
+
+
 void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
 {
     int row = 0;
+    QString rebateQString;
 
     // Sets the number of rows in the table to the exact amount of transaction records found in the vector
     ui->customersTable->setRowCount(customersList.size());
@@ -383,6 +432,11 @@ void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
             case 3:
                 cell->setData(0, QVariant(customersList.at(row).getExpDate()));
                 break;
+            case 4:
+                rebateQString = "$" + QString::number(customersList.at(row).getRebateAmt());
+                cell->setData(0, rebateQString);
+                break;
+
 
             }
         }
@@ -702,3 +756,45 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+/*std::vector<Customer> MainWindow::calcExecutiveRebates()
+{
+    std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
+    std::vector<Transaction> executiveTransactions;
+    QString memberType;
+    int memberID, transactionSize, count = 0;
+    float amountSpent = 0, rebateAmount;
+    Customer p;
+
+    for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
+            ++it)
+    {
+        amountSpent  = 0;  //resets amount spent
+        rebateAmount = 0; //resets rebate amount
+        memberType = allCustomers[count].getMemberType(); //gets member type of customer
+
+        //Checks if member is executive; if it is, enters loop
+        if(memberType == "Executive")
+        {
+            memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
+            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
+            transactionSize = executiveTransactions.size();
+
+            for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
+            {
+                amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
+            }
+        }
+
+        rebateAmount = amountSpent * .03; //calcs rebate amount
+
+        //sets ALL custumers rebate amount; if the customer is not executive the rebate amount is set to zero
+        allCustomers[count].setRebateAmt(rebateAmount);
+
+
+        executiveTransactions.clear(); //clears transaction vector
+        count++;                       //adds to count
+    }
+
+    return allCustomers;
+}*/
