@@ -50,7 +50,7 @@ void DBManager::initDB()
  * Checks database 'users' table for any matching entries
  * Returns true if a match is found, false if no match found
  ***********************************************************************/
-bool DBManager::authenticateUser(QString username, QString password)
+bool DBManager::authenticateUser(QString username, QString password, bool &isAdmin)
 {
     bool isAuthed = false;
     if (!db.isOpen())
@@ -63,10 +63,18 @@ bool DBManager::authenticateUser(QString username, QString password)
 
     // Executes a query that attempts to locate username and password that the user entered, if the query executes successfuly,
     // it will enter the if statement and check if there is a matching entry in the database (query.next()).
-    if(query.exec("SELECT username, password FROM users WHERE username='" + username + "' AND PASSWORD='" + password + "'"))
+    if(query.exec("SELECT username, password, role FROM users WHERE username='" + username + "' AND PASSWORD='" + password + "'"))
     {
         if (query.next())
         {
+            if (query.value(2) == 1)
+            {
+                isAdmin = true;
+            }
+            else
+            {
+                isAdmin = false;
+            }
             // If a result is found in the database matching the username and password entered by user
             isAuthed = true;
         }
@@ -201,6 +209,27 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
         }
     }
     return transactionsBySalesDateList;
+}
+
+std::vector<Transaction> DBManager::getTransactionsByCustomerName(QString customerName)
+{
+    std::vector<Transaction> transactions;
+    QSqlQuery transactionsQuery;
+    QSqlQuery customersQuery;
+
+    // Get customer ID associated with name
+    customersQuery.prepare("SELECT id FROM customers WHERE name=:customerName");
+    customersQuery.bindValue(":customerName", customerName);
+    customersQuery.exec();
+
+    // Get the result from query
+    customersQuery.first();
+    int customerID = customersQuery.value(0).toInt();
+
+
+    std::vector<Transaction> transactionsList = getTransactionsByMemberID(customerID);
+
+    return transactionsList;
 }
 
 std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)

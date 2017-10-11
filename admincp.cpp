@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Sets the tab widget to the first page (transactions)
     ui->tabWidget->setCurrentIndex(0);
 
-    ui->memberIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
+    ui->customerIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
 
     // Renders tables
     renderTransactions(); // Renders all transactions to table
@@ -534,7 +534,7 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
     Customer p;
 
     for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
-            ++it)
+        ++it)
     {
         amountSpent  = 0;  //resets amount spent
         rebateAmount = 0; //resets rebate amount
@@ -753,13 +753,11 @@ void MainWindow::on_showSalesButton_clicked()
     }
 }
 
-void MainWindow::on_showSalesByMemberIDButton_clicked()
+void MainWindow::on_searchByCustomerIDButton_clicked()
 {
-    int memberID = ui->memberIDField->value();
+    int memberID = ui->customerIDField->value();
 
     std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
-    qDebug() << membersList[0].getCustomerID();
-
     addTransactionsVectorToTable(membersList);
 }
 
@@ -842,44 +840,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*std::vector<Customer> MainWindow::calcExecutiveRebates()
+void MainWindow::on_searchByCustomerNameButton_clicked()
 {
-    std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
-    std::vector<Transaction> executiveTransactions;
-    QString memberType;
-    int memberID, transactionSize, count = 0;
-    float amountSpent = 0, rebateAmount;
-    Customer p;
+    QString customerName = ui->customerNameField->text();
 
-    for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
-            ++it)
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByCustomerName(customerName);
+    addTransactionsVectorToTable(transactionsList);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (!isAdmin)
     {
-        amountSpent  = 0;  //resets amount spent
-        rebateAmount = 0; //resets rebate amount
-        memberType = allCustomers[count].getMemberType(); //gets member type of customer
-
-        //Checks if member is executive; if it is, enters loop
-        if(memberType == "Executive")
-        {
-            memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
-            transactionSize = executiveTransactions.size();
-
-            for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
-            {
-                amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
-            }
-        }
-
-        rebateAmount = amountSpent * .03; //calcs rebate amount
-
-        //sets ALL custumers rebate amount; if the customer is not executive the rebate amount is set to zero
-        allCustomers[count].setRebateAmt(rebateAmount);
-
-
-        executiveTransactions.clear(); //clears transaction vector
-        count++;                       //adds to count
+        QMessageBox errorMsg;
+        errorMsg.critical(0,"Error","You have insufficient priviledges!");
+        errorMsg.setFixedSize(500,200);
     }
+    else
+    {
+        QMessageBox successMsg;
 
-    return allCustomers;
-}*/
+        successMsg.information(0,"Success","Successful admin authentication!");
+        successMsg.setFixedSize(500,200);
+    }
+}
+
+void MainWindow::setIsAdmin(bool isAdmin)
+{
+    this->isAdmin = isAdmin;
+}
