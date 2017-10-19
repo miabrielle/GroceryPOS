@@ -529,12 +529,13 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
     std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
     std::vector<Transaction> executiveTransactions;
     QString memberType;
+    double grandTotal;
     int memberID, transactionSize, count = 0;
     float amountSpent = 0, rebateAmount;
     Customer p;
 
     for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
-            ++it)
+        ++it)
     {
         amountSpent  = 0;  //resets amount spent
         rebateAmount = 0; //resets rebate amount
@@ -544,7 +545,7 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
         if(memberType == "Executive")
         {
             memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
+            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
             transactionSize = executiveTransactions.size();
 
             for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
@@ -692,11 +693,6 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
     transactionSelected.setPurchaseDate(datePurchased);
     transactionSelected.setQuantityPurchased(quantityPurchased);
 
-    qDebug() << "CID: " << transactionSelected.getCustomerID();
-    qDebug() << "Item name: " << transactionSelected.getItemName();
-    qDebug() << "Purchase Date: " << transactionSelected.getPurchaseDate();
-    qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased();
-    qDebug() << "Sale Price: " << salePrice << endl << endl;
 }
 
 void MainWindow::on_editTransactionRowButton_clicked()
@@ -756,10 +752,11 @@ void MainWindow::on_showSalesButton_clicked()
 void MainWindow::on_showSalesByMemberIDButton_clicked()
 {
     int memberID = ui->memberIDField->value();
+    double grandTotal;
 
-    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
-    qDebug() << membersList[0].getCustomerID();
+    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
 
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
     addTransactionsVectorToTable(membersList);
 }
 
@@ -842,44 +839,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*std::vector<Customer> MainWindow::calcExecutiveRebates()
+
+
+void MainWindow::on_showSalesByCustomerName_clicked()
 {
-    std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
-    std::vector<Transaction> executiveTransactions;
-    QString memberType;
-    int memberID, transactionSize, count = 0;
-    float amountSpent = 0, rebateAmount;
-    Customer p;
+    QString customerName = ui->searchByCustomerNameInput->text();
+    int customerID;
+    double grandTotal;
 
-    for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
-            ++it)
-    {
-        amountSpent  = 0;  //resets amount spent
-        rebateAmount = 0; //resets rebate amount
-        memberType = allCustomers[count].getMemberType(); //gets member type of customer
-
-        //Checks if member is executive; if it is, enters loop
-        if(memberType == "Executive")
-        {
-            memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
-            transactionSize = executiveTransactions.size();
-
-            for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
-            {
-                amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
-            }
-        }
-
-        rebateAmount = amountSpent * .03; //calcs rebate amount
-
-        //sets ALL custumers rebate amount; if the customer is not executive the rebate amount is set to zero
-        allCustomers[count].setRebateAmt(rebateAmount);
-
-
-        executiveTransactions.clear(); //clears transaction vector
-        count++;                       //adds to count
-    }
-
-    return allCustomers;
-}*/
+    customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
+    addTransactionsVectorToTable(transactionsList);
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal, 'f', 2));
+}

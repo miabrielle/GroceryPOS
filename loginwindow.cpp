@@ -41,3 +41,9 @@ void LoginWindow::on_loginButton_clicked()
         qDebug() << "Authentication failed.";
     }
 }
+
+void LoginWindow::on_cancelButton_clicked()
+{
+    this->close();
+
+}

@@ -59,6 +59,8 @@ private slots:
 
     void on_sortItemsByButton_clicked();
     
+    void on_showSalesByCustomerName_clicked();
+
 private:
     Ui::MainWindow *ui;
     DBManager* dbPointer;

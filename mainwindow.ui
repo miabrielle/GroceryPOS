@@ -280,7 +280,7 @@ QHeaderView::section  {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -290,18 +290,18 @@ QHeaderView::section  {
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>50</y>
+        <y>60</y>
         <width>741</width>
-        <height>291</height>
+        <height>231</height>
        </rect>
       </property>
      </widget>
      <widget class="QLabel" name="invalidRowSelectedMsg">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>360</y>
-        <width>211</width>
+        <x>360</x>
+        <y>370</y>
+        <width>371</width>
         <height>20</height>
        </rect>
       </property>
@@ -317,8 +317,8 @@ color:red
      <widget class="QPushButton" name="loadAllTransactionsButton">
       <property name="geometry">
        <rect>
-        <x>51</x>
-        <y>348</y>
+        <x>0</x>
+        <y>350</y>
         <width>173</width>
         <height>41</height>
        </rect>
@@ -330,8 +330,8 @@ color:red
      <widget class="QPushButton" name="editTransactionRowButton">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>348</y>
+        <x>180</x>
+        <y>351</y>
         <width>173</width>
         <height>41</height>
        </rect>
@@ -404,6 +404,53 @@ color:red
         <height>30</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QLabel" name="grandTotalDisplayField">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>310</y>
+        <width>441</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+color: red;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>291</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Customer Name:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="searchByCustomerNameInput"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="showSalesByCustomerName">
+         <property name="text">
+          <string>Show Sales</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -726,7 +773,7 @@ color:red
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
