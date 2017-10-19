@@ -35,6 +35,11 @@ QString Customer::getMemberType()
     return this->memberType;
 }
 
+bool Customer::getChangeStatus()
+{
+    return this->changeStatus;
+}
+
 // Set functions
 void Customer::setCustomerName(QString customerName)
 {
@@ -58,6 +63,11 @@ void Customer::setRebateAmt(float rebateAmt)
 void Customer::setMemberType(QString memberType)
 {
     this->memberType = memberType;
+}
+
+void Customer::setChangeStatus(bool changeStatus)
+{
+    this->changeStatus = changeStatus;
 }
 
 Customer::~Customer() {}

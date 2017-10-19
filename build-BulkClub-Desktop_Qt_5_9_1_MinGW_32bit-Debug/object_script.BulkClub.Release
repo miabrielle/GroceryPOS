@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\dbmanager.o
+./release\admincp.o
+./release\loginwindow.o
+./release\item.o
+./release\transaction.o
+./release\customer.o
+./release\edittransactiondialog.o
+./release\memberchangestatus.o
+./release\moc_admincp.o
+./release\moc_loginwindow.o
+./release\moc_edittransactiondialog.o
+./release\moc_memberchangestatus.o
+);

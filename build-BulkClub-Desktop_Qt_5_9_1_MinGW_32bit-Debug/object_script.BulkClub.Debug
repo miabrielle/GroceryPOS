@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\dbmanager.o
+./debug\admincp.o
+./debug\loginwindow.o
+./debug\item.o
+./debug\transaction.o
+./debug\customer.o
+./debug\edittransactiondialog.o
+./debug\memberchangestatus.o
+./debug\moc_admincp.o
+./debug\moc_loginwindow.o
+./debug\moc_edittransactiondialog.o
+./debug\moc_memberchangestatus.o
+);

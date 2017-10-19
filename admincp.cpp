@@ -1,6 +1,7 @@
 #include "admincp.h"
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
+#include "memberchangestatus.h"
 #include <iomanip>
 #include <vector>
 
@@ -519,7 +520,6 @@ void MainWindow::renderCustomers()
     ui->customersTable->setColumnWidth(3, ui->customersTable->width()/4);
     ui->customersTable->setColumnWidth(4, ui->customersTable->width()/4);
 
-
     // Updates the table with new list of customers obtained from database
     addCustomersVectorToTable(customersList);
 }
@@ -538,7 +538,7 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
         ++it)
     {
         amountSpent  = 0;  //resets amount spent
-        rebateAmount = 0; //resets rebate amount
+        rebateAmount = 0;  //resets rebate amount
         memberType = allCustomers[count].getMemberType(); //gets member type of customer
 
         //Checks if member is executive; if it is, enters loop
@@ -566,7 +566,6 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
 
     return allCustomers;
 }
-
 
 void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
 {
@@ -611,7 +610,7 @@ void MainWindow::addCustomersVectorToTable(std::vector<Customer> customersList)
                 cell->setData(0, QVariant(customersList.at(row).getExpDate()));
                 break;
             case 4:
-                rebateQString = "$" + QString::number(customersList.at(row).getRebateAmt());
+                rebateQString = "$" + QString::number(customersList.at(row).getRebateAmt(), 'f', 2);
                 cell->setData(0, rebateQString);
                 break;
 
@@ -697,10 +696,10 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
 
 void MainWindow::on_editTransactionRowButton_clicked()
 {
-    int customerID = transactionSelected.getCustomerID();
+    //int customerID = transactionSelected.getCustomerID();
     QString itemPurchased = transactionSelected.getItemName();
     QString purchaseDate = transactionSelected.getPurchaseDate();
-    int quantityPurchased = transactionSelected.getQuantityPurchased();
+    //int quantityPurchased = transactionSelected.getQuantityPurchased();
 
 
     if (itemPurchased == "")
@@ -837,10 +836,14 @@ void MainWindow::on_displayAllButton_clicked()
     displayItems();
 }
 
-MainWindow::~MainWindow()
+void MainWindow::on_showChangeMemberStatus_clicked()
 {
-    delete ui;
+    MemberChangeStatus *memStatWindow = new MemberChangeStatus;
+    memStatWindow->setWindowTitle("Member Change Statuses");
+    memStatWindow->setDBPointer(this->dbPointer);
+    memStatWindow->show();
 }
+
 
 
 void MainWindow::on_showSalesByCustomerName_clicked()
@@ -881,4 +884,9 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::setIsAdmin(bool isAdmin)
 {
     this->isAdmin = isAdmin;
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+
 }

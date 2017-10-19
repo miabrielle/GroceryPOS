@@ -23,7 +23,6 @@ public:
 
     void calculateRevenue(Item & item);
     std::vector<Customer> calcExecutiveRebates();
-
     void renderItems();
     void displayItems();
 
@@ -64,6 +63,9 @@ private slots:
     void on_searchByCustomerNameButton_clicked();
 
     void on_pushButton_clicked();
+
+
+    void on_showChangeMemberStatus_clicked();
 
 
 private:
