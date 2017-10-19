@@ -717,6 +717,19 @@ color:red
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="showChangeMemberStatus">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>10</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show Change Member Status</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
