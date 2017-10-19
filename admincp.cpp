@@ -750,15 +750,12 @@ void MainWindow::on_showSalesButton_clicked()
 
 void MainWindow::on_searchByCustomerIDButton_clicked()
 {
-    int memberID = ui->memberIDField->value();
     double grandTotal;
-
-    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
-
-    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
     int memberID = ui->customerIDField->value();
 
-    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
+    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
+
     addTransactionsVectorToTable(membersList);
 }
 
@@ -848,20 +845,14 @@ void MainWindow::on_showChangeMemberStatus_clicked()
 
 void MainWindow::on_showSalesByCustomerName_clicked()
 {
-    QString customerName = ui->searchByCustomerNameInput->text();
+    QString customerName = ui->searchByCustomerNameInput->text().toLower();
     int customerID;
     double grandTotal;
 
     customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
     std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
     addTransactionsVectorToTable(transactionsList);
-    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal, 'f', 2));
-void MainWindow::on_searchByCustomerNameButton_clicked()
-{
-    QString customerName = ui->customerNameField->text();
-
-    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByCustomerName(customerName);
-    addTransactionsVectorToTable(transactionsList);
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal));
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -884,7 +875,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::setIsAdmin(bool isAdmin)
 {
     this->isAdmin = isAdmin;
-
+}
 MainWindow::~MainWindow()
 {
     delete ui;

@@ -60,8 +60,6 @@ private slots:
 
     void on_showSalesByCustomerName_clicked();
 
-    void on_searchByCustomerNameButton_clicked();
-
     void on_pushButton_clicked();
 
 

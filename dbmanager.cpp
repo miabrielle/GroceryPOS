@@ -109,7 +109,7 @@ int DBManager::getCustomerIDFromCustomerName(QString customerName)
 {
     int customerID;
     QSqlQuery customersQuery;
-    customersQuery.prepare("SELECT id FROM customers WHERE name = :customerName");
+    customersQuery.prepare("SELECT id FROM customers WHERE LOWER(name) = :customerName");
 
     customersQuery.bindValue(":customerName", customerName);
 
@@ -235,6 +235,7 @@ std::vector<Transaction> DBManager::getTransactionsByCustomerName(QString custom
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
     QSqlQuery customersQuery;
+    double grandTotal;
 
     // Get customer ID associated with name
     customersQuery.prepare("SELECT id FROM customers WHERE name=:customerName");
@@ -246,12 +247,12 @@ std::vector<Transaction> DBManager::getTransactionsByCustomerName(QString custom
     int customerID = customersQuery.value(0).toInt();
 
 
-    std::vector<Transaction> transactionsList = getTransactionsByMemberID(customerID);
+    std::vector<Transaction> transactionsList = getTransactionsByMemberID(customerID, grandTotal);
 
     return transactionsList;
 }
 
-std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
+std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID, double& grandTotal)
 {
     grandTotal = 0.0;
     // This function also needs to sum up each transaction and display the
@@ -278,9 +279,11 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
                 transactions.push_back(tempTransaction);
 
                 transactionTotalString = getSalesPriceForTransaction(tempTransaction);
-
                 transactionTotalString.remove(0, 1); // removes the '$' prefix from the number string
+
+                qDebug() << "TRANS TOTAL: " << transactionTotalString;
                 grandTotal += transactionTotalString.toDouble();
+                qDebug() << "GRAND TOTAL: " << grandTotal;
                 transactionsQuery.next();
             }
         }
