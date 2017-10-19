@@ -10,6 +10,7 @@ private:
     QString expDate;
     QString memberType;
     float rebateAmt;
+    bool changeStatus;
 
 public:
 
@@ -25,6 +26,7 @@ public:
     QString getMemberType();
     int getCustomerID();
     float getRebateAmt();
+    bool getChangeStatus();
 
     // Set functions
     void setCustomerName(QString customerName);
@@ -32,6 +34,7 @@ public:
     void setCustomerID(int ustomerID);
     void setRebateAmt(float rebateAmt);
     void setMemberType(QString memberType);
+    void setChangeStatus(bool changeStatus);
 
     ~Customer();
 };

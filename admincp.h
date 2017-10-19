@@ -23,7 +23,6 @@ public:
 
     void calculateRevenue(Item & item);
     std::vector<Customer> calcExecutiveRebates();
-
     void renderItems();
     void displayItems();
 
@@ -53,12 +52,12 @@ private slots:
 
     void on_searchButton_clicked();
 
-    //void showExecCustomerRebates(std::vector<Customer> execCustumerList);
-
     void on_displayAllButton_clicked();
 
     void on_sortItemsByButton_clicked();
     
+    void on_showChangeMemberStatus_clicked();
+
 private:
     Ui::MainWindow *ui;
     DBManager* dbPointer;
