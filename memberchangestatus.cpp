@@ -88,7 +88,7 @@ void MemberChangeStatus::addCustomerVectorToTable(std::vector<Customer> customer
                             MemberChangeStatusMessage = "This Executive member should not downgrade.";
                         }
                     }
-                    else if(memberType == "Standard")
+                    else if(memberType == "Regular")
                     {
                         if(changeStatus == true)
                         {
@@ -116,6 +116,7 @@ std::vector<Customer> MemberChangeStatus::calcMemberChangeStatus()
     int memberID, transactionSize, count = 0;
     float amountSpent = 0, rebateAmount;
     Customer p;
+    double grandTotal;
 
     for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
             ++it)
@@ -125,7 +126,7 @@ std::vector<Customer> MemberChangeStatus::calcMemberChangeStatus()
         memberType = allCustomers[count].getMemberType(); //gets member type of customer
 
         memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-        executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
+        executiveTransactions = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
         transactionSize = executiveTransactions.size();
 
         for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
