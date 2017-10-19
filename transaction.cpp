@@ -37,6 +37,10 @@ int Transaction::getQuantityPurchased()
     return this->quantityPurchased;
 }
 
+double getTransactionTotal()
+{
+}
+
 
 // Transaction::set functions
 void Transaction::setPurchaseDate(QString purchaseDate)

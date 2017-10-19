@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Sets the tab widget to the first page (transactions)
     ui->tabWidget->setCurrentIndex(0);
 
-    ui->memberIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
+    ui->customerIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
 
     // Renders tables
     renderTransactions(); // Renders all transactions to table
@@ -529,12 +529,13 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
     std::vector<Customer> allCustomers = dbPointer->getAllCustomers();
     std::vector<Transaction> executiveTransactions;
     QString memberType;
+    double grandTotal;
     int memberID, transactionSize, count = 0;
     float amountSpent = 0, rebateAmount;
     Customer p;
 
     for(std::vector<Customer>::iterator it = allCustomers.begin(); it != allCustomers.end();
-            ++it)
+        ++it)
     {
         amountSpent  = 0;  //resets amount spent
         rebateAmount = 0;  //resets rebate amount
@@ -544,7 +545,7 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
         if(memberType == "Executive")
         {
             memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID);
+            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
             transactionSize = executiveTransactions.size();
 
             for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
@@ -691,11 +692,6 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
     transactionSelected.setPurchaseDate(datePurchased);
     transactionSelected.setQuantityPurchased(quantityPurchased);
 
-    qDebug() << "CID: " << transactionSelected.getCustomerID();
-    qDebug() << "Item name: " << transactionSelected.getItemName();
-    qDebug() << "Purchase Date: " << transactionSelected.getPurchaseDate();
-    qDebug() << "Quantity purchased: " << transactionSelected.getQuantityPurchased();
-    qDebug() << "Sale Price: " << salePrice << endl << endl;
 }
 
 void MainWindow::on_editTransactionRowButton_clicked()
@@ -752,13 +748,17 @@ void MainWindow::on_showSalesButton_clicked()
     }
 }
 
-void MainWindow::on_showSalesByMemberIDButton_clicked()
+void MainWindow::on_searchByCustomerIDButton_clicked()
 {
     int memberID = ui->memberIDField->value();
+    double grandTotal;
+
+    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
+
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
+    int memberID = ui->customerIDField->value();
 
     std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
-    qDebug() << membersList[0].getCustomerID();
-
     addTransactionsVectorToTable(membersList);
 }
 
@@ -844,7 +844,49 @@ void MainWindow::on_showChangeMemberStatus_clicked()
     memStatWindow->show();
 }
 
+
+
+void MainWindow::on_showSalesByCustomerName_clicked()
+{
+    QString customerName = ui->searchByCustomerNameInput->text();
+    int customerID;
+    double grandTotal;
+
+    customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
+    addTransactionsVectorToTable(transactionsList);
+    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal, 'f', 2));
+void MainWindow::on_searchByCustomerNameButton_clicked()
+{
+    QString customerName = ui->customerNameField->text();
+
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByCustomerName(customerName);
+    addTransactionsVectorToTable(transactionsList);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (!isAdmin)
+    {
+        QMessageBox errorMsg;
+        errorMsg.critical(0,"Error","You have insufficient priviledges!");
+        errorMsg.setFixedSize(500,200);
+    }
+    else
+    {
+        QMessageBox successMsg;
+
+        successMsg.information(0,"Success","Successful admin authentication!");
+        successMsg.setFixedSize(500,200);
+    }
+}
+
+void MainWindow::setIsAdmin(bool isAdmin)
+{
+    this->isAdmin = isAdmin;
+
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }

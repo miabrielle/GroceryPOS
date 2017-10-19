@@ -50,7 +50,7 @@ void DBManager::initDB()
  * Checks database 'users' table for any matching entries
  * Returns true if a match is found, false if no match found
  ***********************************************************************/
-bool DBManager::authenticateUser(QString username, QString password)
+bool DBManager::authenticateUser(QString username, QString password, bool &isAdmin)
 {
     bool isAuthed = false;
     if (!db.isOpen())
@@ -63,10 +63,18 @@ bool DBManager::authenticateUser(QString username, QString password)
 
     // Executes a query that attempts to locate username and password that the user entered, if the query executes successfuly,
     // it will enter the if statement and check if there is a matching entry in the database (query.next()).
-    if(query.exec("SELECT username, password FROM users WHERE username='" + username + "' AND PASSWORD='" + password + "'"))
+    if(query.exec("SELECT username, password, role FROM users WHERE username='" + username + "' AND PASSWORD='" + password + "'"))
     {
         if (query.next())
         {
+            if (query.value(2) == 1)
+            {
+                isAdmin = true;
+            }
+            else
+            {
+                isAdmin = false;
+            }
             // If a result is found in the database matching the username and password entered by user
             isAuthed = true;
         }
@@ -97,9 +105,28 @@ QString DBManager::getCustomerNameFromID(int customerID)
     return customerName;
 }
 
+int DBManager::getCustomerIDFromCustomerName(QString customerName)
+{
+    int customerID;
+    QSqlQuery customersQuery;
+    customersQuery.prepare("SELECT id FROM customers WHERE name = :customerName");
+
+    customersQuery.bindValue(":customerName", customerName);
+
+    // If the query has a result
+    if (customersQuery.exec() && customersQuery.first())
+    {
+        customerID = customersQuery.value(0).toInt();
+    }
+    else
+    {
+        customerName = "Customer name matches no customers in database!";
+    }
+    return customerID;
+}
+
 std::vector<Transaction> DBManager::getAllTransactions()
 {
-    qDebug() << "Getting all transactions.";
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
 
@@ -203,8 +230,32 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
     return transactionsBySalesDateList;
 }
 
+std::vector<Transaction> DBManager::getTransactionsByCustomerName(QString customerName)
+{
+    std::vector<Transaction> transactions;
+    QSqlQuery transactionsQuery;
+    QSqlQuery customersQuery;
+
+    // Get customer ID associated with name
+    customersQuery.prepare("SELECT id FROM customers WHERE name=:customerName");
+    customersQuery.bindValue(":customerName", customerName);
+    customersQuery.exec();
+
+    // Get the result from query
+    customersQuery.first();
+    int customerID = customersQuery.value(0).toInt();
+
+
+    std::vector<Transaction> transactionsList = getTransactionsByMemberID(customerID);
+
+    return transactionsList;
+}
+
 std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
 {
+    grandTotal = 0.0;
+    // This function also needs to sum up each transaction and display the
+    // grand total at the bottom of the window.
     std::vector<Transaction> transactions;
     QSqlQuery transactionsQuery;
 
@@ -218,6 +269,7 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
             while(transactionsQuery.isValid())
             {
                 Transaction tempTransaction;
+                QString transactionTotalString;
 
                 tempTransaction.setCustomerID(transactionsQuery.value(0).toInt());
                 tempTransaction.setItemName(transactionsQuery.value(1).toString());
@@ -225,6 +277,10 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID)
                 tempTransaction.setPurchaseDate(transactionsQuery.value(3).toString());
                 transactions.push_back(tempTransaction);
 
+                transactionTotalString = getSalesPriceForTransaction(tempTransaction);
+
+                transactionTotalString.remove(0, 1); // removes the '$' prefix from the number string
+                grandTotal += transactionTotalString.toDouble();
                 transactionsQuery.next();
             }
         }
@@ -300,7 +356,7 @@ QString DBManager::getSalesPriceForTransaction(Transaction transaction)
             }
         }
     }
-    salePriceString = "$" + QString::number(salePriceFloat);
+    salePriceString = "$" + QString::number(salePriceFloat, 'f', 2);
     return salePriceString;
 }
 
@@ -321,10 +377,8 @@ float DBManager::getSalesPriceTotalFloat(Transaction transaction)
     transactionsQuery.first();
     while (itemsQuery.value(0) != transactionsQuery.value(1) && itemsQuery.next())
     {
-        qDebug() << "Comparing" << itemsQuery.value(0).toString();
         if (itemsQuery.value(0) == transactionsQuery.value(1))
         {
-            qDebug() << itemsQuery.value(1).toFloat();
             salePriceFloat = itemsQuery.value(1).toFloat() * transaction.getQuantityPurchased();
         }
     }
@@ -387,7 +441,6 @@ void DBManager::updateTransactionInDB(Transaction newTransaction, int transactio
     query.bindValue(":transactionID", transactionID);
     query.exec();
 
-    qDebug() << "TRANSACTION EDITED.";
     qDebug() << query.lastError();
 }
 
@@ -440,7 +493,6 @@ std::vector<Customer> DBManager::getAllExecutiveCustomers()
 
     if (customerQuery.exec())
     {
-        qDebug() << "Entered customer loop";
 
         if (customerQuery.first())
         {

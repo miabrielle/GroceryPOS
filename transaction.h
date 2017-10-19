@@ -23,7 +23,7 @@ public:
     int getCustomerID();
     int getQuantityPurchased();
     float getSalesPrice();
-    float getTransactionTotal();
+    double getTransactionTotal();
 
     // Set functions
     void setPurchaseDate(QString purchaseDate);
