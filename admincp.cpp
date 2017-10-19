@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Sets the tab widget to the first page (transactions)
     ui->tabWidget->setCurrentIndex(0);
 
-    ui->memberIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
+    ui->customerIDField->setMaximum(99999); // Sets the maximum number for the search by Customer ID field
 
     // Renders tables
     renderTransactions(); // Renders all transactions to table
@@ -749,7 +749,7 @@ void MainWindow::on_showSalesButton_clicked()
     }
 }
 
-void MainWindow::on_showSalesByMemberIDButton_clicked()
+void MainWindow::on_searchByCustomerIDButton_clicked()
 {
     int memberID = ui->memberIDField->value();
     double grandTotal;
@@ -757,6 +757,9 @@ void MainWindow::on_showSalesByMemberIDButton_clicked()
     std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
 
     ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
+    int memberID = ui->customerIDField->value();
+
+    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID);
     addTransactionsVectorToTable(membersList);
 }
 
@@ -840,7 +843,6 @@ MainWindow::~MainWindow()
 }
 
 
-
 void MainWindow::on_showSalesByCustomerName_clicked()
 {
     QString customerName = ui->searchByCustomerNameInput->text();
@@ -851,4 +853,32 @@ void MainWindow::on_showSalesByCustomerName_clicked()
     std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
     addTransactionsVectorToTable(transactionsList);
     ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal, 'f', 2));
+void MainWindow::on_searchByCustomerNameButton_clicked()
+{
+    QString customerName = ui->customerNameField->text();
+
+    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByCustomerName(customerName);
+    addTransactionsVectorToTable(transactionsList);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (!isAdmin)
+    {
+        QMessageBox errorMsg;
+        errorMsg.critical(0,"Error","You have insufficient priviledges!");
+        errorMsg.setFixedSize(500,200);
+    }
+    else
+    {
+        QMessageBox successMsg;
+
+        successMsg.information(0,"Success","Successful admin authentication!");
+        successMsg.setFixedSize(500,200);
+    }
+}
+
+void MainWindow::setIsAdmin(bool isAdmin)
+{
+    this->isAdmin = isAdmin;
 }

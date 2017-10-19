@@ -49,14 +49,15 @@ public:
 
     // Returns true if user authenticates successfully
     // username and password are passed from user input on login screen
-    bool authenticateUser(QString username, QString password);
+    bool authenticateUser(QString username, QString password, bool& isAdmin);
 
     //When information on an item is updated, this is called to update the database
     void updateItemInDB(Item item);
 
     // Get transactions by purchase date from database
     std::vector<Transaction> getTransactionsBySalesDate(QDate salesDate);
-
+\
+    std::vector<Transaction> getTransactionsByCustomerName(QString customerName);
     // Get transactions by MemberID
     std::vector<Transaction> getTransactionsByMemberID(int memberID, double& grandTotal);
 

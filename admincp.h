@@ -29,6 +29,7 @@ public:
 
     void addCustomersVectorToTable(std::vector<Customer> customersList);
 
+    void setIsAdmin(bool isAdmin);
     ~MainWindow();
 
 private slots:
@@ -41,7 +42,7 @@ private slots:
 
     void on_loadAllTransactionsButton_clicked();
 
-    void on_showSalesByMemberIDButton_clicked();
+    void on_searchByCustomerIDButton_clicked();
 
     void on_addItemButton_clicked();
 
@@ -53,13 +54,17 @@ private slots:
 
     void on_searchButton_clicked();
 
-    //void showExecCustomerRebates(std::vector<Customer> execCustumerList);
-
     void on_displayAllButton_clicked();
 
     void on_sortItemsByButton_clicked();
     
+
     void on_showSalesByCustomerName_clicked();
+
+    void on_searchByCustomerNameButton_clicked();
+
+    void on_pushButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;
@@ -67,6 +72,7 @@ private:
     Transaction transactionSelected;
     int rowSelected;
     std::vector<Item> itemsList;
+    bool isAdmin;
 };
 
 #endif // MAINWINDOW_H
