@@ -6,17 +6,21 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, Transaction transa
     QDialog(parent),
     ui(new Ui::EditTransactionDialog)
 {
-    ui->setupUi(this);
+        if (transactionSelected.getItemName().isEmpty())
+        {
+            throw QString ("Please select a row from the transactions table.");
+        }
+        ui->setupUi(this);
 
-    this->rowSelected = rowSelected;
+        this->rowSelected = rowSelected;
 
-    // Sets spin box maximums
-    ui->customerIDField->setMaximum(99999);
-    ui->quantityPurchasedField->setMaximum(9999);
-    ui->customerIDField->setValue(transactionSelected.getCustomerID());
-    ui->itemPurchasedField->setText(transactionSelected.getItemName());
-    ui->quantityPurchasedField->setValue(transactionSelected.getQuantityPurchased());
-    ui->datePurchasedField->setText(transactionSelected.getPurchaseDate());
+        // Sets spin box maximums
+        ui->customerIDField->setMaximum(99999);
+        ui->quantityPurchasedField->setMaximum(9999);
+        ui->customerIDField->setValue(transactionSelected.getCustomerID());
+        ui->itemPurchasedField->setText(transactionSelected.getItemName());
+        ui->quantityPurchasedField->setValue(transactionSelected.getQuantityPurchased());
+        ui->datePurchasedField->setText(transactionSelected.getPurchaseDate());
 }
 
 void EditTransactionDialog::setTransactionSelectedPointer(Transaction* transactionSelected)
