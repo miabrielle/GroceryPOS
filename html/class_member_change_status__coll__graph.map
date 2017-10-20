@@ -1,0 +1,4 @@
+<map id="MemberChangeStatus" name="MemberChangeStatus">
+<area shape="rect" id="node2" href="$class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="5,287,113,360"/>
+<area shape="rect" id="node4" href="$class_d_b_manager.html" title="{DBManager\n||+ DBManager()\l+ initDB()\l+ close()\l+ getAllTransactions()\l+ getAllItems()\l+ getCustomerNameFromID()\l+ getCustomerIDFromCustomerName()\l+ authenticateUser()\l+ updateItemInDB()\l+ getTransactionsBySalesDate()\l+ getTransactionsByCustomerName()\l+ getTransactionsByMemberID()\l+ getAllCustomers()\l+ getExpiringMembershipsFor\lMonth()\l+ getSalesPriceForTransaction()\l+ getSalesPriceTotalFloat()\l+ updateTransactionInDB()\l+ deleteItem()\l+ addItem()\l+ getAllExecutiveCustomers()\l+ getDB()\l+ ~DBManager()\l}" alt="" coords="325,140,581,507"/>
+</map>

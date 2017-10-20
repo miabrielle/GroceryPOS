@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['saleprice',['salePrice',['../class_transaction.html#ab3892222b3058f9d2a430540c4847cfa',1,'Transaction']]],
+  ['setchangestatus',['setChangeStatus',['../class_customer.html#ad28baa894b89bf150fc31d59c929828d',1,'Customer']]],
+  ['setcustomerid',['setCustomerID',['../class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f',1,'Customer::setCustomerID()'],['../class_transaction.html#a24315dea4db733a19742a0bbddac0952',1,'Transaction::setCustomerID()']]],
+  ['setcustomername',['setCustomerName',['../class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d',1,'Customer']]],
+  ['setdbpointer',['setDBPointer',['../class_main_window.html#a1338d8ca52c99ac035fd55b207321321',1,'MainWindow::setDBPointer()'],['../class_edit_transaction_dialog.html#a193839430432cc6d5564e0ef8368ccb3',1,'EditTransactionDialog::setDBPointer()'],['../class_login_window.html#a60b8ff18b7fb600c0ac91ce084be2ea2',1,'LoginWindow::setDBPointer()'],['../class_member_change_status.html#a6a2172ebb359969f79cb2b1b4ec64b54',1,'MemberChangeStatus::setDBPointer()']]],
+  ['setexpdate',['setExpDate',['../class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f',1,'Customer']]],
+  ['setisadmin',['setIsAdmin',['../class_main_window.html#a5ad1e7229dab4f1e4213549d2fd95dfe',1,'MainWindow']]],
+  ['setitemname',['setItemName',['../class_item.html#ab986969c02b5f0ea903361166e8a1b47',1,'Item::setItemName()'],['../class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83',1,'Transaction::setItemName()']]],
+  ['setitemprice',['setItemPrice',['../class_item.html#a75ac809e95d356bd2cbd48b885e6a2d7',1,'Item']]],
+  ['setmembertype',['setMemberType',['../class_customer.html#ac3f3d979e99805b1290899565e437147',1,'Customer']]],
+  ['setpurchasedate',['setPurchaseDate',['../class_transaction.html#a93804291b2d5431d55df181744f29d8b',1,'Transaction']]],
+  ['setquantitypurchased',['setQuantityPurchased',['../class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7',1,'Transaction']]],
+  ['setquantitysold',['setQuantitySold',['../class_item.html#a15b929bd0d6d365e546b275f4a780f93',1,'Item']]],
+  ['setrebateamt',['setRebateAmt',['../class_customer.html#a2c0e887e9beba3c4fde01d2214449dd0',1,'Customer']]],
+  ['settotalrevenue',['setTotalRevenue',['../class_item.html#aae2f0d12e1587c4f9612880b5100af6f',1,'Item']]],
+  ['settransactionselectedpointer',['setTransactionSelectedPointer',['../class_edit_transaction_dialog.html#afe6ed92777ca381d34c98a2bcc94de7d',1,'EditTransactionDialog']]],
+  ['settransactionstablepointer',['setTransactionsTablePointer',['../class_edit_transaction_dialog.html#a6a4e78a75ce1f52fddbbeed6f02c2334',1,'EditTransactionDialog']]]
+];

@@ -1,0 +1,51 @@
+digraph "loginwindow.cpp"
+{
+ // INTERACTIVE_SVG=YES
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="loginwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="loginwindow.h",height=0.2,width=0.4,color="black",URL="$loginwindow_8h.html"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="QDialog",height=0.2,width=0.4,color="grey75"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dbmanager.h",height=0.2,width=0.4,color="black",URL="$dbmanager_8h.html"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="QMainWindow",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="QSqlDatabase",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="QSqlDriver",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="QSqlError",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="QSqlQuery",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="QDebug",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="QList",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="transaction.h",height=0.2,width=0.4,color="black",URL="$transaction_8h.html"];
+  Node11 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="item.h",height=0.2,width=0.4,color="black",URL="$item_8h.html"];
+  Node12 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="customer.h",height=0.2,width=0.4,color="black",URL="$customer_8h.html"];
+  Node13 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="vector",height=0.2,width=0.4,color="grey75"];
+  Node3 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="QSqlTableModel",height=0.2,width=0.4,color="grey75"];
+  Node0 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="ui_loginwindow.h",height=0.2,width=0.4,color="grey75"];
+  Node0 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="admincp.h",height=0.2,width=0.4,color="black",URL="$admincp_8h.html"];
+  Node17 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="QTableWidgetItem",height=0.2,width=0.4,color="grey75"];
+  Node17 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="QMessageBox",height=0.2,width=0.4,color="grey75"];
+  Node17 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,4 @@
+<map id="LoginWindow" name="LoginWindow">
+<area shape="rect" id="node2" href="$class_q_dialog.html" title="{QDialog\n||}" alt="" coords="5,287,75,360"/>
+<area shape="rect" id="node4" href="$class_d_b_manager.html" title="{DBManager\n||+ DBManager()\l+ initDB()\l+ close()\l+ getAllTransactions()\l+ getAllItems()\l+ getCustomerNameFromID()\l+ getCustomerIDFromCustomerName()\l+ authenticateUser()\l+ updateItemInDB()\l+ getTransactionsBySalesDate()\l+ getTransactionsByCustomerName()\l+ getTransactionsByMemberID()\l+ getAllCustomers()\l+ getExpiringMembershipsFor\lMonth()\l+ getSalesPriceForTransaction()\l+ getSalesPriceTotalFloat()\l+ updateTransactionInDB()\l+ deleteItem()\l+ addItem()\l+ getAllExecutiveCustomers()\l+ getDB()\l+ ~DBManager()\l}" alt="" coords="232,140,488,507"/>
+</map>

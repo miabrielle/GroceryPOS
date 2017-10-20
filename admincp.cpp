@@ -852,30 +852,36 @@ void MainWindow::on_showSalesByCustomerName_clicked()
     customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
     std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
     addTransactionsVectorToTable(transactionsList);
+
     ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal));
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    if (!isAdmin)
-    {
-        QMessageBox errorMsg;
-        errorMsg.critical(0,"Error","You have insufficient priviledges!");
-        errorMsg.setFixedSize(500,200);
-    }
-    else
-    {
-        QMessageBox successMsg;
 
-        successMsg.information(0,"Success","Successful admin authentication!");
-        successMsg.setFixedSize(500,200);
-    }
-}
-
+// This function is passed a boolean, and sets the
+// private datamember 'isAdmin' of MainWindow class to whatever boolean is passed.
+// 'isAdmin' is data from the SQL database to determine whether a logged in user is
+// a 'store manager' or 'administrator' role.
 void MainWindow::setIsAdmin(bool isAdmin)
 {
     this->isAdmin = isAdmin;
 }
+
+// Copy constructor handles the pointers
+MainWindow::MainWindow(const MainWindow &mw)
+{
+    // Shallow copies the pointers
+    delete ui;
+    delete dbPointer;
+
+    this->ui = mw.ui;
+    this->transactionSelected = mw.transactionSelected;
+    this->rowSelected = mw.rowSelected;
+    this->itemsList = mw.itemsList;
+    this->isAdmin = mw.isAdmin;
+    this->dbPointer = mw.dbPointer;
+}
+
+// Destructor
 MainWindow::~MainWindow()
 {
     delete ui;
