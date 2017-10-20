@@ -419,10 +419,7 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
         }
         else
         {
-            // returns a fake transaction to the table to inform user that the ID they entered
-            // was not found.
-            customers.push_back(Customer(0, "No customers found", "in database with given expiration date." ));
-
+            throw QString("No memberships are expiring during the specified month!");
         }
     }
     qDebug() << customersQuery.lastError();

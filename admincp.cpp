@@ -859,10 +859,19 @@ void MainWindow::on_displayExpiringMembershipsButton_clicked()
         break;
     }
 
-    // Queries and returns vector of customers with matching expiraiton dates
-    customersList = dbPointer->getExpiringMembershipsForMonth(expirationMonth);
+    try
+    {
+        // Queries and returns vector of customers with matching expiraiton dates
+        customersList = dbPointer->getExpiringMembershipsForMonth(expirationMonth);
 
-    addCustomersVectorToTable(customersList); // updates the table with the new results
+        addCustomersVectorToTable(customersList); // updates the table with the new results
+    }
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
 }
 
 void MainWindow::on_loadAllCustomersButton_clicked()
@@ -902,11 +911,11 @@ void MainWindow::on_showSalesByCustomerName_clicked()
         customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
         std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
 
-            // Notify the user of grand total of purchases
-            addTransactionsVectorToTable(transactionsList);
-            QMessageBox grandTotalInfoBox;
-            grandTotalInfoBox.information(0,"Grand Total", "Customer " + customerName +" has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
-            grandTotalInfoBox.setFixedSize(600,100);
+        // Notify the user of grand total of purchases
+        addTransactionsVectorToTable(transactionsList);
+        QMessageBox grandTotalInfoBox;
+        grandTotalInfoBox.information(0,"Grand Total", "Customer " + customerName +" has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
+        grandTotalInfoBox.setFixedSize(600,100);
     }
     catch (const QString& errorMessage)
     {
