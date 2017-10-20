@@ -1,0 +1,4 @@
+<map id="QDialog" name="QDialog">
+<area shape="rect" id="node2" href="$class_edit_transaction_dialog.html" title="{EditTransactionDialog\n|&#45; ui\l&#45; rowSelected\l&#45; transactionSelectedPointer\l&#45; transactionsTablePointer\l&#45; dbPointer\l|+ EditTransactionDialog()\l+ setTransactionSelectedPointer()\l+ ~EditTransactionDialog()\l+ setTransactionsTablePointer()\l+ setDBPointer()\l&#45; on_cancelEditTransaction\lButton_clicked()\l&#45; on_saveTransactionButton\l_clicked()\l}" alt="" coords="5,127,228,360"/>
+<area shape="rect" id="node3" href="$class_login_window.html" title="{LoginWindow\n|&#45; ui\l&#45; dbPointer\l|+ LoginWindow()\l+ setDBPointer()\l+ ~LoginWindow()\l&#45; on_loginButton_clicked()\l&#45; on_cancelButton_clicked()\l}" alt="" coords="252,173,438,313"/>
+</map>

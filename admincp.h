@@ -16,19 +16,42 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-    void renderTransactions();
-    void renderCustomers();
+    // Is passed the database pointer, which is initially declared in LoginWindow
+    // Needed to access database in the admin panel 'state'
     void setDBPointer(DBManager* dbPointer);
+
+
+    // Adds a vector of Transaction objects to the data table UI
     void addTransactionsVectorToTable(std::vector<Transaction> transactionsList);
 
+    // Sets up the Transactions data table (column headers, editability behavior, etc)
+    void renderTransactions();
+
+
+    // Calculates the revenue generated for a specified item
     void calculateRevenue(Item & item);
+
+    // Calculates the rebate amount for all Executive members
     std::vector<Customer> calcExecutiveRebates();
+
+
+    // Sets up the Items data table (column headers, editability behavior, etc)
     void renderItems();
+
     void displayItems();
 
+    // Adds a vector of Customer objects to the data table in the UI
     void addCustomersVectorToTable(std::vector<Customer> customersList);
 
+    // Sets up the Customers data table (column headers, editability behavior, etc)
+    void renderCustomers();
+
+    // Sets the administrator rights to the current logged in user
     void setIsAdmin(bool isAdmin);
+
+    // Copy constructor handles the class pointers
+    MainWindow(const MainWindow& mw);
+
     ~MainWindow();
 
 private slots:
@@ -57,11 +80,7 @@ private slots:
 
     void on_sortItemsByButton_clicked();
     
-
     void on_showSalesByCustomerName_clicked();
-
-    void on_pushButton_clicked();
-
 
     void on_showChangeMemberStatus_clicked();
 
