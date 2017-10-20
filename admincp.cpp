@@ -228,6 +228,7 @@ void MainWindow::renderItems()
 //Displays any items from list created in renderItems
 void MainWindow::displayItems()
 {
+    qDebug() << "DisplayItems entered";
     //calculates each items revenue and quantity sold
     for(int i = 0; i < static_cast<int>(itemsList.size()); i++)
     {
@@ -392,56 +393,70 @@ void MainWindow::calculateRevenue(Item & item)
 
 void MainWindow::on_searchButton_clicked()
 {
-    //Reads in name of item from text box
-    QString itemName = ui->searchItemBox->text();
-    int index = -1;
-
-    ui->itemsTable->clearContents();
-    ui->itemsTable->setRowCount(1);
-    //Prepares program to add info to table, which is done in conditional
-    //Gets the item name and price cell for the new item to be added
-    QTableWidgetItem *cellName = ui->itemsTable->item(0, 0);
-    QTableWidgetItem *cellPrice = ui->itemsTable->item(0, 1);
-    QTableWidgetItem *cellQuantity = ui->itemsTable->item(0, 2);
-    QTableWidgetItem *cellRevenue = ui->itemsTable->item(0, 3);
-
-    //Checks if cell items created, creates if not
-    if (!cellName && !cellPrice && !cellQuantity && !cellRevenue) {
-        cellName = new QTableWidgetItem;
-        cellPrice = new QTableWidgetItem;
-        cellQuantity = new QTableWidgetItem;
-        cellRevenue = new QTableWidgetItem;
-    }
-
-    //Goes through vector to see if items match the name of this item
-    for(int i = 0; i < static_cast<int>(itemsList.size()); i++)
+    try
     {
-        //Finds index where one transaction of that item occurred
-        if(itemName == itemsList[i].getItemName())
+        //Reads in name of item from text box
+        QString itemName = ui->searchItemBox->text();
+        if (itemName.isEmpty())
         {
-            index = i;
+            throw QString("Item name cannot be empty!");
         }
-    }
-    //calculates quantity sold and revenue if so, if not outputs an error message
-    if(index != -1)
-    {
-        cellName->setData(0, QVariant(itemsList[index].getItemName()));
-        cellPrice->setData(0, QVariant(itemsList[index].getItemPrice()));
-        cellQuantity->setData(0, QVariant(itemsList[index].getQuantitySold()));
-        cellRevenue->setData(0, QVariant(itemsList[index].getTotalRevenue()));
-        ui->itemsTable->setItem(0, 0, cellName);
-        ui->itemsTable->setItem(0, 1, cellPrice);
-        ui->itemsTable->setItem(0, 2, cellQuantity);
-        ui->itemsTable->setItem(0, 3, cellRevenue);
-    }
-    else
-    {
-        //populates the text box with an error message
-        cellQuantity->setData(0, QVariant("Item not found"));
-    }
+        int index = -1;
 
-    //clears fields to enter new items
-    ui->searchItemBox->clear();
+        ui->itemsTable->clearContents();
+        ui->itemsTable->setRowCount(1);
+
+        //Prepares program to add info to table, which is done in conditional
+        //Gets the item name and price cell for the new item to be added
+        QTableWidgetItem *cellName = ui->itemsTable->item(0, 0);
+        QTableWidgetItem *cellPrice = ui->itemsTable->item(0, 1);
+        QTableWidgetItem *cellQuantity = ui->itemsTable->item(0, 2);
+        QTableWidgetItem *cellRevenue = ui->itemsTable->item(0, 3);
+
+        //Checks if cell items created, creates if not
+        if (!cellName && !cellPrice && !cellQuantity && !cellRevenue) {
+            cellName = new QTableWidgetItem;
+            cellPrice = new QTableWidgetItem;
+            cellQuantity = new QTableWidgetItem;
+            cellRevenue = new QTableWidgetItem;
+        }
+
+        //Goes through vector to see if items match the name of this item
+        for(int i = 0; i < static_cast<int>(itemsList.size()); i++)
+        {
+            //Finds index where one transaction of that item occurred
+            if(itemName == itemsList[i].getItemName())
+            {
+                index = i;
+            }
+        }
+        //calculates quantity sold and revenue if so, if not outputs an error message
+        if(index != -1)
+        {
+            cellName->setData(0, QVariant(itemsList[index].getItemName()));
+            cellPrice->setData(0, QVariant(itemsList[index].getItemPrice()));
+            cellQuantity->setData(0, QVariant(itemsList[index].getQuantitySold()));
+            cellRevenue->setData(0, QVariant(itemsList[index].getTotalRevenue()));
+            ui->itemsTable->setItem(0, 0, cellName);
+            ui->itemsTable->setItem(0, 1, cellPrice);
+            ui->itemsTable->setItem(0, 2, cellQuantity);
+            ui->itemsTable->setItem(0, 3, cellRevenue);
+        }
+        else
+        {
+            throw QString("Item not found in table!");
+        }
+
+
+        //clears fields to enter new items
+        ui->searchItemBox->clear();
+    }
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
 }
 
 //Sorts the items table based on customer's choice of sort
@@ -544,13 +559,22 @@ std::vector<Customer> MainWindow::calcExecutiveRebates()
         //Checks if member is executive; if it is, enters loop
         if(memberType == "Executive")
         {
-            memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
-            executiveTransactions = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
-            transactionSize = executiveTransactions.size();
-
-            for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
+            try
             {
-                amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
+                memberID = allCustomers[count].getCustomerID(); //gets exec members ID then transactions by ID num
+                executiveTransactions = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
+                transactionSize = executiveTransactions.size();
+
+                for(int i = 0; i < transactionSize; i++) //loops through transactions and sums amount spent
+                {
+                    amountSpent += dbPointer->getSalesPriceTotalFloat(executiveTransactions[i]);
+                }
+            }
+            catch (const QString& errorMessage)
+            {
+                QMessageBox errorMsgBox;
+                errorMsgBox.critical(0,"Error", errorMessage);
+                errorMsgBox.setFixedSize(500,200);
             }
         }
 
@@ -696,18 +720,12 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
 
 void MainWindow::on_editTransactionRowButton_clicked()
 {
-    //int customerID = transactionSelected.getCustomerID();
-    QString itemPurchased = transactionSelected.getItemName();
-    QString purchaseDate = transactionSelected.getPurchaseDate();
-    //int quantityPurchased = transactionSelected.getQuantityPurchased();
+    try
+    {
+        QString itemPurchased = transactionSelected.getItemName();
+        QString purchaseDate = transactionSelected.getPurchaseDate();
 
 
-    if (itemPurchased == "")
-    {
-        ui->invalidRowSelectedMsg->setText("Error: You must select a valid row.");
-    }
-    else
-    {
         EditTransactionDialog* editTransWindow = new EditTransactionDialog(this, transactionSelected, this->rowSelected);
 
         editTransWindow->show();
@@ -715,48 +733,77 @@ void MainWindow::on_editTransactionRowButton_clicked()
         editTransWindow->setDBPointer(this->dbPointer);
         editTransWindow->setTransactionSelectedPointer(&transactionSelected);
     }
-    qDebug() << "Transactions edit window opened.";
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
+
 
 }
 
 void MainWindow::on_showSalesButton_clicked()
 {
-    // Gets the sales date from the date input widget
-
-    // 1 = January
-    // 2 = February
-    // 3 = etc...
-    QDate salesDate = ui->salesDateInputField->date();
-
-    // return a vector of all transactions on specified sales date
-    std::vector<Transaction> transactionsList = dbPointer->getTransactionsBySalesDate(salesDate);
-
-    // Check to make sure there are transactions for given sales date
-    if (transactionsList[0].getCustomerID() == 0)
+    try
     {
-        QMessageBox errorMsg;
-        errorMsg.critical(0,"Error","No transactions found for specified date");
-        errorMsg.setFixedSize(500,200);
-    }
-    else
-    {
+        // Gets the sales date from the date input widget
+        // 1 = January
+        // 2 = February
+        // 3 = etc...
+        QDate salesDate = ui->salesDateInputField->date();
+
+        // return a vector of all transactions on specified sales date
+        std::vector<Transaction> transactionsList = dbPointer->getTransactionsBySalesDate(salesDate);
+
+        // Check to make sure there are transactions for given sales date
         // Clears the transactions table before updating it
         ui->transactionsTable->setRowCount(0);
 
         // populate table with new data
         addTransactionsVectorToTable(transactionsList);
     }
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
 }
 
 void MainWindow::on_searchByCustomerIDButton_clicked()
 {
-    double grandTotal;
-    int memberID = ui->customerIDField->value();
+    try
+    {
+        double grandTotal;
+        int memberID = ui->customerIDField->value();
 
-    std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
-    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer ID " + QString::number(memberID) + ": $" + QString::number(grandTotal, 'f', 2));
+        std::vector<Transaction> membersList = dbPointer->getTransactionsByMemberID(memberID, grandTotal);
 
-    addTransactionsVectorToTable(membersList);
+        if (grandTotal != 0)
+        {
+            // Update the table
+            addTransactionsVectorToTable(membersList);
+
+            // Notify the user of grand total of purchases
+            QMessageBox grandTotalInfoBox;
+            grandTotalInfoBox.information(0,"Grand Total", "Customer ID '" + QString::number(memberID) + "' has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
+            grandTotalInfoBox.setFixedSize(600,100);
+        }
+        else
+        {
+            QMessageBox errorMsgBox;
+            errorMsgBox.critical(0,"Error!", "No transactions found for specified customer ID");
+            errorMsgBox.setFixedSize(500,200);
+        }
+
+    }
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
 }
 
 void MainWindow::on_displayExpiringMembershipsButton_clicked()
@@ -845,15 +892,28 @@ void MainWindow::on_showChangeMemberStatus_clicked()
 
 void MainWindow::on_showSalesByCustomerName_clicked()
 {
-    QString customerName = ui->searchByCustomerNameInput->text().toLower();
-    int customerID;
-    double grandTotal;
+    try
+    {
+        // Exception handling displays an error if the customer name is empty or does not exist in database
+        QString customerName = ui->searchByCustomerNameInput->text().toLower();
+        int customerID;
+        double grandTotal;
 
-    customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
-    std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
-    addTransactionsVectorToTable(transactionsList);
+        customerID = dbPointer->getCustomerIDFromCustomerName(customerName);
+        std::vector<Transaction> transactionsList = dbPointer->getTransactionsByMemberID(customerID, grandTotal);
 
-    ui->grandTotalDisplayField->setText("Grand Total of All Purchases by Customer Name " + customerName + ": $" + QString::number(grandTotal));
+            // Notify the user of grand total of purchases
+            addTransactionsVectorToTable(transactionsList);
+            QMessageBox grandTotalInfoBox;
+            grandTotalInfoBox.information(0,"Grand Total", "Customer " + customerName +" has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
+            grandTotalInfoBox.setFixedSize(600,100);
+    }
+    catch (const QString& errorMessage)
+    {
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", errorMessage);
+        errorMsgBox.setFixedSize(500,200);
+    }
 }
 
 

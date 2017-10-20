@@ -107,6 +107,10 @@ QString DBManager::getCustomerNameFromID(int customerID)
 
 int DBManager::getCustomerIDFromCustomerName(QString customerName)
 {
+    if (customerName.isEmpty())
+    {
+        throw QString("Customer name cannot be empty!");
+    }
     int customerID;
     QSqlQuery customersQuery;
     customersQuery.prepare("SELECT id FROM customers WHERE LOWER(name) = :customerName");
@@ -120,7 +124,7 @@ int DBManager::getCustomerIDFromCustomerName(QString customerName)
     }
     else
     {
-        customerName = "Customer name matches no customers in database!";
+        throw QString("Customer name does not exist in database!");
     }
     return customerID;
 }
@@ -178,6 +182,8 @@ std::vector<Item> DBManager::getAllItems()
             itemsQuery.next();
         }
     }
+    qDebug() << "ITEMS ERROR:";
+    qDebug() << itemsQuery.lastError();
     return items;
 }
 
@@ -188,6 +194,10 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
     int month = salesDate.month();
     int day = salesDate.day();
     int year = salesDate.year();
+    if (!salesDate.isValid() || salesDate.isNull())
+    {
+        throw QString("Invalid date entered! Please try again.");
+    }
 
     // to be documented....
     std::string salesDateString = std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
@@ -223,8 +233,7 @@ std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
         }
         else
         {
-            // We push a blank customer to the vector to let the UI layer know there was an error
-            transactionsBySalesDateList.push_back(Transaction(0, "", 0, ""));
+            throw QString("Error! No transactions found with specified sales date!");
         }
     }
     return transactionsBySalesDateList;
@@ -286,13 +295,6 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID, doub
                 qDebug() << "GRAND TOTAL: " << grandTotal;
                 transactionsQuery.next();
             }
-        }
-        else
-        {
-            // returns a fake transaction to the table to inform user that the ID they entered
-            // was not found.
-            transactions.push_back(Transaction(0, "Customer ID not found", 0, ""));
-
         }
     }
     return transactions;
