@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
+    void insufficientPriviledgesErrorMessage();
     // Is passed the database pointer, which is initially declared in LoginWindow
     // Needed to access database in the admin panel 'state'
     void setDBPointer(DBManager* dbPointer);

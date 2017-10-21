@@ -1,6 +1,7 @@
 #include "addcustomerdialog.h"
 #include "ui_addcustomerdialog.h"
 #include "customer.h"
+#include <QMessageBox>
 
 //constructor
 AddCustomerDialog::AddCustomerDialog(QWidget *parent) :
@@ -43,55 +44,64 @@ void AddCustomerDialog::on_addButton_clicked()
     QString expYear = ui->ExpYearEdit->currentText();
     QString expDate = expMonth + '/' + expDay + '/' + expYear;
 
-    //Adds all new data to an object of type customer to send to database
-    Customer newCustomer(customerID, customerName, membershipType);
-    newCustomer.setExpDate(expDate);
-
-    //Adds customer to DB using member function of dbmanager class
-    dbPointer->addCustomer(newCustomer);
-
-    //Adds a row to the customers table on the UI
-    int addRow = customersTablePointer->rowCount() + 1;
-    this->customersTablePointer->setRowCount(addRow);
-
-    //Sets customer ID in table
-    QTableWidgetItem *idCell = customersTablePointer->item(addRow - 1, 0);
-    if(!idCell)
+    if (ui->IDText->text().isEmpty() || ui->nameText->text().isEmpty())
     {
-        idCell = new QTableWidgetItem;
+        QMessageBox errorMsgBox;
+        errorMsgBox.critical(0,"Error", "You must enter a valid customer ID and name!");
+        errorMsgBox.setFixedSize(500,200);
     }
-    idCell->setData(0, QVariant(customerID));
-    customersTablePointer->setItem(addRow - 1, 0, idCell);
-
-    //Sets customer name in table
-    QTableWidgetItem *nameCell = customersTablePointer->item(addRow - 1, 1);
-    if(!nameCell)
+    else
     {
-        nameCell = new QTableWidgetItem;
-    }
-    nameCell->setData(0, QVariant(customerName));
-    customersTablePointer->setItem(addRow - 1, 1, nameCell);
+        //Adds all new data to an object of type customer to send to database
+        Customer newCustomer(customerID, customerName, membershipType);
+        newCustomer.setExpDate(expDate);
 
-    //Sets customer membership type in the table
-    QTableWidgetItem *memberCell = customersTablePointer->item(addRow - 1, 2);
-    if(!memberCell)
-    {
-        memberCell = new QTableWidgetItem;
-    }
-    memberCell->setData(0, QVariant(membershipType));
-    customersTablePointer->setItem(addRow - 1, 2, memberCell);
+        //Adds customer to DB using member function of dbmanager class
+        dbPointer->addCustomer(newCustomer);
 
-    //Sets expiration date for customer in table
-    QTableWidgetItem *expDateCell = customersTablePointer->item(addRow - 1, 3);
-    if(!expDateCell)
-    {
-        expDateCell = new QTableWidgetItem;
-    }
-    expDateCell->setData(0, QVariant(expDate));
-    customersTablePointer->setItem(addRow - 1, 3, expDateCell);
+        //Adds a row to the customers table on the UI
+        int addRow = customersTablePointer->rowCount() + 1;
+        this->customersTablePointer->setRowCount(addRow);
 
-    //closes pop up window
-    this->close();
+        //Sets customer ID in table
+        QTableWidgetItem *idCell = customersTablePointer->item(addRow - 1, 0);
+        if(!idCell)
+        {
+            idCell = new QTableWidgetItem;
+        }
+        idCell->setData(0, QVariant(customerID));
+        customersTablePointer->setItem(addRow - 1, 0, idCell);
+
+        //Sets customer name in table
+        QTableWidgetItem *nameCell = customersTablePointer->item(addRow - 1, 1);
+        if(!nameCell)
+        {
+            nameCell = new QTableWidgetItem;
+        }
+        nameCell->setData(0, QVariant(customerName));
+        customersTablePointer->setItem(addRow - 1, 1, nameCell);
+
+        //Sets customer membership type in the table
+        QTableWidgetItem *memberCell = customersTablePointer->item(addRow - 1, 2);
+        if(!memberCell)
+        {
+            memberCell = new QTableWidgetItem;
+        }
+        memberCell->setData(0, QVariant(membershipType));
+        customersTablePointer->setItem(addRow - 1, 2, memberCell);
+
+        //Sets expiration date for customer in table
+        QTableWidgetItem *expDateCell = customersTablePointer->item(addRow - 1, 3);
+        if(!expDateCell)
+        {
+            expDateCell = new QTableWidgetItem;
+        }
+        expDateCell->setData(0, QVariant(expDate));
+        customersTablePointer->setItem(addRow - 1, 3, expDateCell);
+
+        //closes pop up window
+        this->close();
+    }
 }
 
 //cancel button allows user to close pop up window
