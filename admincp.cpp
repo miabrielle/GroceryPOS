@@ -5,7 +5,7 @@
 #include "memberchangestatus.h"
 #include <iomanip>
 #include <vector>
-
+#include <cassert>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,6 +34,12 @@ MainWindow::MainWindow(QWidget *parent) :
     displayItems();       // Populates items table
 }
 
+void MainWindow::insufficientPriviledgesErrorMessage()
+{
+    QMessageBox errorMsgBox;
+    errorMsgBox.critical(0,"Error", "You must have administrator priviledges to access this functionality.");
+    errorMsgBox.setFixedSize(500,200);
+}
 /*****************************************************************************************
 * Transaction Functions
 * ----------------------
@@ -277,89 +283,105 @@ void MainWindow::displayItems()
 //Then finds the correct row in the vector array and erases the entire row from the array
 void MainWindow::on_deleteItemButton_clicked()
 {
-    //Returns the selected row number and erases row in UI
-    int selectedRow;
-    QItemSelectionModel* selectionModel = ui->itemsTable->selectionModel();
-    selectedRow = ui->itemsTable->selectionModel()->currentIndex().row();
-    QModelIndexList selected = selectionModel->selectedRows();
-    for(int i= 0; i< selected.count();i++)
+    if (isAdmin)
     {
-        QModelIndex index = selected.at(i);
-        selectedRow = index.row();
+        //Returns the selected row number and erases row in UI
+        int selectedRow;
+        QItemSelectionModel* selectionModel = ui->itemsTable->selectionModel();
+        selectedRow = ui->itemsTable->selectionModel()->currentIndex().row();
+        QModelIndexList selected = selectionModel->selectedRows();
+        for(int i= 0; i< selected.count();i++)
+        {
+            QModelIndex index = selected.at(i);
+            selectedRow = index.row();
+        }
+        ui->itemsTable->removeRow(selectedRow);
+
+        //Erases element in the database
+        QString itemName = itemsList[selectedRow].getItemName();
+
+        //Moves all items in the list back one index in the array then erases the last element in the array
+        for(int i = selectedRow; i < static_cast<int>(itemsList.size()) - 1; i++)
+        {
+            itemsList[i].setItemName(itemsList[i + 1].getItemName());
+            itemsList[i].setItemPrice(itemsList[i + 1].getItemPrice());
+            itemsList[i].setQuantitySold(itemsList[i + 1].getQuantitySold());
+            itemsList[i].setTotalRevenue(itemsList[i + 1].getTotalRevenue());
+        }
+        itemsList.erase(itemsList.begin() + itemsList.size() - 1);
+        dbPointer->deleteItem(itemName);
     }
-    ui->itemsTable->removeRow(selectedRow);
-
-    //Erases element in the database
-    QString itemName = itemsList[selectedRow].getItemName();
-
-    //Moves all items in the list back one index in the array then erases the last element in the array
-    for(int i = selectedRow; i < static_cast<int>(itemsList.size()) - 1; i++)
+    else
     {
-        itemsList[i].setItemName(itemsList[i + 1].getItemName());
-        itemsList[i].setItemPrice(itemsList[i + 1].getItemPrice());
-        itemsList[i].setQuantitySold(itemsList[i + 1].getQuantitySold());
-        itemsList[i].setTotalRevenue(itemsList[i + 1].getTotalRevenue());
+        insufficientPriviledgesErrorMessage();
     }
-    itemsList.erase(itemsList.begin() + itemsList.size() - 1);
-    dbPointer->deleteItem(itemName);
 }
 
 //adds item to inventory on screen
 void MainWindow::on_addItemButton_clicked()
 {
-    //Gets all items then loads in new item from text boxes in ui and pushes new item onto list
-    Item tempItem;
-    tempItem.setItemName(ui->itemNameField->text());
-    tempItem.setItemPrice(ui->itemPriceField->text().toFloat());
-    calculateRevenue(tempItem);
-
-    //Checks that there is an item to enter
-    if(tempItem.getItemName() != "")
+    if (isAdmin)
     {
-        //adds item to vector
-        itemsList.push_back(tempItem);
+        //Gets all items then loads in new item from text boxes in ui and pushes new item onto list
+        Item tempItem;
+        tempItem.setItemName(ui->itemNameField->text());
+        tempItem.setItemPrice(ui->itemPriceField->text().toFloat());
+        calculateRevenue(tempItem);
 
-        //Creates new row and adds new item to row
-        ui->itemsTable->setRowCount(itemsList.size());
+        //Checks that there is an item to enter
+        if(tempItem.getItemName() != "" && tempItem.getItemPrice() != 0.0)
+        {
+            //adds item to vector
+            itemsList.push_back(tempItem);
 
-        // Gets the item name and price cell for the new item to be added
-        QTableWidgetItem *cellName = ui->itemsTable->item(itemsList.size() - 1, 0);
-        QTableWidgetItem *cellPrice = ui->itemsTable->item(itemsList.size() - 1, 1);
-        QTableWidgetItem *cellQuantity = ui->itemsTable->item(itemsList.size() - 1, 2);
-        QTableWidgetItem *cellRevenue = ui->itemsTable->item(itemsList.size() - 1, 3);
+            //Creates new row and adds new item to row
+            ui->itemsTable->setRowCount(itemsList.size());
 
-        //Prepares information in string to display values in monetary form
-        QString priceString = "$" + QString::number(itemsList[itemsList.size() - 1].getItemPrice());
-        QString revenueString = "$" + QString::number(itemsList[itemsList.size() - 1].getTotalRevenue());
+            // Gets the item name and price cell for the new item to be added
+            QTableWidgetItem *cellName = ui->itemsTable->item(itemsList.size() - 1, 0);
+            QTableWidgetItem *cellPrice = ui->itemsTable->item(itemsList.size() - 1, 1);
+            QTableWidgetItem *cellQuantity = ui->itemsTable->item(itemsList.size() - 1, 2);
+            QTableWidgetItem *cellRevenue = ui->itemsTable->item(itemsList.size() - 1, 3);
 
-        //Adds item to UI page with items table
-        if (!cellPrice && !cellName) {
-            cellPrice = new QTableWidgetItem;
-            cellName = new QTableWidgetItem;
-            cellQuantity = new QTableWidgetItem;
-            cellRevenue = new QTableWidgetItem;
+            //Prepares information in string to display values in monetary form
+            QString priceString = "$" + QString::number(itemsList[itemsList.size() - 1].getItemPrice());
+            QString revenueString = "$" + QString::number(itemsList[itemsList.size() - 1].getTotalRevenue());
+
+            //Adds item to UI page with items table
+            if (!cellPrice && !cellName) {
+                cellPrice = new QTableWidgetItem;
+                cellName = new QTableWidgetItem;
+                cellQuantity = new QTableWidgetItem;
+                cellRevenue = new QTableWidgetItem;
+            }
+
+            //Used to put data into cells in UI
+            cellName->setData(0, QVariant(itemsList[itemsList.size() - 1].getItemName() ));
+            cellPrice->setData(0, QVariant(priceString));
+            cellQuantity->setData(0, QVariant(itemsList[itemsList.size() - 1].getQuantitySold() ));
+            cellRevenue->setData(0, QVariant(revenueString));
+            ui->itemsTable->setItem(itemsList.size() - 1, 0, cellName);
+            ui->itemsTable->setItem(itemsList.size() - 1, 1, cellPrice);
+            ui->itemsTable->setItem(itemsList.size() - 1, 2, cellQuantity);
+            ui->itemsTable->setItem(itemsList.size() - 1, 3, cellRevenue);
+
+            //clears fields to enter new items
+            ui->itemNameField->clear();
+            ui->itemPriceField->clear();
+
+            //Adds item to database list
+            dbPointer->addItem(tempItem.getItemName(), tempItem.getItemPrice());
         }
-
-        //Used to put data into cells in UI
-        cellName->setData(0, QVariant(itemsList[itemsList.size() - 1].getItemName() ));
-        cellPrice->setData(0, QVariant(priceString));
-        cellQuantity->setData(0, QVariant(itemsList[itemsList.size() - 1].getQuantitySold() ));
-        cellRevenue->setData(0, QVariant(revenueString));
-        ui->itemsTable->setItem(itemsList.size() - 1, 0, cellName);
-        ui->itemsTable->setItem(itemsList.size() - 1, 1, cellPrice);
-        ui->itemsTable->setItem(itemsList.size() - 1, 2, cellQuantity);
-        ui->itemsTable->setItem(itemsList.size() - 1, 3, cellRevenue);
-
-        //clears fields to enter new items
-        ui->itemNameField->clear();
-        ui->itemPriceField->clear();
-
-        //Adds item to database list
-        dbPointer->addItem(tempItem.getItemName(), tempItem.getItemPrice());
+        else
+        {
+            QMessageBox errorMsgBox;
+            errorMsgBox.critical(0,"Error", "Item must have a price and name!");
+            errorMsgBox.setFixedSize(500,200);
+        }
     }
     else
     {
-        qDebug() << "No item entered";
+        insufficientPriviledgesErrorMessage();
     }
 }
 
@@ -445,6 +467,8 @@ void MainWindow::on_searchButton_clicked()
         }
         else
         {
+            renderItems();
+            displayItems();
             throw QString("Item not found in table!");
         }
 
@@ -892,10 +916,17 @@ void MainWindow::on_displayAllButton_clicked()
 
 void MainWindow::on_showChangeMemberStatus_clicked()
 {
-    MemberChangeStatus *memStatWindow = new MemberChangeStatus;
-    memStatWindow->setWindowTitle("Member Change Statuses");
-    memStatWindow->setDBPointer(this->dbPointer);
-    memStatWindow->show();
+    if (isAdmin)
+    {
+        MemberChangeStatus *memStatWindow = new MemberChangeStatus;
+        memStatWindow->setWindowTitle("Member Change Statuses");
+        memStatWindow->setDBPointer(this->dbPointer);
+        memStatWindow->show();
+    }
+    else
+    {
+        insufficientPriviledgesErrorMessage();
+    }
 }
 
 
@@ -955,33 +986,48 @@ MainWindow::MainWindow(const MainWindow &mw)
 //to enter information for a new user to be entered into the system
 void MainWindow::on_AddCustomerButton_clicked()
 {
-    AddCustomerDialog* addCustomerWindow = new AddCustomerDialog(this);
+    if (isAdmin)
+    {
+        AddCustomerDialog* addCustomerWindow = new AddCustomerDialog(this);
 
-    addCustomerWindow->show();
-    addCustomerWindow->setCustomersTablePointer(ui->customersTable);
-    addCustomerWindow->setDBPointer(this->dbPointer);
+        addCustomerWindow->show();
+        addCustomerWindow->setCustomersTablePointer(ui->customersTable);
+        addCustomerWindow->setDBPointer(this->dbPointer);
+    }
+    else
+    {
+        insufficientPriviledgesErrorMessage();
+    }
 }
 
 //when the user presses a button in the main window denoting delete user
 //a user is deleted from both the main window table and the database
 void MainWindow::on_DeleteCustomerButton_clicked()
 {
-    //Returns the selected row number and erases row in UI
-    int selectedRow;
-    QItemSelectionModel* selectionModel = ui->customersTable->selectionModel();
-    selectedRow = ui->customersTable->selectionModel()->currentIndex().row();
-    QModelIndexList selected = selectionModel->selectedRows();
-
-    for(int i= 0; i< selected.count();i++)
+    if (isAdmin)
     {
-        QModelIndex index = selected.at(i);
-        selectedRow = index.row();
-    }
+        //Returns the selected row number and erases row in UI
+        int selectedRow;
+        QItemSelectionModel* selectionModel = ui->customersTable->selectionModel();
+        selectedRow = ui->customersTable->selectionModel()->currentIndex().row();
+        QModelIndexList selected = selectionModel->selectedRows();
+        assert(selected.isEmpty());
 
-    //Erases element in the database
-    QString customerName = ui->customersTable->item(selectedRow, 1)->text();
-    ui->customersTable->removeRow(selectedRow);
-    dbPointer->deleteCustomer(customerName);
+        for(int i= 0; i< selected.count();i++)
+        {
+            QModelIndex index = selected.at(i);
+            selectedRow = index.row();
+        }
+
+        //Erases element in the database
+        QString customerName = ui->customersTable->item(selectedRow, 1)->text();
+        ui->customersTable->removeRow(selectedRow);
+        dbPointer->deleteCustomer(customerName);
+    }
+    else
+    {
+        insufficientPriviledgesErrorMessage();
+    }
 }
 
 // Destructor

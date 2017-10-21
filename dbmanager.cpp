@@ -33,7 +33,7 @@ void DBManager::initDB()
     // executes SQL queries on the database 'bulkclub.db' initializing tables with their
     // respective data values
     QSqlQuery query;
-    query.exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)");
+    query.exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role INTEGER)");
     query.exec("CREATE TABLE customers (id INTEGER, name TEXT, type TEXT, expirationDate REAL)");
     query.exec("CREATE TABLE items (id INTEGER PRIMARY KEY, name TEXT, price REAL, quantity INTEGER PRIMARY KEY, revenue REAL)");
     query.exec("CREATE TABLE transactions (id INTEGER PRIMARY KEY, cid INTEGER, customerName TEXT, itemPurchased TEXT, quantityPurchased INTEGER, date REAL, salePrice REAL)");
