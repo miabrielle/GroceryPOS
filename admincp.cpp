@@ -1011,7 +1011,6 @@ void MainWindow::on_DeleteCustomerButton_clicked()
         QItemSelectionModel* selectionModel = ui->customersTable->selectionModel();
         selectedRow = ui->customersTable->selectionModel()->currentIndex().row();
         QModelIndexList selected = selectionModel->selectedRows();
-        assert(selected.isEmpty());
 
         for(int i= 0; i< selected.count();i++)
         {
