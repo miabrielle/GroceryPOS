@@ -1,6 +1,7 @@
 #include "admincp.h"
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
+#include "addcustomerdialog.h"
 #include "memberchangestatus.h"
 #include <iomanip>
 #include <vector>
@@ -948,6 +949,39 @@ MainWindow::MainWindow(const MainWindow &mw)
     this->itemsList = mw.itemsList;
     this->isAdmin = mw.isAdmin;
     this->dbPointer = mw.dbPointer;
+}
+
+//In main window when add customer button is clicked, a pop up window appears allowing the user
+//to enter information for a new user to be entered into the system
+void MainWindow::on_AddCustomerButton_clicked()
+{
+    AddCustomerDialog* addCustomerWindow = new AddCustomerDialog(this);
+
+    addCustomerWindow->show();
+    addCustomerWindow->setCustomersTablePointer(ui->customersTable);
+    addCustomerWindow->setDBPointer(this->dbPointer);
+}
+
+//when the user presses a button in the main window denoting delete user
+//a user is deleted from both the main window table and the database
+void MainWindow::on_DeleteCustomerButton_clicked()
+{
+    //Returns the selected row number and erases row in UI
+    int selectedRow;
+    QItemSelectionModel* selectionModel = ui->customersTable->selectionModel();
+    selectedRow = ui->customersTable->selectionModel()->currentIndex().row();
+    QModelIndexList selected = selectionModel->selectedRows();
+
+    for(int i= 0; i< selected.count();i++)
+    {
+        QModelIndex index = selected.at(i);
+        selectedRow = index.row();
+    }
+
+    //Erases element in the database
+    QString customerName = ui->customersTable->item(selectedRow, 1)->text();
+    ui->customersTable->removeRow(selectedRow);
+    dbPointer->deleteCustomer(customerName);
 }
 
 // Destructor

@@ -3,11 +3,12 @@
 #include <QMessageBox>
 #include <QDate>
 
-/************************************************************************
+/**************************************************************************************
  * DBManager Constructor
- * ---------------------------------------------------------------------
- * Sets up the database file to read from
- ***********************************************************************/
+ *  - Sets up the database file to read from
+ * DB initializer
+ *  - Initatlizes database with correct table column headers
+ **************************************************************************************/
 DBManager::DBManager()
 {
     const QString DRIVER("QSQLITE");
@@ -43,13 +44,12 @@ void DBManager::initDB()
     }
 }
 
-/************************************************************************
+/*******************************************************************************************
  * DBManager::authenticateUser
- * ---------------------------------------------------------------------
- * Passed username and password as strings
- * Checks database 'users' table for any matching entries
- * Returns true if a match is found, false if no match found
- ***********************************************************************/
+ *  - Passed username and password as strings
+ *  - Checks database 'users' table for any matching entries
+ *  - Returns true if a match is found, false if no match found
+ *******************************************************************************************/
 bool DBManager::authenticateUser(QString username, QString password, bool &isAdmin)
 {
     bool isAuthed = false;
@@ -84,6 +84,58 @@ bool DBManager::authenticateUser(QString username, QString password, bool &isAdm
         }
     }
     return isAuthed;
+}
+
+/*******************************************************************************************
+ * DATA COLLECTION CUSTOMER FUNCTIONS
+ *
+ * addCustomer
+ *  - adds a record to the database with an object parameter
+ *
+ * deleteCustomer
+ *  - uses a customer name passed to find the record in the database and delete the whole record
+ * getCustomerNameFromID
+ *  - returns the name of a customer if passed the name
+ *
+ * getCustomerIDFromName
+ *  - returns the id of a customer if passed the ID
+ *
+ * getAllCustomers
+ *  - returns a vector containing the information for all of the customers in the database
+ *  - called at the beginning of the program
+ *  - id, name, type, expirationdate
+ *
+ * getExpiringMembershipsByMonth
+ *  - checks all of the members in the system and checks the month in which their membership
+ * will expire
+ *******************************************************************************************/
+
+//Adds a customer to the customer table in the database
+void DBManager::addCustomer(Customer temp)
+{
+    //Preps all object values into individual variables
+    int id = temp.getCustomerID();
+    QString customerName = temp.getCustomerName();
+    QString memberType = temp.getMemberType();
+    QString expirationDate = temp.getExpDate();
+
+    //Prepares all of the values and updates the database
+    QSqlQuery query;
+    query.prepare("INSERT INTO customers (id, name, type, expirationdate) VALUES (:id, :customerName, :memberType, :expirationDate)");
+    query.bindValue(":id", id);
+    query.bindValue(":customerName", customerName);
+    query.bindValue(":memberType", memberType);
+    query.bindValue(":expirationDate", expirationDate);
+    query.exec();
+}
+
+//Deletes customer from customer table in database
+void DBManager::deleteCustomer(QString customerName)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM customers WHERE name = :customerName");
+    query.bindValue(":customerName", customerName);
+    query.exec();
 }
 
 QString DBManager::getCustomerNameFromID(int customerID)
@@ -129,6 +181,98 @@ int DBManager::getCustomerIDFromCustomerName(QString customerName)
     return customerID;
 }
 
+std::vector<Customer> DBManager::getAllCustomers()
+{
+    std::vector<Customer> customers;
+    QSqlQuery customersQuery;
+    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers"); //<! checks the first two characters of expirationDate column in database
+
+    if (customersQuery.exec())
+    {
+        if (customersQuery.first())
+        {
+            while(customersQuery.isValid())
+            {
+                Customer tempCustomer;
+
+                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
+                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
+                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
+                tempCustomer.setExpDate(customersQuery.value(3).toString());      // Sets expiration date
+
+                customers.push_back(tempCustomer); // Pushes customer to vector
+
+                customersQuery.next(); // Goes to next query result matching our customersQuery
+            }
+        }
+        else
+        {
+            // returns a fake transaction to the table to inform user that the ID they entered
+            // was not found.
+            customers.push_back(Customer(0, "Error loading customers from database", ""));
+        }
+    }
+    return customers;
+}
+
+
+std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
+{
+    QSqlQuery customersQuery;
+
+    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE substr(expirationdate, 1, 2)=:month"); //<! checks the first two characters of expirationDate column in database
+    customersQuery.bindValue(":month", month);
+    std::vector<Customer> customers;
+
+    if (customersQuery.exec())
+    {
+        if (customersQuery.first())
+        {
+            while(customersQuery.isValid())
+            {
+                Customer tempCustomer;
+
+                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
+                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
+                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
+                tempCustomer.setExpDate(customersQuery.value(3).toString());      //
+
+                customers.push_back(tempCustomer); // Pushes customer to vector
+
+                customersQuery.next(); // Goes to next query result matching our customersQuery
+            }
+        }
+        else
+        {
+            throw QString("No memberships are expiring during the specified month!");
+        }
+    }
+    qDebug() << customersQuery.lastError();
+    return customers;
+}
+
+/*******************************************************************************************
+ * DATA COLLECTION TRANSACTION FUNCTIONS
+ *
+ * getAllTransactions
+ *  - puts all of the transactions in the database into a vector with:
+ *  - the ID, name, quantity purchased, and purchase date of each item
+ *
+ * getTransactionsBySalesDate
+ *  - returns a vector of all transactions that occured on a particular date
+ *
+ * getTransactionsByCustomerName
+ *  - returns a vector with all of the transactions that a particular customer by a name has made
+ *
+ * getTransactionsByMemberID
+ *  - returns a vector with all of the transactions that a particular customer by an ID has made
+ *
+ * getSalesPriceTotalFloat
+ *  - returns the total sales price of a transaction
+ *
+ * updateTransactioninDB
+ *  - changes the values linked to an item in the database
+ *******************************************************************************************/
 std::vector<Transaction> DBManager::getAllTransactions()
 {
     std::vector<Transaction> transactions;
@@ -157,35 +301,6 @@ std::vector<Transaction> DBManager::getAllTransactions()
     return transactions;
 }
 
-//Gets all items from the database and returns them to the program placing them
-//inside a vector of items from class Item and returns vector
-std::vector<Item> DBManager::getAllItems()
-{
-    std::vector<Item> items;
-    QSqlQuery itemsQuery;
-    itemsQuery.exec("SELECT name, price, quantity, revenue FROM items");
-
-    //checks to see if database has values
-    if(itemsQuery.first())
-    {
-        while(itemsQuery.isValid())
-        {
-            Item tempItem;
-
-            tempItem.setItemName(itemsQuery.value(0).toString());
-            tempItem.setItemPrice(itemsQuery.value(1).toFloat());
-            tempItem.setQuantitySold(itemsQuery.value(2).toInt());
-            tempItem.setTotalRevenue(itemsQuery.value(3).toFloat());
-
-            items.push_back(tempItem);
-
-            itemsQuery.next();
-        }
-    }
-    qDebug() << "ITEMS ERROR:";
-    qDebug() << itemsQuery.lastError();
-    return items;
-}
 
 std::vector<Transaction> DBManager::getTransactionsBySalesDate(QDate salesDate)
 {
@@ -300,41 +415,6 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID, doub
     return transactions;
 }
 
-
-std::vector<Customer> DBManager::getAllCustomers()
-{
-    std::vector<Customer> customers;
-    QSqlQuery customersQuery;
-    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers"); //<! checks the first two characters of expirationDate column in database
-
-    if (customersQuery.exec())
-    {
-        if (customersQuery.first())
-        {
-            while(customersQuery.isValid())
-            {
-                Customer tempCustomer;
-
-                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
-                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
-                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
-                tempCustomer.setExpDate(customersQuery.value(3).toString());      // Sets expiration date
-
-                customers.push_back(tempCustomer); // Pushes customer to vector
-
-                customersQuery.next(); // Goes to next query result matching our customersQuery
-            }
-        }
-        else
-        {
-            // returns a fake transaction to the table to inform user that the ID they entered
-            // was not found.
-            customers.push_back(Customer(0, "Error loading customers from database", ""));
-        }
-    }
-    return customers;
-}
-
 QString DBManager::getSalesPriceForTransaction(Transaction transaction)
 {
     QString itemName = transaction.getItemName(); // Gets the item name associated with the transaction
@@ -372,7 +452,6 @@ float DBManager::getSalesPriceTotalFloat(Transaction transaction)
     QSqlQuery itemsQuery;
     QSqlQuery transactionsQuery;
 
-
     itemsQuery.exec("SELECT name, price FROM items");
 
     transactionsQuery.prepare("SELECT id, itempurchased, salePrice FROM transactions WHERE itempurchased=:itemName");
@@ -389,41 +468,6 @@ float DBManager::getSalesPriceTotalFloat(Transaction transaction)
     }
 
     return salePriceFloat;
-}
-
-std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
-{
-    QSqlQuery customersQuery;
-
-    customersQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE substr(expirationdate, 1, 2)=:month"); //<! checks the first two characters of expirationDate column in database
-    customersQuery.bindValue(":month", month);
-    std::vector<Customer> customers;
-
-    if (customersQuery.exec())
-    {
-        if (customersQuery.first())
-        {
-            while(customersQuery.isValid())
-            {
-                Customer tempCustomer;
-
-                tempCustomer.setCustomerID(customersQuery.value(0).toInt());      // Sets customer ID
-                tempCustomer.setCustomerName(customersQuery.value(1).toString()); // Sets customer name
-                tempCustomer.setMemberType(customersQuery.value(2).toString());   // Sets customer member type
-                tempCustomer.setExpDate(customersQuery.value(3).toString());      //
-
-                customers.push_back(tempCustomer); // Pushes customer to vector
-
-                customersQuery.next(); // Goes to next query result matching our customersQuery
-            }
-        }
-        else
-        {
-            throw QString("No memberships are expiring during the specified month!");
-        }
-    }
-    qDebug() << customersQuery.lastError();
-    return customers;
 }
 
 void DBManager::updateTransactionInDB(Transaction newTransaction, int transactionID)
@@ -446,6 +490,48 @@ void DBManager::updateTransactionInDB(Transaction newTransaction, int transactio
     qDebug() << query.lastError();
 }
 
+/*******************************************************************************************
+ * DATA COLLECTION ITEM FUNCTIONS
+ *
+ * getAllItems
+ *  - puts all of the items in a the database into a vector containing:
+ *  - the name, price, quantity purchased, and revenue the item has created
+ *
+ * addItem
+ *  -using passed parameters this function creates a new object and adds it to the database
+ *
+ * deleteItem
+ *  - finds the item in the database and deletes the entire record
+ *******************************************************************************************/
+//Gets all items from the database and returns them to the program placing them
+//inside a vector of items from class Item and returns vector
+std::vector<Item> DBManager::getAllItems()
+{
+    std::vector<Item> items;
+    QSqlQuery itemsQuery;
+    itemsQuery.exec("SELECT name, price, quantity, revenue FROM items");
+
+    //checks to see if database has values
+    if(itemsQuery.first())
+    {
+        while(itemsQuery.isValid())
+        {
+            Item tempItem;
+
+            tempItem.setItemName(itemsQuery.value(0).toString());
+            tempItem.setItemPrice(itemsQuery.value(1).toFloat());
+            tempItem.setQuantitySold(itemsQuery.value(2).toInt());
+            tempItem.setTotalRevenue(itemsQuery.value(3).toFloat());
+
+            items.push_back(tempItem);
+
+            itemsQuery.next();
+        }
+    }
+    qDebug() << "ITEMS ERROR:";
+    qDebug() << itemsQuery.lastError();
+    return items;
+}
 
 //Adds an item to the table in the database
 void DBManager::addItem(QString itemName, float itemPrice)
@@ -466,7 +552,6 @@ void DBManager::deleteItem(QString itemName)
     query.exec();
 }
 
-
 void DBManager::updateItemInDB(Item item)
 {
     QSqlQuery query;
@@ -484,62 +569,25 @@ void DBManager::updateItemInDB(Item item)
     query.exec();
 }
 
-std::vector<Customer> DBManager::getAllExecutiveCustomers()
-{
-    std::vector<Customer> execCustomers;
-    QSqlQuery customerQuery;
-    QString memberType = "Executive";
-
-    customerQuery.prepare("SELECT id, name, type, expirationdate FROM customers WHERE type=:memberType");
-    customerQuery.bindValue(":memberType", memberType);
-
-    if (customerQuery.exec())
-    {
-
-        if (customerQuery.first())
-        {
-            while(customerQuery.isValid())
-            {
-                Customer tempCustomer;
-
-                tempCustomer.setCustomerID(customerQuery.value(0).toInt());      // Sets customer ID
-                tempCustomer.setCustomerName(customerQuery.value(1).toString()); // Sets customer name
-                tempCustomer.setMemberType(customerQuery.value(2).toString());   // Sets customer member type
-                tempCustomer.setExpDate(customerQuery.value(3).toString());      // Sets customer exp date
-
-                execCustomers.push_back(tempCustomer); // Pushes customer to vector
-
-                customerQuery.next(); // Goes to next query result matching our customersQuery
-            }
-        }
-        else
-        {
-            // returns a fake transaction to the table to inform user that the ID they entered
-            // was not found.
-            execCustomers.push_back(Customer(0, "No customers found", "in database with given member type." ));
-
-        }
-    }
-    qDebug() << customerQuery.lastError();
-
-    return execCustomers;
-}
+/************************************************************************
+ * DATABASE CONNECTION
+ *
+ * getDB
+ *  -opens the database connection
+ *
+ * close
+ *  - Closes the database connection (used for when a user clicks quit)
+ *
+ * destructor
+ ***********************************************************************/
 
 QSqlDatabase* DBManager::getDB()
 {
     return &this->db;
 }
-
-/************************************************************************
- * DBManager::close()
- * ---------------------------------------------------------------------
- * Closes the database connection (used for when a user clicks quit)
- ***********************************************************************/
 void DBManager::close()
 {
     db.close();
-
-
 }
 
 DBManager::~DBManager()

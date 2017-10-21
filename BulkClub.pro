@@ -32,7 +32,8 @@ SOURCES += \
     transaction.cpp \
     customer.cpp \
     edittransactiondialog.cpp \
-    memberchangestatus.cpp
+    memberchangestatus.cpp \
+    addcustomerdialog.cpp
 
 HEADERS += \
         dbmanager.h \
@@ -42,10 +43,12 @@ HEADERS += \
     transaction.h \
     edittransactiondialog.h \
     customer.h \
-    memberchangestatus.h
+    memberchangestatus.h \
+    addcustomerdialog.h
 
 FORMS += \
         mainwindow.ui \
     loginwindow.ui \
     edittransactiondialog.ui \
-    memberchangestatus.ui
+    memberchangestatus.ui \
+    addcustomerdialog.ui
