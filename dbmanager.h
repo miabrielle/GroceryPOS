@@ -76,6 +76,9 @@ public:
     void deleteItem(QString itemName);
     void addItem(QString itemName, float itemPrice);
 
+    void addCustomer(Customer temp);
+    void deleteCustomer(QString customerName);
+
     // Get all executive customers
     std::vector<Customer> getAllExecutiveCustomers();
 
