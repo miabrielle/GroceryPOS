@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['purchasedate',['purchaseDate',['../class_transaction.html#aaf954eab2c7fcc26cc24faa3864d72ae',1,'Transaction']]]
+  ['membertype',['memberType',['../class_customer.html#a4715e08ddd587db913eb005066411850',1,'Customer']]]
 ];

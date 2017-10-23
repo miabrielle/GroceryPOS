@@ -1,0 +1,4 @@
+<map id="MainWindow::on_DeleteCustomerButton_clicked" name="MainWindow::on_DeleteCustomerButton_clicked">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#a6571758a87c453b5be07c850a1c0e70a" title="DBManager::deleteCustomer" alt="" coords="277,5,471,31"/>
+<area shape="rect" id="node3" href="$class_main_window.html#ad8356bf4df32f2c4fa3e8c40cdec4872" title="MainWindow::insufficient\lPriviledgesErrorMessage" alt="" coords="289,55,459,93"/>
+</map>

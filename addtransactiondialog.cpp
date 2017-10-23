@@ -29,11 +29,6 @@ AddTransactionDialog::AddTransactionDialog(QWidget *parent) :
     ui->quantityPurchasedInput->setMaximum(99999);
 }
 
-AddTransactionDialog::~AddTransactionDialog()
-{
-    delete ui;
-}
-
 void AddTransactionDialog::setDBPointer(DBManager* dbPointer)
 {
     this->dbPointer = dbPointer;
@@ -49,6 +44,9 @@ void AddTransactionDialog::setMainWindowPointer(MainWindow* mainWindow)
     this->adminCPPointer = mainWindow;
 }
 
+// Is triggered when the user pressed the "Add" button.
+// Transaction data entered by the user is inserted into the transactions table
+// as well as the database.
 void AddTransactionDialog::on_addButton_clicked()
 {
     Transaction transactionToAdd;
@@ -133,7 +131,18 @@ void AddTransactionDialog::on_addButton_clicked()
     transactionsTablePointer->setItem(addRow - 1, 5, salesPriceCell);
     //closes pop up window
 
+    adminCPPointer->displayItems();
 
     // This function needs to be called so the program can get the customer name and
     this->close();
+}
+
+void AddTransactionDialog::on_cancelButton_clicked()
+{
+    this->close();
+}
+
+AddTransactionDialog::~AddTransactionDialog()
+{
+    delete ui;
 }

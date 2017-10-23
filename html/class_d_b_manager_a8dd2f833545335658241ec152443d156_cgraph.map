@@ -1,0 +1,4 @@
+<map id="DBManager::getSalesPriceForTransaction" name="DBManager::getSalesPriceForTransaction">
+<area shape="rect" id="node2" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="235,5,413,31"/>
+<area shape="rect" id="node3" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="241,55,408,93"/>
+</map>

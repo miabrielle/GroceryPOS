@@ -1,0 +1,11 @@
+<map id="DBManager::getAllTransactions" name="DBManager::getAllTransactions">
+<area shape="rect" id="node2" href="$class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="262,63,482,88"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a664263fa3e47f7263fb27ae29ffac0d9" title="MainWindow::calculateRevenue" alt="" coords="267,119,478,144"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="833,5,1015,31"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="530,56,773,95"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a85a5a959c223f35f1c238265d3a2ed38" title="MainWindow::displayItems" alt="" coords="562,119,741,144"/>
+<area shape="rect" id="node10" href="$class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="544,168,758,207"/>
+<area shape="rect" id="node7" href="$class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="844,55,1004,93"/>
+<area shape="rect" id="node8" href="$class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="821,117,1027,156"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a683f9af4f000990a6d51d6bd7c345a03" title="MainWindow::on_displayAll\lButton_clicked" alt="" coords="832,180,1016,219"/>
+</map>

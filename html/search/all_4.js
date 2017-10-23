@@ -1,7 +1,7 @@
 var searchData=
 [
   ['getallcustomers',['getAllCustomers',['../class_d_b_manager.html#a5585a9e6461ebd2f01127740e230e8ac',1,'DBManager']]],
-  ['getallexecutivecustomers',['getAllExecutiveCustomers',['../class_d_b_manager.html#a5dea2461ed047cd2c54d88399333cd22',1,'DBManager']]],
+  ['getallexecutivecustomers',['getAllExecutiveCustomers',['../class_d_b_manager.html#aa0d13402c756fb0900a522668259c71b',1,'DBManager']]],
   ['getallitems',['getAllItems',['../class_d_b_manager.html#a757ba5cd699d83ebdc2185ccf243a660',1,'DBManager']]],
   ['getalltransactions',['getAllTransactions',['../class_d_b_manager.html#a5c0eb216c67cbb0540bbfb266cedcde3',1,'DBManager']]],
   ['getchangestatus',['getChangeStatus',['../class_customer.html#a92ed83fcef3a8cc39105574edbfe721f',1,'Customer']]],

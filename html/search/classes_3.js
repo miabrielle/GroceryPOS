@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['item',['Item',['../class_item.html',1,'']]]
+  ['edittransactiondialog',['EditTransactionDialog',['../class_edit_transaction_dialog.html',1,'']]]
 ];

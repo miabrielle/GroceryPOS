@@ -1,0 +1,7 @@
+<map id="Item::setItemPrice" name="Item::setItemPrice">
+<area shape="rect" id="node2" href="$class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="182,5,396,44"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a757ba5cd699d83ebdc2185ccf243a660" title="DBManager::getAllItems" alt="" coords="206,68,372,93"/>
+<area shape="rect" id="node4" href="$class_main_window.html#abbf10c87a988b07e449bd230c8ade898" title="MainWindow::renderItems" alt="" coords="444,68,620,93"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="681,40,862,65"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="668,89,874,128"/>
+</map>

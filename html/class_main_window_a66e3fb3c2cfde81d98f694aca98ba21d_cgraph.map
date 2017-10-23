@@ -1,0 +1,13 @@
+<map id="MainWindow::on_loadAllTransactionsButton_clicked" name="MainWindow::on_loadAllTransactionsButton_clicked">
+<area shape="rect" id="node2" href="$class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="297,167,516,192"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a5c0eb216c67cbb0540bbfb266cedcde3" title="DBManager::getAllTransactions" alt="" coords="564,111,773,136"/>
+<area shape="rect" id="node8" href="$class_main_window.html#ab352d92d62d6c6480120d69db6bcade0" title="MainWindow::addTransactions\lVectorToTable" alt="" coords="567,216,770,255"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="834,5,1020,31"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="838,55,1016,80"/>
+<area shape="rect" id="node6" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="844,104,1010,143"/>
+<area shape="rect" id="node7" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="827,167,1027,192"/>
+<area shape="rect" id="node9" href="$class_d_b_manager.html#aaac941d6a742976dba2a72020d8e3e29" title="DBManager::getCustomerName\lFromID" alt="" coords="821,216,1033,255"/>
+<area shape="rect" id="node10" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="836,279,1018,317"/>
+<area shape="rect" id="node11" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="1081,257,1259,283"/>
+<area shape="rect" id="node12" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="1087,307,1253,345"/>
+</map>

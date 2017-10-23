@@ -1,0 +1,6 @@
+<map id="DBManager::updateItemInDB" name="DBManager::updateItemInDB">
+<area shape="rect" id="node2" href="$class_item.html#ae26b4b9cbef030a929f3e1155bf0f880" title="Item::getItemName" alt="" coords="260,5,394,31"/>
+<area shape="rect" id="node3" href="$class_item.html#aeca0c663a0dd7bee0098b9d1890d7323" title="Item::getItemPrice" alt="" coords="262,55,392,80"/>
+<area shape="rect" id="node4" href="$class_item.html#ab206ffcc85ca17008b76f4d616637212" title="Item::getQuantitySold" alt="" coords="252,104,402,129"/>
+<area shape="rect" id="node5" href="$class_item.html#ac562a988768cb7e2590294ef6bceb33c" title="Item::getTotalRevenue" alt="" coords="250,153,404,179"/>
+</map>

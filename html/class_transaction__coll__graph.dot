@@ -1,8 +1,0 @@
-digraph "Transaction"
-{
- // INTERACTIVE_SVG=YES
-  bgcolor="transparent";
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{Transaction\n|- purchaseDate\l- itemName\l- customerID\l- quantityPurchased\l- salePrice\l|+ Transaction()\l+ Transaction()\l+ getPurchaseDate()\l+ getItemName()\l+ getCustomerID()\l+ getQuantityPurchased()\l+ getSalesPrice()\l+ getTransactionTotal()\l+ setPurchaseDate()\l+ setItemName()\l+ setCustomerID()\l+ setQuantityPurchased()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-}

@@ -1,0 +1,6 @@
+<map id="MainWindow::on_transactionsTable_cellClicked" name="MainWindow::on_transactionsTable_cellClicked">
+<area shape="rect" id="node2" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="259,5,446,31"/>
+<area shape="rect" id="node3" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="264,55,441,80"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="253,104,453,129"/>
+<area shape="rect" id="node5" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="270,153,435,192"/>
+</map>

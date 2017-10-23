@@ -1,0 +1,11 @@
+<map id="EditTransactionDialog::on_saveTransactionButton_clicked" name="EditTransactionDialog::on_saveTransactionButton_clicked">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#a8cbe923eda9c2979817145fc1674c0fc" title="DBManager::updateTransactionInDB" alt="" coords="240,68,480,93"/>
+<area shape="rect" id="node6" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="269,5,451,44"/>
+<area shape="rect" id="node7" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="267,117,453,143"/>
+<area shape="rect" id="node8" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="271,167,449,192"/>
+<area shape="rect" id="node9" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="260,216,460,241"/>
+<area shape="rect" id="node10" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="277,265,443,304"/>
+<area shape="rect" id="node3" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="539,68,717,93"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="545,5,711,44"/>
+<area shape="rect" id="node5" href="$class_transaction.html#ad105d8fcde2545a2e20c1fbef6b857bd" title="Transaction::getPurchaseDate" alt="" coords="528,117,729,143"/>
+</map>

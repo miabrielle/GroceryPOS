@@ -1,0 +1,8 @@
+<map id="MainWindow::insufficientPriviledgesErrorMessage" name="MainWindow::insufficientPriviledgesErrorMessage">
+<area shape="rect" id="node2" href="$class_main_window.html#a31406ea52d440f770dab4dbec88bcda0" title="MainWindow::on_deleteItem\lButton_clicked" alt="" coords="245,5,435,44"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="233,68,447,107"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a11a3f501e8e8be504f961839df4d0959" title="MainWindow::on_showChange\lMemberStatus_clicked" alt="" coords="237,131,443,169"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a7a6553d423617d6b39e016cae73edc52" title="MainWindow::on_AddCustomer\lButton_clicked" alt="" coords="236,193,444,232"/>
+<area shape="rect" id="node6" href="$class_main_window.html#ac6ada01c4f9b988d12fd83a4925e957b" title="MainWindow::on_DeleteCustomer\lButton_clicked" alt="" coords="228,256,452,295"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a5d886a1e46ac44414483e3dc06816a1e" title="MainWindow::on_deleteTransaction\lButton_clicked" alt="" coords="224,319,456,357"/>
+</map>

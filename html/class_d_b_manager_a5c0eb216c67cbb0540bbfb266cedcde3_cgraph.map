@@ -1,0 +1,6 @@
+<map id="DBManager::getAllTransactions" name="DBManager::getAllTransactions">
+<area shape="rect" id="node2" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="269,5,456,31"/>
+<area shape="rect" id="node3" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="274,55,451,80"/>
+<area shape="rect" id="node4" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="280,104,445,143"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="262,167,463,192"/>
+</map>

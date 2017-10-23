@@ -1,0 +1,6 @@
+<map id="DBManager::addCustomer" name="DBManager::addCustomer">
+<area shape="rect" id="node2" href="$class_customer.html#a236d5d040cafabeb6f84296d3e101ff1" title="Customer::getCustomerID" alt="" coords="244,5,421,31"/>
+<area shape="rect" id="node3" href="$class_customer.html#ab0b8cd7eeabde4cb9729d79107d297ff" title="Customer::getCustomerName" alt="" coords="233,55,432,80"/>
+<area shape="rect" id="node4" href="$class_customer.html#a2efe8b657531f27816c28fd617ed6e20" title="Customer::getMemberType" alt="" coords="241,104,424,129"/>
+<area shape="rect" id="node5" href="$class_customer.html#abf6000a0dda2f86c129c3722b2e7f67b" title="Customer::getExpDate" alt="" coords="254,153,411,179"/>
+</map>

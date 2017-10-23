@@ -1,0 +1,5 @@
+<map id="MainWindow::on_AddCustomerButton_clicked" name="MainWindow::on_AddCustomerButton_clicked">
+<area shape="rect" id="node2" href="$class_add_customer_dialog.html#ac438f19396aaeaf28fc99b8cd4176707" title="AddCustomerDialog::\lsetCustomersTablePointer" alt="" coords="262,5,440,44"/>
+<area shape="rect" id="node3" href="$class_add_customer_dialog.html#a2edd797a87db1398060376faabd57770" title="AddCustomerDialog::\lsetDBPointer" alt="" coords="277,68,425,107"/>
+<area shape="rect" id="node4" href="$class_main_window.html#ad8356bf4df32f2c4fa3e8c40cdec4872" title="MainWindow::insufficient\lPriviledgesErrorMessage" alt="" coords="266,131,436,169"/>
+</map>

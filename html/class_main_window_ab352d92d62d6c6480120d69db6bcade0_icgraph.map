@@ -1,0 +1,8 @@
+<map id="MainWindow::addTransactionsVectorToTable" name="MainWindow::addTransactionsVectorToTable">
+<area shape="rect" id="node2" href="$class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="267,33,487,59"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a2525ef3c7b218330f66e3d9ed2076806" title="MainWindow::on_showSales\lButton_clicked" alt="" coords="281,83,473,121"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a26769fefc8ec44a8191b5bd5c1fd7ff6" title="MainWindow::on_searchByCustomer\lIDButton_clicked" alt="" coords="256,145,497,184"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="281,208,473,247"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="576,5,757,31"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="545,55,788,93"/>
+</map>

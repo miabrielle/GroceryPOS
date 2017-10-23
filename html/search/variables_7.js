@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rebateamt',['rebateAmt',['../class_customer.html#a82f52ae412e3bd2d2140f3ca2c4ff7d8',1,'Customer']]],
-  ['rowselected',['rowSelected',['../class_main_window.html#af55fd21a57d5378e2432e68264bcb6aa',1,'MainWindow::rowSelected()'],['../class_edit_transaction_dialog.html#a91111468f95390e527ec81a7d64ba132',1,'EditTransactionDialog::rowSelected()']]]
+  ['quantitypurchased',['quantityPurchased',['../class_transaction.html#ac4d79a9bd07ce1a8eb5f990afcd9c8f0',1,'Transaction']]],
+  ['quantitysold',['quantitySold',['../class_item.html#aea4726d371021c73b537884ec5a7d0d7',1,'Item']]]
 ];

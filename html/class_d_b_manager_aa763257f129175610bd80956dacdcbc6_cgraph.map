@@ -1,0 +1,6 @@
+<map id="DBManager::getExpiringMembershipsForMonth" name="DBManager::getExpiringMembershipsForMonth">
+<area shape="rect" id="node2" href="$class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f" title="Customer::setCustomerID" alt="" coords="311,5,487,31"/>
+<area shape="rect" id="node3" href="$class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d" title="Customer::setCustomerName" alt="" coords="300,55,498,80"/>
+<area shape="rect" id="node4" href="$class_customer.html#ac3f3d979e99805b1290899565e437147" title="Customer::setMemberType" alt="" coords="308,104,490,129"/>
+<area shape="rect" id="node5" href="$class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="321,153,477,179"/>
+</map>

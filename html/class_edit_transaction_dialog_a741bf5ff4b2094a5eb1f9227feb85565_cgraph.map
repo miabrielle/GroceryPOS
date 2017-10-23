@@ -1,0 +1,7 @@
+<map id="EditTransactionDialog::EditTransactionDialog" name="EditTransactionDialog::EditTransactionDialog">
+<area shape="rect" id="node2" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="225,5,402,31"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a8f33b94256f8d2f10f51234884acee29" title="DBManager::createComboBox\lModel" alt="" coords="212,55,415,93"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a96d8a52b65bcb59f4bb38ff061b3ac8f" title="Transaction::getCustomerID" alt="" coords="220,117,407,143"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="230,167,397,205"/>
+<area shape="rect" id="node6" href="$class_transaction.html#ad105d8fcde2545a2e20c1fbef6b857bd" title="Transaction::getPurchaseDate" alt="" coords="213,229,414,255"/>
+</map>

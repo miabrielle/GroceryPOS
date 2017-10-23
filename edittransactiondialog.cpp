@@ -6,9 +6,11 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, Transaction transa
     QDialog(parent),
     ui(new Ui::EditTransactionDialog)
 {
+
+    // Exception handling
     if (transactionSelected.getItemName().isEmpty())
     {
-        throw QString ("Please select a row from the transactions table.");
+        throw QString ("Please select a valid row from the transactions table.");
     }
     ui->setupUi(this);
 
@@ -20,7 +22,7 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, Transaction transa
 
     this->rowSelected = rowSelected;
 
-    // Sets spin box maximums
+    // Fills in the current data for the transaction that is to be editted
     ui->quantityPurchasedField->setMaximum(9999);
     ui->customerIDInput->setCurrentText(QString::number(transactionSelected.getCustomerID()));
     ui->itemPurchasedInput->setCurrentText(transactionSelected.getItemName());
@@ -33,18 +35,11 @@ void EditTransactionDialog::setTransactionSelectedPointer(Transaction* transacti
     this->transactionSelectedPointer = transactionSelected;
 }
 
-
-void EditTransactionDialog::setTransactionsTablePointer(QTableWidget* transactionsTable)
-{
-    // Gives the edit window access to the Transactions table QTableWidget
-    this->transactionsTablePointer = transactionsTable;
-}
-
 void EditTransactionDialog::on_saveTransactionButton_clicked()
 {
     int customerID = ui->customerIDInput->currentText().toInt();
-    QString itemPurchased = ui->itemPurchasedInput->currentText();
     int quantityPurchased = ui->quantityPurchasedField->value();
+    QString itemPurchased = ui->itemPurchasedInput->currentText();
     QString purchaseDate = ui->datePurchasedField->text();
 
     Transaction newTransaction(customerID, itemPurchased, quantityPurchased, purchaseDate);
@@ -79,16 +74,23 @@ void EditTransactionDialog::on_saveTransactionButton_clicked()
     this->close();
 }
 
+// Gives access to the DBManager class
 void EditTransactionDialog::setDBPointer(DBManager* dbPointer)
 {
     this->dbPointer = dbPointer;
+}
+
+// Gives access to the Transaction table (QTableWidget) inside the MainWindow UI.
+void EditTransactionDialog::setTransactionsTablePointer(QTableWidget* transactionsTable)
+{
+    // Gives the edit window access to the Transactions table QTableWidget
+    this->transactionsTablePointer = transactionsTable;
 }
 
 void EditTransactionDialog::on_cancelEditTransactionButton_clicked()
 {
     this->close();
 }
-
 
 EditTransactionDialog::~EditTransactionDialog()
 {

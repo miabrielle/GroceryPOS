@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['_7eaddcustomerdialog',['~AddCustomerDialog',['../class_add_customer_dialog.html#a45f2cc97e9d194fa83b01b4bc7a8b11b',1,'AddCustomerDialog']]],
+  ['_7eaddtransactiondialog',['~AddTransactionDialog',['../class_add_transaction_dialog.html#a3d0b47a90b23bb1239e2c3a2e39bb3cd',1,'AddTransactionDialog']]],
   ['_7ecustomer',['~Customer',['../class_customer.html#ab93fb14683b0393b9c900109f77c2629',1,'Customer']]],
   ['_7edbmanager',['~DBManager',['../class_d_b_manager.html#ae6d8cb78041c8ff0c5e77609ca512df0',1,'DBManager']]],
   ['_7eedittransactiondialog',['~EditTransactionDialog',['../class_edit_transaction_dialog.html#abb9c3ccc5c5d926618f62abd6c4a411c',1,'EditTransactionDialog']]],

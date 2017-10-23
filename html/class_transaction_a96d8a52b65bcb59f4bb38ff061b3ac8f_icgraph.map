@@ -1,0 +1,5 @@
+<map id="Transaction::getCustomerID" name="Transaction::getCustomerID">
+<area shape="rect" id="node2" href="$class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="480,5,640,44"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a84e2a554629a4a4a2a6e53609094cf04" title="DBManager::addTransaction" alt="" coords="241,37,432,63"/>
+<area shape="rect" id="node4" href="$class_edit_transaction_dialog.html#a741bf5ff4b2094a5eb1f9227feb85565" title="EditTransactionDialog\l::EditTransactionDialog" alt="" coords="257,87,416,125"/>
+</map>

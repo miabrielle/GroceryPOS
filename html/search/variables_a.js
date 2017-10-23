@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['ui',['ui',['../class_main_window.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow::ui()'],['../class_edit_transaction_dialog.html#a47778c64bac2c86267cfcd64101047d4',1,'EditTransactionDialog::ui()'],['../class_login_window.html#a583f5c7dda98acd3e65791101f9ff2a0',1,'LoginWindow::ui()'],['../class_member_change_status.html#a5be06783882d3e3626c77779ea20c15a',1,'MemberChangeStatus::ui()']]]
+  ['totalrevenue',['totalRevenue',['../class_item.html#a93857ef5f77c1e4ca5bbd685b7483bfc',1,'Item']]],
+  ['transactionselected',['transactionSelected',['../class_main_window.html#acd69ebd243c08de70e538d23f4344379',1,'MainWindow']]],
+  ['transactionselectedpointer',['transactionSelectedPointer',['../class_edit_transaction_dialog.html#adf50dcc60c9a6327e90c079b6f2bc6da',1,'EditTransactionDialog']]],
+  ['transactionstablepointer',['transactionsTablePointer',['../class_add_transaction_dialog.html#a1d1a36b33eea7c043cae48ba6240e6a8',1,'AddTransactionDialog::transactionsTablePointer()'],['../class_edit_transaction_dialog.html#a114ef30403f4dd0f572d2f4d07e23b8b',1,'EditTransactionDialog::transactionsTablePointer()']]]
 ];

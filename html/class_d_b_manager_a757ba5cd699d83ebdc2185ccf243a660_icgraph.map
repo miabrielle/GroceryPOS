@@ -1,0 +1,5 @@
+<map id="DBManager::getAllItems" name="DBManager::getAllItems">
+<area shape="rect" id="node2" href="$class_main_window.html#abbf10c87a988b07e449bd230c8ade898" title="MainWindow::renderItems" alt="" coords="219,33,395,59"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="456,5,637,31"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="443,55,649,93"/>
+</map>

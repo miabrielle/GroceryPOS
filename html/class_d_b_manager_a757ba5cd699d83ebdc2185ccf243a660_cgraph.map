@@ -1,0 +1,6 @@
+<map id="DBManager::getAllItems" name="DBManager::getAllItems">
+<area shape="rect" id="node2" href="$class_item.html#ab986969c02b5f0ea903361166e8a1b47" title="Item::setItemName" alt="" coords="229,5,363,31"/>
+<area shape="rect" id="node3" href="$class_item.html#a75ac809e95d356bd2cbd48b885e6a2d7" title="Item::setItemPrice" alt="" coords="232,55,361,80"/>
+<area shape="rect" id="node4" href="$class_item.html#a15b929bd0d6d365e546b275f4a780f93" title="Item::setQuantitySold" alt="" coords="222,104,371,129"/>
+<area shape="rect" id="node5" href="$class_item.html#aae2f0d12e1587c4f9612880b5100af6f" title="Item::setTotalRevenue" alt="" coords="219,153,373,179"/>
+</map>

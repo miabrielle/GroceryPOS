@@ -1,0 +1,7 @@
+<map id="MainWindow::on_editTransactionRowButton_clicked" name="MainWindow::on_editTransactionRowButton_clicked">
+<area shape="rect" id="node2" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="287,5,465,31"/>
+<area shape="rect" id="node3" href="$class_transaction.html#ad105d8fcde2545a2e20c1fbef6b857bd" title="Transaction::getPurchaseDate" alt="" coords="276,55,477,80"/>
+<area shape="rect" id="node4" href="$class_edit_transaction_dialog.html#a6a4e78a75ce1f52fddbbeed6f02c2334" title="EditTransactionDialog\l::setTransactionsTablePointer" alt="" coords="278,104,474,143"/>
+<area shape="rect" id="node5" href="$class_edit_transaction_dialog.html#a193839430432cc6d5564e0ef8368ccb3" title="EditTransactionDialog\l::setDBPointer" alt="" coords="301,167,452,205"/>
+<area shape="rect" id="node6" href="$class_edit_transaction_dialog.html#afe6ed92777ca381d34c98a2bcc94de7d" title="EditTransactionDialog\l::setTransactionSelectedPointer" alt="" coords="271,229,481,268"/>
+</map>

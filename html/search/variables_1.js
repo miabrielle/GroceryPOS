@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['db',['db',['../class_d_b_manager.html#a5399b255096671fc8a5dd3ebf2dd0507',1,'DBManager']]],
-  ['dbpointer',['dbPointer',['../class_main_window.html#a08dcc3bde043f0a69f82ea8badad8a3c',1,'MainWindow::dbPointer()'],['../class_edit_transaction_dialog.html#aed38ea4d4488854b505c0a4e1100daa0',1,'EditTransactionDialog::dbPointer()'],['../class_login_window.html#a35a9551b384df84bcfd847988a6c0bbb',1,'LoginWindow::dbPointer()'],['../class_member_change_status.html#a445471d1550710dccfb41bd51940e28a',1,'MemberChangeStatus::dbPointer()']]]
+  ['changestatus',['changeStatus',['../class_customer.html#a814891a66b57f11e27b43a6453060650',1,'Customer']]],
+  ['customerid',['customerID',['../class_customer.html#a3f2558edde33b441a708fdd6ff49f9db',1,'Customer::customerID()'],['../class_transaction.html#ac7ff15a48e4d48b06608334ddff20084',1,'Transaction::customerID()']]],
+  ['customername',['customerName',['../class_customer.html#a0e935eea307e60801d883c3765f319c0',1,'Customer']]],
+  ['customerstablepointer',['customersTablePointer',['../class_add_customer_dialog.html#ac7061819c18f69f395dc2c34998a98a5',1,'AddCustomerDialog']]]
 ];

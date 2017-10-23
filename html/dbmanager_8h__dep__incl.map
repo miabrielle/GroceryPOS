@@ -1,12 +1,16 @@
 <map id="dbmanager.h" name="dbmanager.h">
-<area shape="rect" id="node2" href="$admincp_8h.html" title="admincp.h" alt="" coords="494,79,577,104"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="main.cpp" alt="" coords="661,152,737,177"/>
-<area shape="rect" id="node6" href="$edittransactiondialog_8h.html" title="edittransactiondialog.h" alt="" coords="131,79,286,104"/>
-<area shape="rect" id="node8" href="$memberchangestatus_8h.html" title="memberchangestatus.h" alt="" coords="309,79,470,104"/>
-<area shape="rect" id="node10" href="$dbmanager_8cpp.html" title="dbmanager.cpp" alt="" coords="778,79,892,104"/>
-<area shape="rect" id="node11" href="$loginwindow_8h.html" title="loginwindow.h" alt="" coords="600,79,705,104"/>
-<area shape="rect" id="node3" href="$admincp_8cpp.html" title="admincp.cpp" alt="" coords="397,152,494,177"/>
-<area shape="rect" id="node4" href="$loginwindow_8cpp.html" title="loginwindow.cpp" alt="" coords="519,152,637,177"/>
-<area shape="rect" id="node7" href="$edittransactiondialog_8cpp.html" title="edittransactiondialog.cpp" alt="" coords="5,152,174,177"/>
-<area shape="rect" id="node9" href="$memberchangestatus_8cpp.html" title="memberchangestatus.cpp" alt="" coords="198,152,373,177"/>
+<area shape="rect" id="node2" href="$addcustomerdialog_8h.html" title="addcustomerdialog.h" alt="" coords="289,79,434,104"/>
+<area shape="rect" id="node5" href="$addtransactiondialog_8h.html" title="addtransactiondialog.h" alt="" coords="993,152,1149,177"/>
+<area shape="rect" id="node7" href="$admincp_8h.html" title="admincp.h" alt="" coords="822,79,905,104"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title="main.cpp" alt="" coords="701,152,777,177"/>
+<area shape="rect" id="node10" href="$edittransactiondialog_8h.html" title="edittransactiondialog.h" alt="" coords="31,79,186,104"/>
+<area shape="rect" id="node12" href="$memberchangestatus_8h.html" title="memberchangestatus.h" alt="" coords="459,79,620,104"/>
+<area shape="rect" id="node14" href="$dbmanager_8cpp.html" title="dbmanager.cpp" alt="" coords="929,79,1042,104"/>
+<area shape="rect" id="node15" href="$loginwindow_8h.html" title="loginwindow.h" alt="" coords="694,79,798,104"/>
+<area shape="rect" id="node3" href="$addcustomerdialog_8cpp.html" title="addcustomerdialog.cpp" alt="" coords="217,152,376,177"/>
+<area shape="rect" id="node4" href="$admincp_8cpp.html" title="admincp.cpp" alt="" coords="616,225,713,251"/>
+<area shape="rect" id="node6" href="$addtransactiondialog_8cpp.html" title="addtransactiondialog.cpp" alt="" coords="986,225,1156,251"/>
+<area shape="rect" id="node8" href="$loginwindow_8cpp.html" title="loginwindow.cpp" alt="" coords="801,152,920,177"/>
+<area shape="rect" id="node11" href="$edittransactiondialog_8cpp.html" title="edittransactiondialog.cpp" alt="" coords="24,152,193,177"/>
+<area shape="rect" id="node13" href="$memberchangestatus_8cpp.html" title="memberchangestatus.cpp" alt="" coords="452,152,627,177"/>
 </map>

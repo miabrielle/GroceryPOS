@@ -1,0 +1,13 @@
+<map id="Customer::setExpDate" name="Customer::setExpDate">
+<area shape="rect" id="node2" href="$class_add_customer_dialog.html#a1ef8594920906bbc7d407a3bac2807ff" title="AddCustomerDialog::\lon_addButton_clicked" alt="" coords="256,53,408,92"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a5585a9e6461ebd2f01127740e230e8ac" title="DBManager::getAllCustomers" alt="" coords="233,116,431,141"/>
+<area shape="rect" id="node11" href="$class_d_b_manager.html#aa763257f129175610bd80956dacdcbc6" title="DBManager::getExpiringMemberships\lForMonth" alt="" coords="209,197,455,236"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="768,41,976,67"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="519,52,705,91"/>
+<area shape="rect" id="node8" href="$class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="775,147,970,185"/>
+<area shape="rect" id="node10" href="$class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="519,167,705,205"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="1050,5,1231,31"/>
+<area shape="rect" id="node6" href="$class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="1024,55,1256,93"/>
+<area shape="rect" id="node9" href="$class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="1026,140,1255,192"/>
+<area shape="rect" id="node12" href="$class_main_window.html#acecbe261ea21f58cbd8952d5db18441f" title="MainWindow::on_displayExpiring\lMembershipsButton_clicked" alt="" coords="503,229,720,268"/>
+</map>

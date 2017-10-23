@@ -1,0 +1,15 @@
+<map id="MainWindow::displayItems" name="MainWindow::displayItems">
+<area shape="rect" id="node2" href="$class_main_window.html#a664263fa3e47f7263fb27ae29ffac0d9" title="MainWindow::calculateRevenue" alt="" coords="232,289,444,315"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a5c0eb216c67cbb0540bbfb266cedcde3" title="DBManager::getAllTransactions" alt="" coords="492,111,701,136"/>
+<area shape="rect" id="node8" href="$class_item.html#ae26b4b9cbef030a929f3e1155bf0f880" title="Item::getItemName" alt="" coords="781,216,916,241"/>
+<area shape="rect" id="node9" href="$class_item.html#aeca0c663a0dd7bee0098b9d1890d7323" title="Item::getItemPrice" alt="" coords="784,265,913,291"/>
+<area shape="rect" id="node10" href="$class_item.html#a15b929bd0d6d365e546b275f4a780f93" title="Item::setQuantitySold" alt="" coords="522,364,670,389"/>
+<area shape="rect" id="node11" href="$class_item.html#aae2f0d12e1587c4f9612880b5100af6f" title="Item::setTotalRevenue" alt="" coords="519,413,673,439"/>
+<area shape="rect" id="node12" href="$class_d_b_manager.html#a2478427cd7c5d124b578c9af5532756a" title="DBManager::updateItemInDB" alt="" coords="498,315,694,340"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="755,5,942,31"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="760,55,937,80"/>
+<area shape="rect" id="node6" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="766,104,931,143"/>
+<area shape="rect" id="node7" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="749,167,949,192"/>
+<area shape="rect" id="node13" href="$class_item.html#ab206ffcc85ca17008b76f4d616637212" title="Item::getQuantitySold" alt="" coords="774,315,924,340"/>
+<area shape="rect" id="node14" href="$class_item.html#ac562a988768cb7e2590294ef6bceb33c" title="Item::getTotalRevenue" alt="" coords="771,364,926,389"/>
+</map>

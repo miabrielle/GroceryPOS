@@ -1,10 +1,15 @@
 var searchData=
 [
+  ['on_5faddbutton_5fclicked',['on_addButton_clicked',['../class_add_customer_dialog.html#a1ef8594920906bbc7d407a3bac2807ff',1,'AddCustomerDialog::on_addButton_clicked()'],['../class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6',1,'AddTransactionDialog::on_addButton_clicked()']]],
+  ['on_5faddcustomerbutton_5fclicked',['on_AddCustomerButton_clicked',['../class_main_window.html#a7a6553d423617d6b39e016cae73edc52',1,'MainWindow']]],
   ['on_5fadditembutton_5fclicked',['on_addItemButton_clicked',['../class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f',1,'MainWindow']]],
-  ['on_5fcancelbutton_5fclicked',['on_cancelButton_clicked',['../class_login_window.html#a57640934e642ad1790902d51c2e00015',1,'LoginWindow']]],
+  ['on_5faddtransactionbutton_5fclicked',['on_addTransactionButton_clicked',['../class_main_window.html#a02212c8b0a3151c882476229f356a1e9',1,'MainWindow']]],
+  ['on_5fcancelbutton_5fclicked',['on_cancelButton_clicked',['../class_add_customer_dialog.html#a88daba97860e6a64e27127fbabf13ef0',1,'AddCustomerDialog::on_cancelButton_clicked()'],['../class_add_transaction_dialog.html#a6b431aeae7cc5d0dd92ddcfaf46a1cf7',1,'AddTransactionDialog::on_cancelButton_clicked()'],['../class_login_window.html#a57640934e642ad1790902d51c2e00015',1,'LoginWindow::on_cancelButton_clicked()']]],
   ['on_5fcanceledittransactionbutton_5fclicked',['on_cancelEditTransactionButton_clicked',['../class_edit_transaction_dialog.html#a8f4bf9ab09e37b5fd2aae7d98d2c2956',1,'EditTransactionDialog']]],
   ['on_5fclosememstatwindow_5fclicked',['on_closeMemStatWindow_clicked',['../class_member_change_status.html#a585e42f88ce7252b3b229e8705c08670',1,'MemberChangeStatus']]],
+  ['on_5fdeletecustomerbutton_5fclicked',['on_DeleteCustomerButton_clicked',['../class_main_window.html#ac6ada01c4f9b988d12fd83a4925e957b',1,'MainWindow']]],
   ['on_5fdeleteitembutton_5fclicked',['on_deleteItemButton_clicked',['../class_main_window.html#a31406ea52d440f770dab4dbec88bcda0',1,'MainWindow']]],
+  ['on_5fdeletetransactionbutton_5fclicked',['on_deleteTransactionButton_clicked',['../class_main_window.html#a5d886a1e46ac44414483e3dc06816a1e',1,'MainWindow']]],
   ['on_5fdisplayallbutton_5fclicked',['on_displayAllButton_clicked',['../class_main_window.html#a683f9af4f000990a6d51d6bd7c345a03',1,'MainWindow']]],
   ['on_5fdisplayexpiringmembershipsbutton_5fclicked',['on_displayExpiringMembershipsButton_clicked',['../class_main_window.html#acecbe261ea21f58cbd8952d5db18441f',1,'MainWindow']]],
   ['on_5fedittransactionrowbutton_5fclicked',['on_editTransactionRowButton_clicked',['../class_main_window.html#a235870628e18d2fa643b37aef12a3fed',1,'MainWindow']]],

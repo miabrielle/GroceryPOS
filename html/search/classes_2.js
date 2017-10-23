@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['edittransactiondialog',['EditTransactionDialog',['../class_edit_transaction_dialog.html',1,'']]]
+  ['dbmanager',['DBManager',['../class_d_b_manager.html',1,'']]]
 ];

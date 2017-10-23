@@ -1,0 +1,8 @@
+<map id="MainWindow::on_showSalesButton_clicked" name="MainWindow::on_showSalesButton_clicked">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#ae6d075047742bc099b6b2abf23b41597" title="DBManager::getTransactions\lBySalesDate" alt="" coords="250,5,444,44"/>
+<area shape="rect" id="node3" href="$class_main_window.html#ab352d92d62d6c6480120d69db6bcade0" title="MainWindow::addTransactions\lVectorToTable" alt="" coords="245,68,448,107"/>
+<area shape="rect" id="node4" href="$class_d_b_manager.html#aaac941d6a742976dba2a72020d8e3e29" title="DBManager::getCustomerName\lFromID" alt="" coords="496,36,708,75"/>
+<area shape="rect" id="node5" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="511,99,693,137"/>
+<area shape="rect" id="node6" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="756,77,934,103"/>
+<area shape="rect" id="node7" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="762,127,928,165"/>
+</map>

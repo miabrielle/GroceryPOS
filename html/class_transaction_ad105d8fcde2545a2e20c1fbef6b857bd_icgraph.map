@@ -1,0 +1,8 @@
+<map id="Transaction::getPurchaseDate" name="Transaction::getPurchaseDate">
+<area shape="rect" id="node2" href="$class_main_window.html#a235870628e18d2fa643b37aef12a3fed" title="MainWindow::on_editTransaction\lRowButton_clicked" alt="" coords="265,5,483,44"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a8cbe923eda9c2979817145fc1674c0fc" title="DBManager::updateTransactionInDB" alt="" coords="254,68,494,93"/>
+<area shape="rect" id="node5" href="$class_d_b_manager.html#a84e2a554629a4a4a2a6e53609094cf04" title="DBManager::addTransaction" alt="" coords="278,117,470,143"/>
+<area shape="rect" id="node7" href="$class_edit_transaction_dialog.html#a741bf5ff4b2094a5eb1f9227feb85565" title="EditTransactionDialog\l::EditTransactionDialog" alt="" coords="295,167,453,205"/>
+<area shape="rect" id="node4" href="$class_edit_transaction_dialog.html#adaa4d4c0b9ed9e50b99cb525706ad47d" title="EditTransactionDialog\l::on_saveTransactionButton\l_clicked" alt="" coords="542,45,729,97"/>
+<area shape="rect" id="node6" href="$class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="555,121,715,160"/>
+</map>

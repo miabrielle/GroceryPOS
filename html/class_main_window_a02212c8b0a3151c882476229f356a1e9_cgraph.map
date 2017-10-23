@@ -1,0 +1,5 @@
+<map id="MainWindow::on_addTransactionButton_clicked" name="MainWindow::on_addTransactionButton_clicked">
+<area shape="rect" id="node2" href="$class_add_transaction_dialog.html#ab5b91ffa1ae88ef01e56145b97498bf1" title="AddTransactionDialog\l::setDBPointer" alt="" coords="294,5,446,44"/>
+<area shape="rect" id="node3" href="$class_add_transaction_dialog.html#add2993750591ce400f13f460758534c6" title="AddTransactionDialog\l::setTransactionsTablePointer" alt="" coords="272,68,469,107"/>
+<area shape="rect" id="node4" href="$class_add_transaction_dialog.html#a6da410a85238bdf7f6a8361f48c576b3" title="AddTransactionDialog\l::setMainWindowPointer" alt="" coords="288,131,453,169"/>
+</map>

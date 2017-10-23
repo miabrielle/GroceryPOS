@@ -1,0 +1,12 @@
+<map id="Customer::setMemberType" name="Customer::setMemberType">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#a5585a9e6461ebd2f01127740e230e8ac" title="DBManager::getAllCustomers" alt="" coords="260,116,458,141"/>
+<area shape="rect" id="node10" href="$class_d_b_manager.html#aa763257f129175610bd80956dacdcbc6" title="DBManager::getExpiringMemberships\lForMonth" alt="" coords="235,197,482,236"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="795,41,1003,67"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="545,52,732,91"/>
+<area shape="rect" id="node7" href="$class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="802,147,996,185"/>
+<area shape="rect" id="node9" href="$class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="546,167,732,205"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="1076,5,1258,31"/>
+<area shape="rect" id="node5" href="$class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="1051,55,1283,93"/>
+<area shape="rect" id="node8" href="$class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="1052,140,1282,192"/>
+<area shape="rect" id="node11" href="$class_main_window.html#acecbe261ea21f58cbd8952d5db18441f" title="MainWindow::on_displayExpiring\lMembershipsButton_clicked" alt="" coords="530,229,747,268"/>
+</map>

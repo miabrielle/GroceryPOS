@@ -1,6 +1,7 @@
 var searchData=
 [
   ['initdb',['initDB',['../class_d_b_manager.html#ab3ef182b7cbcf7f688ff4bf4b8af0374',1,'DBManager']]],
+  ['insufficientpriviledgeserrormessage',['insufficientPriviledgesErrorMessage',['../class_main_window.html#ad8356bf4df32f2c4fa3e8c40cdec4872',1,'MainWindow']]],
   ['isadmin',['isAdmin',['../class_main_window.html#a735c2c1dcdb1692dbcc3c01a9f83b3d3',1,'MainWindow']]],
   ['item',['Item',['../class_item.html',1,'']]],
   ['item_2ecpp',['item.cpp',['../item_8cpp.html',1,'']]],

@@ -1,0 +1,8 @@
+<map id="AddCustomerDialog::on_addButton_clicked" name="AddCustomerDialog::on_addButton_clicked">
+<area shape="rect" id="node2" href="$class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="218,31,374,56"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a81304ee9d337ab2126fc1768f6a0e962" title="DBManager::addCustomer" alt="" coords="206,80,386,105"/>
+<area shape="rect" id="node4" href="$class_customer.html#a236d5d040cafabeb6f84296d3e101ff1" title="Customer::getCustomerID" alt="" coords="445,5,621,31"/>
+<area shape="rect" id="node5" href="$class_customer.html#ab0b8cd7eeabde4cb9729d79107d297ff" title="Customer::getCustomerName" alt="" coords="434,55,632,80"/>
+<area shape="rect" id="node6" href="$class_customer.html#a2efe8b657531f27816c28fd617ed6e20" title="Customer::getMemberType" alt="" coords="442,104,624,129"/>
+<area shape="rect" id="node7" href="$class_customer.html#abf6000a0dda2f86c129c3722b2e7f67b" title="Customer::getExpDate" alt="" coords="455,153,611,179"/>
+</map>

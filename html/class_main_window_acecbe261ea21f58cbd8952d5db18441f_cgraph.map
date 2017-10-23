@@ -1,0 +1,8 @@
+<map id="MainWindow::on_displayExpiringMembershipsButton_clicked" name="MainWindow::on_displayExpiringMembershipsButton_clicked">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#aa763257f129175610bd80956dacdcbc6" title="DBManager::getExpiringMemberships\lForMonth" alt="" coords="270,73,517,112"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a5c0d3b2e6e475c3c3454d78fda83f0a4" title="MainWindow::addCustomers\lVectorToTable" alt="" coords="298,136,490,175"/>
+<area shape="rect" id="node3" href="$class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f" title="Customer::setCustomerID" alt="" coords="576,5,752,31"/>
+<area shape="rect" id="node4" href="$class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d" title="Customer::setCustomerName" alt="" coords="565,55,763,80"/>
+<area shape="rect" id="node5" href="$class_customer.html#ac3f3d979e99805b1290899565e437147" title="Customer::setMemberType" alt="" coords="573,104,755,129"/>
+<area shape="rect" id="node6" href="$class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="586,153,742,179"/>
+</map>

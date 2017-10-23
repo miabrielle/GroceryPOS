@@ -1,0 +1,24 @@
+<map id="Transaction::getQuantityPurchased" name="Transaction::getQuantityPurchased">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="248,180,430,219"/>
+<area shape="rect" id="node20" href="$class_d_b_manager.html#adc46b86e9da28c601881399e6ab95339" title="DBManager::getSalesPrice\lTotalFloat" alt="" coords="517,319,700,357"/>
+<area shape="rect" id="node21" href="$class_d_b_manager.html#a8cbe923eda9c2979817145fc1674c0fc" title="DBManager::updateTransactionInDB" alt="" coords="219,249,459,275"/>
+<area shape="rect" id="node22" href="$class_d_b_manager.html#a84e2a554629a4a4a2a6e53609094cf04" title="DBManager::addTransaction" alt="" coords="244,96,435,121"/>
+<area shape="rect" id="node23" href="$class_edit_transaction_dialog.html#a741bf5ff4b2094a5eb1f9227feb85565" title="EditTransactionDialog\l::EditTransactionDialog" alt="" coords="260,351,419,389"/>
+<area shape="rect" id="node3" href="$class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="529,55,688,93"/>
+<area shape="rect" id="node4" href="$class_main_window.html#ab352d92d62d6c6480120d69db6bcade0" title="MainWindow::addTransactions\lVectorToTable" alt="" coords="507,117,710,156"/>
+<area shape="rect" id="node11" href="$class_d_b_manager.html#a217d761f037231dd46a824cec8545343" title="DBManager::getTransactions\lByMemberID" alt="" coords="511,180,706,219"/>
+<area shape="rect" id="node19" href="$class_edit_transaction_dialog.html#adaa4d4c0b9ed9e50b99cb525706ad47d" title="EditTransactionDialog\l::on_saveTransactionButton\l_clicked" alt="" coords="515,243,702,295"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="769,68,988,93"/>
+<area shape="rect" id="node8" href="$class_main_window.html#a2525ef3c7b218330f66e3d9ed2076806" title="MainWindow::on_showSales\lButton_clicked" alt="" coords="783,5,974,44"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a26769fefc8ec44a8191b5bd5c1fd7ff6" title="MainWindow::on_searchByCustomer\lIDButton_clicked" alt="" coords="758,117,999,156"/>
+<area shape="rect" id="node10" href="$class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="783,180,974,219"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="1363,172,1545,197"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="1047,61,1290,100"/>
+<area shape="rect" id="node12" href="$class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="785,305,972,344"/>
+<area shape="rect" id="node15" href="$class_d_b_manager.html#a65359a62d273f5fff6f8da0a8e1dd9f9" title="DBManager::getTransactions\lByCustomerName" alt="" coords="781,243,976,281"/>
+<area shape="rect" id="node16" href="$class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="785,368,971,407"/>
+<area shape="rect" id="node13" href="$class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="1064,289,1272,315"/>
+<area shape="rect" id="node14" href="$class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="1338,283,1570,321"/>
+<area shape="rect" id="node17" href="$class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="1071,368,1266,407"/>
+<area shape="rect" id="node18" href="$class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="1339,361,1569,413"/>
+</map>

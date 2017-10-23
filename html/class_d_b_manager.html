@@ -93,6 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a60a8e16d4353a773acb8a24698b49a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cc1763659f3188e4fb63b8b4a0a1712"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a8cc1763659f3188e4fb63b8b4a0a1712">authenticateUser</a> (QString username, QString password, bool &amp;isAdmin)</td></tr>
 <tr class="separator:a8cc1763659f3188e4fb63b8b4a0a1712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f33b94256f8d2f10f51234884acee29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a8f33b94256f8d2f10f51234884acee29">createComboBoxModel</a> (QString tableName, QString fieldName, QComboBox *comboBox)</td></tr>
+<tr class="separator:a8f33b94256f8d2f10f51234884acee29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2478427cd7c5d124b578c9af5532756a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a2478427cd7c5d124b578c9af5532756a">updateItemInDB</a> (<a class="el" href="class_item.html">Item</a> item)</td></tr>
 <tr class="separator:a2478427cd7c5d124b578c9af5532756a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d075047742bc099b6b2abf23b41597"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#ae6d075047742bc099b6b2abf23b41597">getTransactionsBySalesDate</a> (QDate salesDate)</td></tr>
@@ -101,6 +103,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a65359a62d273f5fff6f8da0a8e1dd9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a217d761f037231dd46a824cec8545343"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transaction.html">Transaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a217d761f037231dd46a824cec8545343">getTransactionsByMemberID</a> (int memberID, double &amp;grandTotal)</td></tr>
 <tr class="separator:a217d761f037231dd46a824cec8545343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84e2a554629a4a4a2a6e53609094cf04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a84e2a554629a4a4a2a6e53609094cf04">addTransaction</a> (<a class="el" href="class_transaction.html">Transaction</a> transactionToAdd)</td></tr>
+<tr class="separator:a84e2a554629a4a4a2a6e53609094cf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d02f81c0e27083cb3abe65545450dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a09d02f81c0e27083cb3abe65545450dc">deleteTransaction</a> (int transactionID)</td></tr>
+<tr class="separator:a09d02f81c0e27083cb3abe65545450dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5585a9e6461ebd2f01127740e230e8ac"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_customer.html">Customer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a5585a9e6461ebd2f01127740e230e8ac">getAllCustomers</a> ()</td></tr>
 <tr class="separator:a5585a9e6461ebd2f01127740e230e8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa763257f129175610bd80956dacdcbc6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_customer.html">Customer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#aa763257f129175610bd80956dacdcbc6">getExpiringMembershipsForMonth</a> (QString month)</td></tr>
@@ -115,8 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abf872cb42a3940365d38a9866e98dc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a197f397d8538dfd4eed2d30274c08f02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a197f397d8538dfd4eed2d30274c08f02">addItem</a> (QString itemName, float itemPrice)</td></tr>
 <tr class="separator:a197f397d8538dfd4eed2d30274c08f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dea2461ed047cd2c54d88399333cd22"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_customer.html">Customer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a5dea2461ed047cd2c54d88399333cd22">getAllExecutiveCustomers</a> ()</td></tr>
-<tr class="separator:a5dea2461ed047cd2c54d88399333cd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81304ee9d337ab2126fc1768f6a0e962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a81304ee9d337ab2126fc1768f6a0e962">addCustomer</a> (<a class="el" href="class_customer.html">Customer</a> temp)</td></tr>
+<tr class="separator:a81304ee9d337ab2126fc1768f6a0e962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6571758a87c453b5be07c850a1c0e70a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a6571758a87c453b5be07c850a1c0e70a">deleteCustomer</a> (QString customerName)</td></tr>
+<tr class="separator:a6571758a87c453b5be07c850a1c0e70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d13402c756fb0900a522668259c71b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_customer.html">Customer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#aa0d13402c756fb0900a522668259c71b">getAllExecutiveCustomers</a> ()</td></tr>
+<tr class="separator:aa0d13402c756fb0900a522668259c71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0012c66df7278bef4dc20c7ebfaa89ba"><td class="memItemLeft" align="right" valign="top">QSqlDatabase *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#a0012c66df7278bef4dc20c7ebfaa89ba">getDB</a> ()</td></tr>
 <tr class="separator:a0012c66df7278bef4dc20c7ebfaa89ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d8cb78041c8ff0c5e77609ca512df0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_b_manager.html#ae6d8cb78041c8ff0c5e77609ca512df0">~DBManager</a> ()</td></tr>
@@ -163,6 +173,43 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a81304ee9d337ab2126fc1768f6a0e962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81304ee9d337ab2126fc1768f6a0e962">&#9670;&nbsp;</a></span>addCustomer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::addCustomer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_customer.html">Customer</a>&#160;</td>
+          <td class="paramname"><em>temp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_cgraph.png" border="0" usemap="#class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_cgraph" id="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_cgraph">
+<area shape="rect" id="node2" href="class_customer.html#a236d5d040cafabeb6f84296d3e101ff1" title="Customer::getCustomerID" alt="" coords="244,5,421,31"/>
+<area shape="rect" id="node3" href="class_customer.html#ab0b8cd7eeabde4cb9729d79107d297ff" title="Customer::getCustomerName" alt="" coords="233,55,432,80"/>
+<area shape="rect" id="node4" href="class_customer.html#a2efe8b657531f27816c28fd617ed6e20" title="Customer::getMemberType" alt="" coords="241,104,424,129"/>
+<area shape="rect" id="node5" href="class_customer.html#abf6000a0dda2f86c129c3722b2e7f67b" title="Customer::getExpDate" alt="" coords="254,153,411,179"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_icgraph.png" border="0" usemap="#class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_icgraph" id="class_d_b_manager_a81304ee9d337ab2126fc1768f6a0e962_icgraph">
+<area shape="rect" id="node2" href="class_add_customer_dialog.html#a1ef8594920906bbc7d407a3bac2807ff" title="AddCustomerDialog::\lon_addButton_clicked" alt="" coords="233,5,386,44"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a197f397d8538dfd4eed2d30274c08f02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a197f397d8538dfd4eed2d30274c08f02">&#9670;&nbsp;</a></span>addItem()</h2>
 
@@ -188,6 +235,51 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a197f397d8538dfd4eed2d30274c08f02_icgraph.png" border="0" usemap="#class_d_b_manager_a197f397d8538dfd4eed2d30274c08f02_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a197f397d8538dfd4eed2d30274c08f02_icgraph" id="class_d_b_manager_a197f397d8538dfd4eed2d30274c08f02_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="201,5,415,44"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a84e2a554629a4a4a2a6e53609094cf04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e2a554629a4a4a2a6e53609094cf04">&#9670;&nbsp;</a></span>addTransaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::addTransaction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_transaction.html">Transaction</a>&#160;</td>
+          <td class="paramname"><em>transactionToAdd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_cgraph.png" border="0" usemap="#class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_cgraph" id="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a96d8a52b65bcb59f4bb38ff061b3ac8f" title="Transaction::getCustomerID" alt="" coords="251,5,439,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="256,55,434,80"/>
+<area shape="rect" id="node4" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="262,104,428,143"/>
+<area shape="rect" id="node5" href="class_transaction.html#ad105d8fcde2545a2e20c1fbef6b857bd" title="Transaction::getPurchaseDate" alt="" coords="245,167,446,192"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_icgraph.png" border="0" usemap="#class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_icgraph" id="class_d_b_manager_a84e2a554629a4a4a2a6e53609094cf04_icgraph">
+<area shape="rect" id="node2" href="class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="245,5,405,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -222,6 +314,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8cc1763659f3188e4fb63b8b4a0a1712_icgraph.png" border="0" usemap="#class_d_b_manager_a8cc1763659f3188e4fb63b8b4a0a1712_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a8cc1763659f3188e4fb63b8b4a0a1712_icgraph" id="class_d_b_manager_a8cc1763659f3188e4fb63b8b4a0a1712_icgraph">
+<area shape="rect" id="node2" href="class_login_window.html#ab8d51547e0865fd32ae88eba18e5623f" title="LoginWindow::on_loginButton\l_clicked" alt="" coords="254,5,452,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -242,6 +342,75 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8f33b94256f8d2f10f51234884acee29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f33b94256f8d2f10f51234884acee29">&#9670;&nbsp;</a></span>createComboBoxModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::createComboBoxModel </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>tableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fieldName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QComboBox *&#160;</td>
+          <td class="paramname"><em>comboBox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8f33b94256f8d2f10f51234884acee29_icgraph.png" border="0" usemap="#class_d_b_manager_a8f33b94256f8d2f10f51234884acee29_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a8f33b94256f8d2f10f51234884acee29_icgraph" id="class_d_b_manager_a8f33b94256f8d2f10f51234884acee29_icgraph">
+<area shape="rect" id="node2" href="class_add_transaction_dialog.html#aaed6f0fcd92dabb0f33089f3abc76dd0" title="AddTransactionDialog\l::AddTransactionDialog" alt="" coords="256,5,416,44"/>
+<area shape="rect" id="node3" href="class_edit_transaction_dialog.html#a741bf5ff4b2094a5eb1f9227feb85565" title="EditTransactionDialog\l::EditTransactionDialog" alt="" coords="257,68,415,107"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6571758a87c453b5be07c850a1c0e70a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6571758a87c453b5be07c850a1c0e70a">&#9670;&nbsp;</a></span>deleteCustomer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::deleteCustomer </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>customerName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a6571758a87c453b5be07c850a1c0e70a_icgraph.png" border="0" usemap="#class_d_b_manager_a6571758a87c453b5be07c850a1c0e70a_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a6571758a87c453b5be07c850a1c0e70a_icgraph" id="class_d_b_manager_a6571758a87c453b5be07c850a1c0e70a_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#ac6ada01c4f9b988d12fd83a4925e957b" title="MainWindow::on_DeleteCustomer\lButton_clicked" alt="" coords="247,5,471,44"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="abf872cb42a3940365d38a9866e98dc02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf872cb42a3940365d38a9866e98dc02">&#9670;&nbsp;</a></span>deleteItem()</h2>
 
@@ -257,6 +426,40 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_abf872cb42a3940365d38a9866e98dc02_icgraph.png" border="0" usemap="#class_d_b_manager_abf872cb42a3940365d38a9866e98dc02_icgraph" alt=""/></div>
+<map name="class_d_b_manager_abf872cb42a3940365d38a9866e98dc02_icgraph" id="class_d_b_manager_abf872cb42a3940365d38a9866e98dc02_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a31406ea52d440f770dab4dbec88bcda0" title="MainWindow::on_deleteItem\lButton_clicked" alt="" coords="215,5,405,44"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a09d02f81c0e27083cb3abe65545450dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d02f81c0e27083cb3abe65545450dc">&#9670;&nbsp;</a></span>deleteTransaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::deleteTransaction </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>transactionID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a09d02f81c0e27083cb3abe65545450dc_icgraph.png" border="0" usemap="#class_d_b_manager_a09d02f81c0e27083cb3abe65545450dc_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a09d02f81c0e27083cb3abe65545450dc_icgraph" id="class_d_b_manager_a09d02f81c0e27083cb3abe65545450dc_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a5d886a1e46ac44414483e3dc06816a1e" title="MainWindow::on_deleteTransaction\lButton_clicked" alt="" coords="259,5,492,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -274,17 +477,42 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_cgraph.png" border="0" usemap="#class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_cgraph" id="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_cgraph">
+<area shape="rect" id="node2" href="class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f" title="Customer::setCustomerID" alt="" coords="262,5,438,31"/>
+<area shape="rect" id="node3" href="class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d" title="Customer::setCustomerName" alt="" coords="251,55,449,80"/>
+<area shape="rect" id="node4" href="class_customer.html#ac3f3d979e99805b1290899565e437147" title="Customer::setMemberType" alt="" coords="259,104,441,129"/>
+<area shape="rect" id="node5" href="class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="272,153,428,179"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_icgraph.png" border="0" usemap="#class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_icgraph" id="class_d_b_manager_a5585a9e6461ebd2f01127740e230e8ac_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="486,51,694,76"/>
+<area shape="rect" id="node5" href="class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="251,67,438,105"/>
+<area shape="rect" id="node6" href="class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="492,147,687,185"/>
+<area shape="rect" id="node8" href="class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="251,181,437,220"/>
+<area shape="rect" id="node3" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="767,5,948,31"/>
+<area shape="rect" id="node4" href="class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="742,55,973,93"/>
+<area shape="rect" id="node7" href="class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="743,140,972,192"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="a5dea2461ed047cd2c54d88399333cd22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dea2461ed047cd2c54d88399333cd22">&#9670;&nbsp;</a></span>getAllExecutiveCustomers()</h2>
+<a id="aa0d13402c756fb0900a522668259c71b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d13402c756fb0900a522668259c71b">&#9670;&nbsp;</a></span>getAllExecutiveCustomers()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="class_customer.html">Customer</a> &gt; DBManager::getAllExecutiveCustomers </td>
+          <td class="memname">std::vector&lt;<a class="el" href="class_customer.html">Customer</a>&gt; DBManager::getAllExecutiveCustomers </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -308,6 +536,27 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_cgraph.png" border="0" usemap="#class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_cgraph" id="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_cgraph">
+<area shape="rect" id="node2" href="class_item.html#ab986969c02b5f0ea903361166e8a1b47" title="Item::setItemName" alt="" coords="229,5,363,31"/>
+<area shape="rect" id="node3" href="class_item.html#a75ac809e95d356bd2cbd48b885e6a2d7" title="Item::setItemPrice" alt="" coords="232,55,361,80"/>
+<area shape="rect" id="node4" href="class_item.html#a15b929bd0d6d365e546b275f4a780f93" title="Item::setQuantitySold" alt="" coords="222,104,371,129"/>
+<area shape="rect" id="node5" href="class_item.html#aae2f0d12e1587c4f9612880b5100af6f" title="Item::setTotalRevenue" alt="" coords="219,153,373,179"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_icgraph.png" border="0" usemap="#class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_icgraph" id="class_d_b_manager_a757ba5cd699d83ebdc2185ccf243a660_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#abbf10c87a988b07e449bd230c8ade898" title="MainWindow::renderItems" alt="" coords="219,33,395,59"/>
+<area shape="rect" id="node3" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="456,5,637,31"/>
+<area shape="rect" id="node4" href="class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="443,55,649,93"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -325,6 +574,33 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_cgraph.png" border="0" usemap="#class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_cgraph" id="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="269,5,456,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="274,55,451,80"/>
+<area shape="rect" id="node4" href="class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="280,104,445,143"/>
+<area shape="rect" id="node5" href="class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="262,167,463,192"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_icgraph.png" border="0" usemap="#class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_icgraph" id="class_d_b_manager_a5c0eb216c67cbb0540bbfb266cedcde3_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="262,63,482,88"/>
+<area shape="rect" id="node5" href="class_main_window.html#a664263fa3e47f7263fb27ae29ffac0d9" title="MainWindow::calculateRevenue" alt="" coords="267,119,478,144"/>
+<area shape="rect" id="node3" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="833,5,1015,31"/>
+<area shape="rect" id="node4" href="class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="530,56,773,95"/>
+<area shape="rect" id="node6" href="class_main_window.html#a85a5a959c223f35f1c238265d3a2ed38" title="MainWindow::displayItems" alt="" coords="562,119,741,144"/>
+<area shape="rect" id="node10" href="class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="544,168,758,207"/>
+<area shape="rect" id="node7" href="class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="844,55,1004,93"/>
+<area shape="rect" id="node8" href="class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="821,117,1027,156"/>
+<area shape="rect" id="node9" href="class_main_window.html#a683f9af4f000990a6d51d6bd7c345a03" title="MainWindow::on_displayAll\lButton_clicked" alt="" coords="832,180,1016,219"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -343,6 +619,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a60a8e16d4353a773acb8a24698b49a74_icgraph.png" border="0" usemap="#class_d_b_manager_a60a8e16d4353a773acb8a24698b49a74_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a60a8e16d4353a773acb8a24698b49a74_icgraph" id="class_d_b_manager_a60a8e16d4353a773acb8a24698b49a74_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="274,5,466,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -361,6 +645,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_aaac941d6a742976dba2a72020d8e3e29_icgraph.png" border="0" usemap="#class_d_b_manager_aaac941d6a742976dba2a72020d8e3e29_icgraph" alt=""/></div>
+<map name="class_d_b_manager_aaac941d6a742976dba2a72020d8e3e29_icgraph" id="class_d_b_manager_aaac941d6a742976dba2a72020d8e3e29_icgraph">
+<area shape="rect" id="node2" href="class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="287,52,447,91"/>
+<area shape="rect" id="node3" href="class_main_window.html#ab352d92d62d6c6480120d69db6bcade0" title="MainWindow::addTransactions\lVectorToTable" alt="" coords="265,115,468,153"/>
+<area shape="rect" id="node4" href="class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="527,33,746,59"/>
+<area shape="rect" id="node7" href="class_main_window.html#a2525ef3c7b218330f66e3d9ed2076806" title="MainWindow::on_showSales\lButton_clicked" alt="" coords="541,83,733,121"/>
+<area shape="rect" id="node8" href="class_main_window.html#a26769fefc8ec44a8191b5bd5c1fd7ff6" title="MainWindow::on_searchByCustomer\lIDButton_clicked" alt="" coords="516,145,757,184"/>
+<area shape="rect" id="node9" href="class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="541,208,733,247"/>
+<area shape="rect" id="node5" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="836,5,1017,31"/>
+<area shape="rect" id="node6" href="class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="805,55,1048,93"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -396,6 +695,25 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_cgraph.png" border="0" usemap="#class_d_b_manager_aa763257f129175610bd80956dacdcbc6_cgraph" alt=""/></div>
+<map name="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_cgraph" id="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_cgraph">
+<area shape="rect" id="node2" href="class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f" title="Customer::setCustomerID" alt="" coords="311,5,487,31"/>
+<area shape="rect" id="node3" href="class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d" title="Customer::setCustomerName" alt="" coords="300,55,498,80"/>
+<area shape="rect" id="node4" href="class_customer.html#ac3f3d979e99805b1290899565e437147" title="Customer::setMemberType" alt="" coords="308,104,490,129"/>
+<area shape="rect" id="node5" href="class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="321,153,477,179"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_icgraph.png" border="0" usemap="#class_d_b_manager_aa763257f129175610bd80956dacdcbc6_icgraph" alt=""/></div>
+<map name="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_icgraph" id="class_d_b_manager_aa763257f129175610bd80956dacdcbc6_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#acecbe261ea21f58cbd8952d5db18441f" title="MainWindow::on_displayExpiring\lMembershipsButton_clicked" alt="" coords="300,5,517,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -414,6 +732,39 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8dd2f833545335658241ec152443d156_cgraph.png" border="0" usemap="#class_d_b_manager_a8dd2f833545335658241ec152443d156_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a8dd2f833545335658241ec152443d156_cgraph" id="class_d_b_manager_a8dd2f833545335658241ec152443d156_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="235,5,413,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="241,55,408,93"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8dd2f833545335658241ec152443d156_icgraph.png" border="0" usemap="#class_d_b_manager_a8dd2f833545335658241ec152443d156_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a8dd2f833545335658241ec152443d156_icgraph" id="class_d_b_manager_a8dd2f833545335658241ec152443d156_icgraph">
+<area shape="rect" id="node2" href="class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="257,61,417,100"/>
+<area shape="rect" id="node3" href="class_main_window.html#ab352d92d62d6c6480120d69db6bcade0" title="MainWindow::addTransactions\lVectorToTable" alt="" coords="235,124,439,163"/>
+<area shape="rect" id="node10" href="class_d_b_manager.html#a217d761f037231dd46a824cec8545343" title="DBManager::getTransactions\lByMemberID" alt="" coords="240,187,434,225"/>
+<area shape="rect" id="node18" href="class_edit_transaction_dialog.html#adaa4d4c0b9ed9e50b99cb525706ad47d" title="EditTransactionDialog\l::on_saveTransactionButton\l_clicked" alt="" coords="244,249,430,301"/>
+<area shape="rect" id="node4" href="class_main_window.html#a149a4f8dda92b5fbf135dcfe22aec251" title="MainWindow::renderTransactions" alt="" coords="497,12,717,37"/>
+<area shape="rect" id="node7" href="class_main_window.html#a2525ef3c7b218330f66e3d9ed2076806" title="MainWindow::on_showSales\lButton_clicked" alt="" coords="511,61,703,100"/>
+<area shape="rect" id="node8" href="class_main_window.html#a26769fefc8ec44a8191b5bd5c1fd7ff6" title="MainWindow::on_searchByCustomer\lIDButton_clicked" alt="" coords="487,124,727,163"/>
+<area shape="rect" id="node9" href="class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="511,187,703,225"/>
+<area shape="rect" id="node5" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="1092,101,1273,127"/>
+<area shape="rect" id="node6" href="class_main_window.html#a66e3fb3c2cfde81d98f694aca98ba21d" title="MainWindow::on_loadAllTransactions\lButton_clicked" alt="" coords="775,5,1018,44"/>
+<area shape="rect" id="node11" href="class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="514,249,700,288"/>
+<area shape="rect" id="node14" href="class_d_b_manager.html#a65359a62d273f5fff6f8da0a8e1dd9f9" title="DBManager::getTransactions\lByCustomerName" alt="" coords="510,375,704,413"/>
+<area shape="rect" id="node15" href="class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="514,312,700,351"/>
+<area shape="rect" id="node12" href="class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="793,188,1001,213"/>
+<area shape="rect" id="node13" href="class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="1066,181,1298,220"/>
+<area shape="rect" id="node16" href="class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="800,312,994,351"/>
+<area shape="rect" id="node17" href="class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="1068,305,1297,357"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -432,6 +783,29 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_cgraph.png" border="0" usemap="#class_d_b_manager_adc46b86e9da28c601881399e6ab95339_cgraph" alt=""/></div>
+<map name="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_cgraph" id="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="235,5,413,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="241,55,408,93"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_icgraph.png" border="0" usemap="#class_d_b_manager_adc46b86e9da28c601881399e6ab95339_icgraph" alt=""/></div>
+<map name="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_icgraph" id="class_d_b_manager_adc46b86e9da28c601881399e6ab95339_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="235,56,422,95"/>
+<area shape="rect" id="node6" href="class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="236,120,422,159"/>
+<area shape="rect" id="node3" href="class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="470,61,678,87"/>
+<area shape="rect" id="node4" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="751,5,933,31"/>
+<area shape="rect" id="node5" href="class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="726,55,958,93"/>
+<area shape="rect" id="node7" href="class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="477,123,671,161"/>
+<area shape="rect" id="node8" href="class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="727,117,957,169"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -450,6 +824,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a65359a62d273f5fff6f8da0a8e1dd9f9_cgraph.png" border="0" usemap="#class_d_b_manager_a65359a62d273f5fff6f8da0a8e1dd9f9_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a65359a62d273f5fff6f8da0a8e1dd9f9_cgraph" id="class_d_b_manager_a65359a62d273f5fff6f8da0a8e1dd9f9_cgraph">
+<area shape="rect" id="node2" href="class_d_b_manager.html#a217d761f037231dd46a824cec8545343" title="DBManager::getTransactions\lByMemberID" alt="" coords="248,104,442,143"/>
+<area shape="rect" id="node3" href="class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="497,5,683,31"/>
+<area shape="rect" id="node4" href="class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="501,55,679,80"/>
+<area shape="rect" id="node5" href="class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="507,104,673,143"/>
+<area shape="rect" id="node6" href="class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="490,167,690,192"/>
+<area shape="rect" id="node7" href="class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="499,216,681,255"/>
+<area shape="rect" id="node8" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="738,195,916,220"/>
+<area shape="rect" id="node9" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="744,244,910,283"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -478,6 +867,37 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a217d761f037231dd46a824cec8545343_cgraph.png" border="0" usemap="#class_d_b_manager_a217d761f037231dd46a824cec8545343_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a217d761f037231dd46a824cec8545343_cgraph" id="class_d_b_manager_a217d761f037231dd46a824cec8545343_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="254,5,441,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="259,55,436,80"/>
+<area shape="rect" id="node4" href="class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="265,104,430,143"/>
+<area shape="rect" id="node5" href="class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="248,167,448,192"/>
+<area shape="rect" id="node6" href="class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="257,216,439,255"/>
+<area shape="rect" id="node7" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="496,195,674,220"/>
+<area shape="rect" id="node8" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="502,244,668,283"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a217d761f037231dd46a824cec8545343_icgraph.png" border="0" usemap="#class_d_b_manager_a217d761f037231dd46a824cec8545343_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a217d761f037231dd46a824cec8545343_icgraph" id="class_d_b_manager_a217d761f037231dd46a824cec8545343_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a57a09052739a1b06505730f996fcb8a2" title="MainWindow::calcExecutive\lRebates" alt="" coords="275,27,461,65"/>
+<area shape="rect" id="node6" href="class_main_window.html#a26769fefc8ec44a8191b5bd5c1fd7ff6" title="MainWindow::on_searchByCustomer\lIDButton_clicked" alt="" coords="248,89,488,128"/>
+<area shape="rect" id="node7" href="class_main_window.html#a1a02e470871f3e13352ace3ab381c4c0" title="MainWindow::on_showSales\lByCustomerName_clicked" alt="" coords="272,152,464,191"/>
+<area shape="rect" id="node8" href="class_d_b_manager.html#a65359a62d273f5fff6f8da0a8e1dd9f9" title="DBManager::getTransactions\lByCustomerName" alt="" coords="271,215,465,253"/>
+<area shape="rect" id="node9" href="class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="275,277,461,316"/>
+<area shape="rect" id="node3" href="class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="536,33,744,59"/>
+<area shape="rect" id="node4" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="818,5,999,31"/>
+<area shape="rect" id="node5" href="class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="792,55,1024,93"/>
+<area shape="rect" id="node10" href="class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="543,277,738,316"/>
+<area shape="rect" id="node11" href="class_member_change_status.html#acd57a6d51b7fe8867ea3b02da88cb479" title="MemberChangeStatus\l::on_showMemberChangeStatuses\l_clicked" alt="" coords="793,271,1023,323"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -496,6 +916,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_ae6d075047742bc099b6b2abf23b41597_icgraph.png" border="0" usemap="#class_d_b_manager_ae6d075047742bc099b6b2abf23b41597_icgraph" alt=""/></div>
+<map name="class_d_b_manager_ae6d075047742bc099b6b2abf23b41597_icgraph" id="class_d_b_manager_ae6d075047742bc099b6b2abf23b41597_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a2525ef3c7b218330f66e3d9ed2076806" title="MainWindow::on_showSales\lButton_clicked" alt="" coords="248,5,439,44"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -513,6 +941,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_ab3ef182b7cbcf7f688ff4bf4b8af0374_icgraph.png" border="0" usemap="#class_d_b_manager_ab3ef182b7cbcf7f688ff4bf4b8af0374_icgraph" alt=""/></div>
+<map name="class_d_b_manager_ab3ef182b7cbcf7f688ff4bf4b8af0374_icgraph" id="class_d_b_manager_ab3ef182b7cbcf7f688ff4bf4b8af0374_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="189,5,239,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -531,6 +967,31 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_cgraph.png" border="0" usemap="#class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_cgraph" id="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_cgraph">
+<area shape="rect" id="node2" href="class_item.html#ae26b4b9cbef030a929f3e1155bf0f880" title="Item::getItemName" alt="" coords="260,5,394,31"/>
+<area shape="rect" id="node3" href="class_item.html#aeca0c663a0dd7bee0098b9d1890d7323" title="Item::getItemPrice" alt="" coords="262,55,392,80"/>
+<area shape="rect" id="node4" href="class_item.html#ab206ffcc85ca17008b76f4d616637212" title="Item::getQuantitySold" alt="" coords="252,104,402,129"/>
+<area shape="rect" id="node5" href="class_item.html#ac562a988768cb7e2590294ef6bceb33c" title="Item::getTotalRevenue" alt="" coords="250,153,404,179"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_icgraph.png" border="0" usemap="#class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_icgraph" id="class_d_b_manager_a2478427cd7c5d124b578c9af5532756a_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a664263fa3e47f7263fb27ae29ffac0d9" title="MainWindow::calculateRevenue" alt="" coords="250,124,461,149"/>
+<area shape="rect" id="node3" href="class_main_window.html#a85a5a959c223f35f1c238265d3a2ed38" title="MainWindow::displayItems" alt="" coords="526,96,705,121"/>
+<area shape="rect" id="node8" href="class_main_window.html#a3449edcfbb49d35f8299b1affc2bf04f" title="MainWindow::on_addItemButton\l_clicked" alt="" coords="509,145,723,184"/>
+<area shape="rect" id="node4" href="class_add_transaction_dialog.html#a3b658773e3663bd3dffd7cc57477eeb6" title="AddTransactionDialog\l::on_addButton_clicked" alt="" coords="794,5,954,44"/>
+<area shape="rect" id="node5" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="783,68,964,93"/>
+<area shape="rect" id="node6" href="class_main_window.html#a7913d74043ebc34bb67e6e18ffec7eb6" title="MainWindow::on_searchButton\l_clicked" alt="" coords="771,117,977,156"/>
+<area shape="rect" id="node7" href="class_main_window.html#a683f9af4f000990a6d51d6bd7c345a03" title="MainWindow::on_displayAll\lButton_clicked" alt="" coords="782,180,965,219"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -559,6 +1020,24 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_cgraph.png" border="0" usemap="#class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_cgraph" alt=""/></div>
+<map name="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_cgraph" id="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_cgraph">
+<area shape="rect" id="node2" href="class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="304,5,482,31"/>
+<area shape="rect" id="node3" href="class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="310,55,476,93"/>
+<area shape="rect" id="node4" href="class_transaction.html#ad105d8fcde2545a2e20c1fbef6b857bd" title="Transaction::getPurchaseDate" alt="" coords="293,117,494,143"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_icgraph.png" border="0" usemap="#class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_icgraph" alt=""/></div>
+<map name="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_icgraph" id="class_d_b_manager_a8cbe923eda9c2979817145fc1674c0fc_icgraph">
+<area shape="rect" id="node2" href="class_edit_transaction_dialog.html#adaa4d4c0b9ed9e50b99cb525706ad47d" title="EditTransactionDialog\l::on_saveTransactionButton\l_clicked" alt="" coords="293,5,480,57"/>
+</map>
+</div>
 
 </div>
 </div>

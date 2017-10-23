@@ -1,8 +1,0 @@
-digraph "DBManager"
-{
- // INTERACTIVE_SVG=YES
-  bgcolor="transparent";
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{DBManager\n|- db\l|+ DBManager()\l+ initDB()\l+ close()\l+ getAllTransactions()\l+ getAllItems()\l+ getCustomerNameFromID()\l+ getCustomerIDFromCustomerName()\l+ authenticateUser()\l+ updateItemInDB()\l+ getTransactionsBySalesDate()\l+ getTransactionsByCustomerName()\l+ getTransactionsByMemberID()\l+ getAllCustomers()\l+ getExpiringMembershipsFor\lMonth()\l+ getSalesPriceForTransaction()\l+ getSalesPriceTotalFloat()\l+ updateTransactionInDB()\l+ deleteItem()\l+ addItem()\l+ getAllExecutiveCustomers()\l+ getDB()\l+ ~DBManager()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-}

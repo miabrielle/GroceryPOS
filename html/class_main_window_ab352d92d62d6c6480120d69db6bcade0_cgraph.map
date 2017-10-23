@@ -1,0 +1,6 @@
+<map id="MainWindow::addTransactionsVectorToTable" name="MainWindow::addTransactionsVectorToTable">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#aaac941d6a742976dba2a72020d8e3e29" title="DBManager::getCustomerName\lFromID" alt="" coords="256,5,468,44"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="271,68,453,107"/>
+<area shape="rect" id="node4" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="516,47,694,72"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="522,96,688,135"/>
+</map>

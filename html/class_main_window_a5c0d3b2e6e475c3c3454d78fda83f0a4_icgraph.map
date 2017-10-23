@@ -1,0 +1,6 @@
+<map id="MainWindow::addCustomersVectorToTable" name="MainWindow::addCustomersVectorToTable">
+<area shape="rect" id="node2" href="$class_main_window.html#a123316650fd7d11cf05002faf783c932" title="MainWindow::renderCustomers" alt="" coords="250,33,458,59"/>
+<area shape="rect" id="node5" href="$class_main_window.html#acecbe261ea21f58cbd8952d5db18441f" title="MainWindow::on_displayExpiring\lMembershipsButton_clicked" alt="" coords="245,83,462,121"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="535,5,717,31"/>
+<area shape="rect" id="node4" href="$class_main_window.html#acc58376b88837c24ad7fc4cb8a2a6e06" title="MainWindow::on_loadAllCustomers\lButton_clicked" alt="" coords="510,55,742,93"/>
+</map>

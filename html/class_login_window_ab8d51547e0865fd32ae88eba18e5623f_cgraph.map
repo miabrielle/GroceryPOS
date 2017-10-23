@@ -1,0 +1,5 @@
+<map id="LoginWindow::on_loginButton_clicked" name="LoginWindow::on_loginButton_clicked">
+<area shape="rect" id="node2" href="$class_d_b_manager.html#a8cc1763659f3188e4fb63b8b4a0a1712" title="DBManager::authenticateUser" alt="" coords="251,5,452,31"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a1338d8ca52c99ac035fd55b207321321" title="MainWindow::setDBPointer" alt="" coords="260,55,443,80"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a5ad1e7229dab4f1e4213549d2fd95dfe" title="MainWindow::setIsAdmin" alt="" coords="266,104,437,129"/>
+</map>

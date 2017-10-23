@@ -27,6 +27,8 @@ public:
 private slots:
     void on_addButton_clicked();
 
+    void on_cancelButton_clicked();
+
 private:
     Ui::AddTransactionDialog *ui;
     DBManager* dbPointer;

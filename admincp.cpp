@@ -228,10 +228,10 @@ void MainWindow::renderItems()
     ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
     ui->itemsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("# Sold"));
     ui->itemsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Revenue"));
-    ui->itemsTable->setColumnWidth(0, ui->itemsTable->width() / 2.1);
-    ui->itemsTable->setColumnWidth(1, ui->itemsTable->width() / 6.2);
-    ui->itemsTable->setColumnWidth(2, ui->itemsTable->width() / 6.2);
-    ui->itemsTable->setColumnWidth(3, ui->itemsTable->width() / 6);
+    ui->itemsTable->setColumnWidth(0, 150);
+    ui->itemsTable->setColumnWidth(1, 50);
+    ui->itemsTable->setColumnWidth(2, 50);
+    ui->itemsTable->setColumnWidth(3, 100);
 }
 
 //Displays any items from list created in renderItems
@@ -391,7 +391,7 @@ void MainWindow::on_addItemButton_clicked()
 void MainWindow::calculateRevenue(Item & item)
 {
     int quantitySum = 0;
-    int revenue;
+    double revenue;
     std::vector<Transaction> transactionsList = dbPointer->getAllTransactions();
 
     //Goes through vector to find which items match the name of this item
@@ -1041,6 +1041,7 @@ void MainWindow::on_addTransactionButton_clicked()
     addTrans->setDBPointer(dbPointer);
     addTrans->setTransactionsTablePointer(ui->transactionsTable);
     addTrans->setMainWindowPointer(this);
+
     // opens the add customer window
     addTrans->open();
 }

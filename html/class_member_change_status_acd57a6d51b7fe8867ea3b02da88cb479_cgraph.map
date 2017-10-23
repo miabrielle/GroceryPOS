@@ -1,0 +1,20 @@
+<map id="MemberChangeStatus::on_showMemberChangeStatuses_clicked" name="MemberChangeStatus::on_showMemberChangeStatuses_clicked">
+<area shape="rect" id="node2" href="$class_member_change_status.html#a2e3acb13aaa292aa2b295b22f2a05453" title="MemberChangeStatus\l::renderCustomerStatusTable" alt="" coords="283,211,478,249"/>
+<area shape="rect" id="node3" href="$class_d_b_manager.html#a5585a9e6461ebd2f01127740e230e8ac" title="DBManager::getAllCustomers" alt="" coords="766,129,964,155"/>
+<area shape="rect" id="node8" href="$class_member_change_status.html#acd376e129df8f563873c3feb5b564819" title="MemberChangeStatus\l::calcMemberChangeStatus" alt="" coords="529,211,715,249"/>
+<area shape="rect" id="node19" href="$class_member_change_status.html#a3b34636daca94b977fe1348016ffe975" title="MemberChangeStatus\l::addCustomerVectorToTable" alt="" coords="526,273,718,312"/>
+<area shape="rect" id="node4" href="$class_customer.html#a16346da0d8e531cdf0f2759e0aa1814f" title="Customer::setCustomerID" alt="" coords="1024,104,1200,129"/>
+<area shape="rect" id="node5" href="$class_customer.html#ade0b81b61e2f63693b7f2350bea2f86d" title="Customer::setCustomerName" alt="" coords="1013,153,1211,179"/>
+<area shape="rect" id="node6" href="$class_customer.html#ac3f3d979e99805b1290899565e437147" title="Customer::setMemberType" alt="" coords="1021,5,1203,31"/>
+<area shape="rect" id="node7" href="$class_customer.html#a9a8b5b57c9420a50f0c300d6e583db4f" title="Customer::setExpDate" alt="" coords="1034,55,1190,80"/>
+<area shape="rect" id="node9" href="$class_customer.html#a2efe8b657531f27816c28fd617ed6e20" title="Customer::getMemberType" alt="" coords="774,217,957,243"/>
+<area shape="rect" id="node10" href="$class_d_b_manager.html#a217d761f037231dd46a824cec8545343" title="DBManager::getTransactions\lByMemberID" alt="" coords="768,291,962,329"/>
+<area shape="rect" id="node18" href="$class_d_b_manager.html#adc46b86e9da28c601881399e6ab95339" title="DBManager::getSalesPrice\lTotalFloat" alt="" coords="1021,476,1203,515"/>
+<area shape="rect" id="node11" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="1019,427,1205,452"/>
+<area shape="rect" id="node12" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="1023,203,1201,228"/>
+<area shape="rect" id="node13" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="1029,252,1195,291"/>
+<area shape="rect" id="node14" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="1012,315,1212,340"/>
+<area shape="rect" id="node15" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="1021,364,1203,403"/>
+<area shape="rect" id="node16" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="1260,385,1438,411"/>
+<area shape="rect" id="node17" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="1266,448,1432,487"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="DBManager::getTransactionsByMemberID" name="DBManager::getTransactionsByMemberID">
+<area shape="rect" id="node2" href="$class_transaction.html#a24315dea4db733a19742a0bbddac0952" title="Transaction::setCustomerID" alt="" coords="254,5,441,31"/>
+<area shape="rect" id="node3" href="$class_transaction.html#a66a95fb007bcb10ed66c97df1ab19e83" title="Transaction::setItemName" alt="" coords="259,55,436,80"/>
+<area shape="rect" id="node4" href="$class_transaction.html#ad9f2f8f355271be768f56731f63ad8a7" title="Transaction::setQuantity\lPurchased" alt="" coords="265,104,430,143"/>
+<area shape="rect" id="node5" href="$class_transaction.html#a93804291b2d5431d55df181744f29d8b" title="Transaction::setPurchaseDate" alt="" coords="248,167,448,192"/>
+<area shape="rect" id="node6" href="$class_d_b_manager.html#a8dd2f833545335658241ec152443d156" title="DBManager::getSalesPrice\lForTransaction" alt="" coords="257,216,439,255"/>
+<area shape="rect" id="node7" href="$class_transaction.html#a02f6ed956c75a7bc821a2b8f9dff57b4" title="Transaction::getItemName" alt="" coords="496,195,674,220"/>
+<area shape="rect" id="node8" href="$class_transaction.html#a5086006652cf582b4594a99940f3845e" title="Transaction::getQuantity\lPurchased" alt="" coords="502,244,668,283"/>
+</map>
