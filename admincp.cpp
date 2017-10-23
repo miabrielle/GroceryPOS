@@ -225,13 +225,13 @@ void MainWindow::renderItems()
     ui->itemsTable->setColumnCount(4);
     ui->itemsTable->setRowCount(itemsList.size());
     ui->itemsTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Item Name"));
-    ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
+    ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price ($)"));
     ui->itemsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("# Sold"));
-    ui->itemsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Revenue"));
+    ui->itemsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Revenue ($)"));
     ui->itemsTable->setColumnWidth(0, 200);
-    ui->itemsTable->setColumnWidth(1, 80);
-    ui->itemsTable->setColumnWidth(2, 60);
-    ui->itemsTable->setColumnWidth(3, 100);
+    ui->itemsTable->setColumnWidth(1, 100);
+    ui->itemsTable->setColumnWidth(2, 50);
+    ui->itemsTable->setColumnWidth(3, 90);
 }
 
 //Displays any items from list created in renderItems
@@ -249,10 +249,6 @@ void MainWindow::displayItems()
     {
         for (int column = 0; column < ui->itemsTable->columnCount(); column++)
         {
-            QString priceString = "$" + QString::number(itemsList[row].getItemPrice(), 'f', 2);
-            QString priceRevenue = "$" + QString::number(itemsList[row].getTotalRevenue(), 'f', 2);
-
-
             //creates a cell if one is not available
             QTableWidgetItem *cell = ui->itemsTable->item(row,column);
             if (!cell)
@@ -267,13 +263,13 @@ void MainWindow::displayItems()
                 cell->setData(0, QVariant(itemsList[row].getItemName()));
                 break;
             case 1:
-                cell->setData(0, QVariant(priceString));
+                cell->setData(0, QVariant(itemsList[row].getItemPrice()));
                 break;
             case 2:
                 cell->setData(0, QVariant(itemsList[row].getQuantitySold()));
                 break;
             case 3:
-                cell->setData(0, QVariant(priceRevenue));
+                cell->setData(0, QVariant(itemsList[row].getTotalRevenue()));
                 break;
             }
         }
