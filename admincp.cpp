@@ -228,9 +228,9 @@ void MainWindow::renderItems()
     ui->itemsTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Item Price"));
     ui->itemsTable->setHorizontalHeaderItem(2, new QTableWidgetItem("# Sold"));
     ui->itemsTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Revenue"));
-    ui->itemsTable->setColumnWidth(0, 150);
-    ui->itemsTable->setColumnWidth(1, 50);
-    ui->itemsTable->setColumnWidth(2, 50);
+    ui->itemsTable->setColumnWidth(0, 200);
+    ui->itemsTable->setColumnWidth(1, 80);
+    ui->itemsTable->setColumnWidth(2, 60);
     ui->itemsTable->setColumnWidth(3, 100);
 }
 
@@ -555,11 +555,11 @@ void MainWindow::renderCustomers()
     ui->customersTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Exp. Date"));
     ui->customersTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Rebate Amount"));
 
-    ui->customersTable->setColumnWidth(0, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(1, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(2, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(3, ui->customersTable->width()/4);
-    ui->customersTable->setColumnWidth(4, ui->customersTable->width()/4);
+    ui->customersTable->setColumnWidth(0, 100);
+    ui->customersTable->setColumnWidth(1, 250);
+    ui->customersTable->setColumnWidth(2, 100);
+    ui->customersTable->setColumnWidth(3, 100);
+    ui->customersTable->setColumnWidth(4, 150);
 
     // Updates the table with new list of customers obtained from database
     addCustomersVectorToTable(customersList);
