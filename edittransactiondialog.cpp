@@ -12,13 +12,25 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, Transaction transa
         }
         ui->setupUi(this);
 
+        // Fills the item Purchased box with only valid item names (from items table)
+        QSqlQuery itemsQuery("select name FROM items");
+        QSqlQueryModel* itemsModel = new QSqlQueryModel;
+        itemsModel->setQuery(itemsQuery);
+        ui->itemPurchasedInput->setModel(itemsModel);
+
+
+        // Fills the customer ID input box with only valid customer IDs (from customers table)
+        QSqlQuery customersQuery("select id FROM customers");
+        QSqlQueryModel* customersModel = new QSqlQueryModel;
+        customersModel->setQuery(customersQuery);
+        ui->customerIDInput->setModel(customersModel);
+
         this->rowSelected = rowSelected;
 
         // Sets spin box maximums
-        ui->customerIDField->setMaximum(99999);
         ui->quantityPurchasedField->setMaximum(9999);
-        ui->customerIDField->setValue(transactionSelected.getCustomerID());
-        ui->itemPurchasedField->setText(transactionSelected.getItemName());
+        ui->customerIDInput->setCurrentText(QString::number(transactionSelected.getCustomerID()));
+        ui->itemPurchasedInput->setCurrentText(transactionSelected.getItemName());
         ui->quantityPurchasedField->setValue(transactionSelected.getQuantityPurchased());
         ui->datePurchasedField->setText(transactionSelected.getPurchaseDate());
 }
@@ -37,8 +49,8 @@ void EditTransactionDialog::setTransactionsTablePointer(QTableWidget* transactio
 
 void EditTransactionDialog::on_saveTransactionButton_clicked()
 {
-    int customerID = ui->customerIDField->value();
-    QString itemPurchased = ui->itemPurchasedField->text();
+    int customerID = ui->customerIDInput->currentText().toInt();
+    QString itemPurchased = ui->itemPurchasedInput->currentText();
     int quantityPurchased = ui->quantityPurchasedField->value();
     QString purchaseDate = ui->datePurchasedField->text();
 

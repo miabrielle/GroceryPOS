@@ -61,6 +61,10 @@ public:
     // Get transactions by MemberID
     std::vector<Transaction> getTransactionsByMemberID(int memberID, double& grandTotal);
 
+    void addTransaction(Transaction transactionToAdd);
+
+    void deleteTransaction(int transactionID);
+
     // Get all customers from database
     std::vector<Customer> getAllCustomers();
 

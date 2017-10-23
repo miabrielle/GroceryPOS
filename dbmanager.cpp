@@ -272,6 +272,9 @@ std::vector<Customer> DBManager::getExpiringMembershipsForMonth(QString month)
  *
  * updateTransactioninDB
  *  - changes the values linked to an item in the database
+ *
+ * addTransaction
+ * - Adds a new transaction to the database
  *******************************************************************************************/
 std::vector<Transaction> DBManager::getAllTransactions()
 {
@@ -405,9 +408,7 @@ std::vector<Transaction> DBManager::getTransactionsByMemberID(int memberID, doub
                 transactionTotalString = getSalesPriceForTransaction(tempTransaction);
                 transactionTotalString.remove(0, 1); // removes the '$' prefix from the number string
 
-                qDebug() << "TRANS TOTAL: " << transactionTotalString;
                 grandTotal += transactionTotalString.toDouble();
-                qDebug() << "GRAND TOTAL: " << grandTotal;
                 transactionsQuery.next();
             }
         }
@@ -490,6 +491,49 @@ void DBManager::updateTransactionInDB(Transaction newTransaction, int transactio
     qDebug() << query.lastError();
 }
 
+void DBManager::addTransaction(Transaction transactionToAdd)
+{
+    QSqlQuery transQuery;
+    transQuery.prepare("INSERT INTO transactions (cid, itemPurchased, quantityPurchased, date) VALUES (:customerID, :itemPurchased, :quantityPurchased, :datePurchased)");
+
+    transQuery.bindValue(":customerID", transactionToAdd.getCustomerID());
+    transQuery.bindValue(":itemPurchased", transactionToAdd.getItemName());
+    transQuery.bindValue(":quantityPurchased", transactionToAdd.getQuantityPurchased());
+    transQuery.bindValue(":datePurchased", transactionToAdd.getPurchaseDate());
+
+    if (!transQuery.exec())
+    {
+        throw transactionToAdd.getCustomerID();
+    }
+}
+void DBManager::deleteTransaction(int transactionID)
+{
+    QSqlQuery query;
+    QSqlQuery updateIndexQuery;
+    QSqlQuery reIndexQuery;
+    query.prepare("DELETE FROM transactions WHERE id = :transactionID");
+    query.bindValue(":transactionID", transactionID);
+    query.exec();
+
+    int newIndex = 1;
+    if(reIndexQuery.exec("SELECT id FROM transactions"))
+    {
+        reIndexQuery.first();
+        while(reIndexQuery.isValid())
+        {
+            int currentIndex = reIndexQuery.value(0).toInt();
+            updateIndexQuery.prepare("UPDATE transactions SET id=:newIndex WHERE id=:currentIndex");
+
+            updateIndexQuery.bindValue(":currentIndex", currentIndex);
+            updateIndexQuery.bindValue(":newIndex", newIndex);
+
+            updateIndexQuery.exec();
+
+            newIndex++;
+            reIndexQuery.next();
+        }
+    }
+}
 /*******************************************************************************************
  * DATA COLLECTION ITEM FUNCTIONS
  *
@@ -528,7 +572,6 @@ std::vector<Item> DBManager::getAllItems()
             itemsQuery.next();
         }
     }
-    qDebug() << "ITEMS ERROR:";
     qDebug() << itemsQuery.lastError();
     return items;
 }

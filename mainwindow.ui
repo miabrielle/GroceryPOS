@@ -280,7 +280,7 @@ QHeaderView::section  {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -296,30 +296,12 @@ QHeaderView::section  {
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="invalidRowSelectedMsg">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>410</y>
-        <width>371</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLabel {
-color:red
-};</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QPushButton" name="loadAllTransactionsButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>380</y>
-        <width>173</width>
+        <x>20</x>
+        <y>400</y>
+        <width>161</width>
         <height>41</height>
        </rect>
       </property>
@@ -327,25 +309,12 @@ color:red
        <string>Load All Transactions</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="editTransactionRowButton">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>380</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Edit Selected Row</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>410</x>
+        <x>440</x>
         <y>10</y>
-        <width>351</width>
+        <width>331</width>
         <height>41</height>
        </rect>
       </property>
@@ -398,24 +367,6 @@ color:red
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="grandTotalDisplayField">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>380</y>
-        <width>441</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLabel {
-color: red;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
@@ -440,6 +391,39 @@ color: red;
         <widget class="QPushButton" name="showSalesByCustomerName">
          <property name="text">
           <string>Show Sales</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>358</y>
+        <width>548</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QPushButton" name="addTransactionButton">
+         <property name="text">
+          <string>Add Transaction</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="editTransactionRowButton">
+         <property name="text">
+          <string>Edit Selected Row</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="deleteTransactionButton">
+         <property name="text">
+          <string>Delete Transaction</string>
          </property>
         </widget>
        </item>
@@ -757,7 +741,7 @@ color: red;
        <string>Show change Member Status</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>

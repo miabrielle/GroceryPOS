@@ -2,10 +2,12 @@
 #include "ui_mainwindow.h"
 #include "edittransactiondialog.h"
 #include "addcustomerdialog.h"
+#include "addtransactiondialog.h"
 #include "memberchangestatus.h"
 #include <iomanip>
 #include <vector>
 #include <cassert>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -248,8 +250,8 @@ void MainWindow::displayItems()
     {
         for (int column = 0; column < ui->itemsTable->columnCount(); column++)
         {
-            QString priceString = "$" + QString::number(itemsList[row].getItemPrice());
-            QString priceRevenue = "$" + QString::number(itemsList[row].getTotalRevenue());
+            QString priceString = "$" + QString::number(itemsList[row].getItemPrice(), 'f', 2);
+            QString priceRevenue = "$" + QString::number(itemsList[row].getTotalRevenue(), 'f', 2);
 
 
             //creates a cell if one is not available
@@ -733,6 +735,7 @@ void MainWindow::on_transactionsTable_cellClicked(int row)
 
         case 5:
             salePrice = ui->transactionsTable->item(row, col)->text().toFloat();
+            break;
 
         }
     }
@@ -1029,9 +1032,52 @@ void MainWindow::on_DeleteCustomerButton_clicked()
     }
 }
 
-// Destructor
+
+void MainWindow::on_addTransactionButton_clicked()
+{
+    // declare the add customer window
+    AddTransactionDialog* addTrans = new AddTransactionDialog;
+
+    // Gives the add customer window access to the database and transactions table
+    addTrans->setDBPointer(dbPointer);
+    addTrans->setTransactionsTablePointer(ui->transactionsTable);
+    addTrans->setMainWindowPointer(this);
+    // opens the add customer window
+    addTrans->open();
+}
+
+// Destructor deleted the UI pointer
 MainWindow::~MainWindow()
 {
     delete ui;
 
+}
+
+void MainWindow::on_deleteTransactionButton_clicked()
+{
+    if (isAdmin)
+    {
+        //Returns the selected row number and erases row in UI
+        int selectedRow;
+        QItemSelectionModel* selectionModel = ui->transactionsTable->selectionModel();
+        selectedRow = ui->transactionsTable->selectionModel()->currentIndex().row();
+        QModelIndexList selected = selectionModel->selectedRows();
+
+        for(int i= 0; i< selected.count();i++)
+        {
+            QModelIndex index = selected.at(i);
+            selectedRow = index.row();
+        }
+
+        //Erases element in the database and table
+        ui->transactionsTable->removeRow(selectedRow);
+        qDebug() << "SELECTED ROW : " << selectedRow;
+
+        // selectedRow + 1 corresponds to the transaction ID
+        dbPointer->deleteTransaction(selectedRow + 1);
+    }
+    else
+    {
+        insufficientPriviledgesErrorMessage();
+    }
 }

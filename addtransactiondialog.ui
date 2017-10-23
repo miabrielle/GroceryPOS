@@ -1,100 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddCustomerDialog</class>
- <widget class="QDialog" name="AddCustomerDialog">
+ <class>AddTransactionDialog</class>
+ <widget class="QDialog" name="AddTransactionDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
-    <height>308</height>
+    <width>568</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Add Customer</string>
+   <string>Add Transaction</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
+     <x>50</x>
+     <y>40</y>
      <width>471</width>
      <height>31</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="customerIDLabel">
       <property name="text">
-       <string>Customer ID:      </string>
+       <string>Customer ID:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="IDText"/>
+     <widget class="QComboBox" name="customerIDInput"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="layoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>100</y>
-     <width>471</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Customer Name:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="nameText"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>150</y>
+     <x>50</x>
+     <y>140</y>
      <width>471</width>
      <height>31</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="quantityPurchasedLabel">
       <property name="text">
-       <string>Membership Type:</string>
+       <string>Quantity Purchased:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="membershipTypeEdit">
-      <item>
-       <property name="text">
-        <string>Regular</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Executive</string>
-       </property>
-      </item>
+     <widget class="QSpinBox" name="quantityPurchasedInput"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>90</y>
+     <width>471</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="itemPurchasedLabel">
+      <property name="text">
+       <string>Item Purchased:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="itemPurchasedInput"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>260</y>
+     <width>271</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QPushButton" name="addButton">
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancelButton">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="layoutWidget_5">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>200</y>
+     <x>50</x>
+     <y>190</y>
      <width>471</width>
      <height>31</height>
     </rect>
@@ -103,12 +118,12 @@
     <item>
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Expiration Date:</string>
+       <string>Transaction Date:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="ExpMonthEdit">
+     <widget class="QComboBox" name="monthInput">
       <item>
        <property name="text">
         <string>01</string>
@@ -172,7 +187,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="ExpDayEdit">
+     <widget class="QComboBox" name="dayInput">
       <item>
        <property name="text">
         <string>01</string>
@@ -331,7 +346,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="ExpYearEdit">
+     <widget class="QComboBox" name="yearInput">
       <item>
        <property name="text">
         <string>2017</string>
@@ -392,32 +407,6 @@
         <string>2028</string>
        </property>
       </item>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>270</y>
-     <width>271</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
-    <item>
-     <widget class="QPushButton" name="addButton">
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="cancelButton">
-      <property name="text">
-       <string>Cancel</string>
-      </property>
      </widget>
     </item>
    </layout>

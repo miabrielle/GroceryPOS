@@ -58,10 +58,10 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QSpinBox" name="customerIDField"/>
+       <widget class="QComboBox" name="customerIDInput"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="itemPurchasedField"/>
+       <widget class="QComboBox" name="itemPurchasedInput"/>
       </item>
       <item>
        <widget class="QSpinBox" name="quantityPurchasedField"/>

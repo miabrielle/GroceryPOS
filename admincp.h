@@ -89,6 +89,10 @@ private slots:
 
     void on_DeleteCustomerButton_clicked();
 
+    void on_addTransactionButton_clicked();
+
+    void on_deleteTransactionButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     DBManager* dbPointer;
