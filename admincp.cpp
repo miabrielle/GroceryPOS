@@ -237,7 +237,6 @@ void MainWindow::renderItems()
 //Displays any items from list created in renderItems
 void MainWindow::displayItems()
 {
-    qDebug() << "DisplayItems entered";
     //calculates each items revenue and quantity sold
     for(int i = 0; i < static_cast<int>(itemsList.size()); i++)
     {
@@ -949,7 +948,7 @@ void MainWindow::on_showSalesByCustomerName_clicked()
         // Notify the user of grand total of purchases
         addTransactionsVectorToTable(transactionsList);
         QMessageBox grandTotalInfoBox;
-        grandTotalInfoBox.information(0,"Grand Total", "Customer " + customerName +" has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
+        grandTotalInfoBox.information(0,"Grand Total", "Customer '" + customerName +"' has spent: $" + QString::number(grandTotal, 'f', 2) + " dollars.");
         grandTotalInfoBox.setFixedSize(600,100);
     }
     catch (const QString& errorMessage)
@@ -1071,7 +1070,6 @@ void MainWindow::on_deleteTransactionButton_clicked()
 
         //Erases element in the database and table
         ui->transactionsTable->removeRow(selectedRow);
-        qDebug() << "SELECTED ROW : " << selectedRow;
 
         // selectedRow + 1 corresponds to the transaction ID
         dbPointer->deleteTransaction(selectedRow + 1);

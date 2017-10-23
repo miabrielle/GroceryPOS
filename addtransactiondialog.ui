@@ -126,47 +126,47 @@
      <widget class="QComboBox" name="monthInput">
       <item>
        <property name="text">
-        <string>01</string>
+        <string>1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>02</string>
+        <string>2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>03</string>
+        <string>3</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>04</string>
+        <string>4</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>05</string>
+        <string>5</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>06</string>
+        <string>6</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>07</string>
+        <string>7</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>08</string>
+        <string>8</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>09</string>
+        <string>9</string>
        </property>
       </item>
       <item>
@@ -190,47 +190,47 @@
      <widget class="QComboBox" name="dayInput">
       <item>
        <property name="text">
-        <string>01</string>
+        <string>1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>02</string>
+        <string>2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>03</string>
+        <string>3</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>04</string>
+        <string>4</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>05</string>
+        <string>5</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>06</string>
+        <string>6</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>07</string>
+        <string>7</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>08</string>
+        <string>8</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>09</string>
+        <string>9</string>
        </property>
       </item>
       <item>

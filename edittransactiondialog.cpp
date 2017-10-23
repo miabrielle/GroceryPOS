@@ -6,33 +6,26 @@ EditTransactionDialog::EditTransactionDialog(QWidget *parent, Transaction transa
     QDialog(parent),
     ui(new Ui::EditTransactionDialog)
 {
-        if (transactionSelected.getItemName().isEmpty())
-        {
-            throw QString ("Please select a row from the transactions table.");
-        }
-        ui->setupUi(this);
+    if (transactionSelected.getItemName().isEmpty())
+    {
+        throw QString ("Please select a row from the transactions table.");
+    }
+    ui->setupUi(this);
 
-        // Fills the item Purchased box with only valid item names (from items table)
-        QSqlQuery itemsQuery("select name FROM items");
-        QSqlQueryModel* itemsModel = new QSqlQueryModel;
-        itemsModel->setQuery(itemsQuery);
-        ui->itemPurchasedInput->setModel(itemsModel);
+    // Fills the itemPurchasedInput box with valid selections from databasex
+    dbPointer->createComboBoxModel("items", "name", ui->itemPurchasedInput);
 
+    // Fills the customer ID input box with only valid customer IDs (from customers table)
+    dbPointer->createComboBoxModel("customers", "id", ui->customerIDInput);
 
-        // Fills the customer ID input box with only valid customer IDs (from customers table)
-        QSqlQuery customersQuery("select id FROM customers");
-        QSqlQueryModel* customersModel = new QSqlQueryModel;
-        customersModel->setQuery(customersQuery);
-        ui->customerIDInput->setModel(customersModel);
+    this->rowSelected = rowSelected;
 
-        this->rowSelected = rowSelected;
-
-        // Sets spin box maximums
-        ui->quantityPurchasedField->setMaximum(9999);
-        ui->customerIDInput->setCurrentText(QString::number(transactionSelected.getCustomerID()));
-        ui->itemPurchasedInput->setCurrentText(transactionSelected.getItemName());
-        ui->quantityPurchasedField->setValue(transactionSelected.getQuantityPurchased());
-        ui->datePurchasedField->setText(transactionSelected.getPurchaseDate());
+    // Sets spin box maximums
+    ui->quantityPurchasedField->setMaximum(9999);
+    ui->customerIDInput->setCurrentText(QString::number(transactionSelected.getCustomerID()));
+    ui->itemPurchasedInput->setCurrentText(transactionSelected.getItemName());
+    ui->quantityPurchasedField->setValue(transactionSelected.getQuantityPurchased());
+    ui->datePurchasedField->setText(transactionSelected.getPurchaseDate());
 }
 
 void EditTransactionDialog::setTransactionSelectedPointer(Transaction* transactionSelected)

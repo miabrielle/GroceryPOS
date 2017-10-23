@@ -7,15 +7,14 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QList>
+#include <QComboBox>
+#include <QSqlTableModel>
 
 #include "transaction.h"
 #include "item.h"
 #include "customer.h"
 #include <vector>
 
-
-#include <QSqlTableModel>
-#include <vector>
 #include "transaction.h"
 #include "item.h"
 #include "customer.h"
@@ -50,6 +49,9 @@ public:
     // Returns true if user authenticates successfully
     // username and password are passed from user input on login screen
     bool authenticateUser(QString username, QString password, bool& isAdmin);
+
+    // Used for filling in combo boxes with data from a table
+    void createComboBoxModel(QString tableName, QString fieldName, QComboBox* comboBox);
 
     //When information on an item is updated, this is called to update the database
     void updateItemInDB(Item item);

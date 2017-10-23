@@ -1,5 +1,6 @@
 #include "dbmanager.h"
 #include "customer.h"
+#include <QComboBox>
 #include <QMessageBox>
 #include <QDate>
 
@@ -84,6 +85,17 @@ bool DBManager::authenticateUser(QString username, QString password, bool &isAdm
         }
     }
     return isAuthed;
+}
+
+// This function creates a model from a single table and field-name; and attaches it to a comboBox
+void DBManager::createComboBoxModel(QString tableName, QString fieldName, QComboBox* comboBox)
+{
+    QSqlQuery query("select " + fieldName + " FROM " + tableName);
+
+    QSqlQueryModel* comboBoxModel = new QSqlQueryModel;
+
+    comboBoxModel->setQuery(query);
+    comboBox->setModel(comboBoxModel);
 }
 
 /*******************************************************************************************

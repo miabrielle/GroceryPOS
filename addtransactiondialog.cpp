@@ -10,17 +10,21 @@ AddTransactionDialog::AddTransactionDialog(QWidget *parent) :
     ui->setupUi(this);
 
     // Fills the item Purchased box with only valid item names (from items table)
-    QSqlQuery itemsQuery("select name FROM items");
-    QSqlQueryModel* itemsModel = new QSqlQueryModel;
-    itemsModel->setQuery(itemsQuery);
-    ui->itemPurchasedInput->setModel(itemsModel);
+    //    QSqlQuery itemsQuery("select name FROM items");
+    //    QSqlQueryModel* itemsModel = new QSqlQueryModel;
+    //    itemsModel->setQuery(itemsQuery);
+    //    ui->itemPurchasedInput->setModel(itemsModel);
+
+    // Fills the itemPurchasedInput box with valid selections from database.
+    dbPointer->createComboBoxModel("items", "name", ui->itemPurchasedInput);
 
 
     // Fills the customer ID input box with only valid customer IDs (from customers table)
-    QSqlQuery customersQuery("select id FROM customers");
-    QSqlQueryModel* customersModel = new QSqlQueryModel;
-    customersModel->setQuery(customersQuery);
-    ui->customerIDInput->setModel(customersModel);
+    //    QSqlQuery customersQuery("select id FROM customers");
+    //    QSqlQueryModel* customersModel = new QSqlQueryModel;
+    //    customersModel->setQuery(customersQuery);
+    //    ui->customerIDInput->setModel(customersModel);
+    dbPointer->createComboBoxModel("customers", "id", ui->customerIDInput);
 
     ui->quantityPurchasedInput->setMaximum(99999);
 }
@@ -53,15 +57,11 @@ void AddTransactionDialog::on_addButton_clicked()
     QString purchaseYear = ui->yearInput->currentText();
     QString purchaseDate = purchaseMonth + '/' + purchaseDay + '/' + purchaseYear;
 
-
     transactionToAdd.setCustomerID(ui->customerIDInput->currentText().toInt());
     transactionToAdd.setItemName(ui->itemPurchasedInput->currentText());
     transactionToAdd.setPurchaseDate(purchaseDate);
     transactionToAdd.setQuantityPurchased(ui->quantityPurchasedInput->value());
 
-    qDebug() << "QUANTITY: " << transactionToAdd.getQuantityPurchased();
-    qDebug() << "CUSTOMER ID TO ADD: " << transactionToAdd.getCustomerID();
-    qDebug() << "ITEM TO ADDD: " << transactionToAdd.getItemName();
     // Adds the transaction to the database
     try
     {
