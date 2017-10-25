@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <vector>
 #include <cassert>
-// test
+// test 2
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
